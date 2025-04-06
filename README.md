@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TP Health & Fitness Coaching - Modern Fitness Studio Website
+
+A high-performance, SEO-friendly website for a fitness studio built with Next.js and Tailwind CSS.
+
+## Features
+
+- **Responsive Design**: Mobile-friendly layout that works across all devices
+- **Modern UI**: Sleek, minimalistic design with emphasis on user experience
+- **Performance Optimized**: Fast loading with Next.js image optimization
+- **SEO Ready**: Built with SEO best practices in mind
+- **Dark Mode Support**: Automatic dark/light mode based on user preferences
+
+## Pages
+
+- **Home**: Dynamic hero section with call-to-action and service highlights
+- **Services**: Detailed information about personal training, group classes, and specialized programs
+- **Schedule**: Class timetable with filtering options
+- **Blog**: Fitness articles and tips
+- **About**: Studio information and team details
+- **Contact**: Contact form and location information
+
+## Technologies Used
+
+- **Next.js**: React framework for server-side rendering and static site generation
+- **TypeScript**: Type safety for better developer experience
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **Framer Motion**: Animation library for smooth UI transitions
+- **React Icons**: Icon library for consistent and scalable icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 16.x or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/tp-health-fitness.git
+cd tp-health-fitness
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── public/            # Static assets
+├── src/
+│   ├── app/           # Next.js app router pages
+│   ├── components/    # Reusable UI components
+│   └── styles/        # Global styles
+├── next.config.js     # Next.js configuration
+└── tailwind.config.js # Tailwind CSS configuration
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project can be easily deployed to Vercel, Netlify, or any other hosting platform that supports Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Images from [Unsplash](https://unsplash.com/)
+- Icons from [React Icons](https://react-icons.github.io/react-icons/)
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.

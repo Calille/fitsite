@@ -3,32 +3,26 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaDumbbell, FaUsers, FaRunning, FaAppleAlt } from 'react-icons/fa';
+import { FaDumbbell, FaUsers, FaFire } from 'react-icons/fa';
 
 const services = [
   {
     icon: <FaDumbbell className="text-4xl text-[#56b5bd]" />,
-    title: 'Personal Training',
-    description: 'One-on-one sessions tailored to your specific goals and needs with experienced trainers.',
+    title: 'One to One PT',
+    description: 'Personalized training sessions tailored to your specific goals with dedicated expert coaches.',
     image: '/personal-training.jpg',
   },
   {
     icon: <FaUsers className="text-4xl text-[#56b5bd]" />,
     title: 'Group Classes',
-    description: 'High-energy group workouts that foster community while challenging your limits.',
+    description: 'High-energy group workouts that foster community while challenging your limits in a supportive environment.',
     image: '/group-classes.jpg',
   },
   {
-    icon: <FaRunning className="text-4xl text-[#56b5bd]" />,
-    title: 'Endurance Programs',
-    description: 'Specialized training to build stamina, speed, and mental toughness for any challenge.',
-    image: '/endurance.jpg',
-  },
-  {
-    icon: <FaAppleAlt className="text-4xl text-[#56b5bd]" />,
-    title: 'Nutrition Coaching',
-    description: 'Expert guidance on fueling your body for optimal performance and recovery.',
-    image: '/nutrition.jpg',
+    icon: <FaFire className="text-4xl text-[#56b5bd]" />,
+    title: 'Fat Loss Programme',
+    description: 'Comprehensive approach combining training, nutrition guidance, and accountability for sustainable fat loss results.',
+    image: '/fat-loss.jpg',
   },
 ];
 
@@ -49,7 +43,7 @@ const ServicesFeature = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

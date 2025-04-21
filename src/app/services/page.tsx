@@ -2,76 +2,76 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaDumbbell, FaUsers, FaRunning, FaAppleAlt, FaChalkboardTeacher, FaHeartbeat } from 'react-icons/fa';
+import { FaDumbbell, FaUsers, FaRunning, FaFire, FaChalkboardTeacher, FaHeartbeat } from 'react-icons/fa';
 import FadeInWrapper from '@/components/FadeInWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 
 export const metadata = {
   title: 'Our Services | TP Health & Fitness Coaching',
-  description: 'Explore our comprehensive fitness services including personal training, group classes, strength training, and specialized programs.',
+  description: 'Explore our comprehensive fitness services including personal training, group classes, fat loss programmes, and specialized workshops.',
 };
 
 // Extended service information
 const services = [
   {
-    id: 'personal-training',
-    title: 'Personal Training',
+    id: 'one-to-one-pt',
+    title: '1-1 PT – 8 Week Kickstart Programme',
     icon: <FaDumbbell className="text-4xl text-[#56b5bd]" />,
-    description: "Our one-on-one training sessions are designed to provide personalized coaching tailored specifically to your goals, fitness level, and preferences. Work directly with an experienced trainer who will guide and motivate you through every step of your fitness journey.",
+    description: "Our 8 Week Kickstart Programme provides personalized one-to-one training sessions tailored specifically to your goals, fitness level, and preferences. Work directly with an experienced trainer who will guide and motivate you through every step of your transformation journey.",
     features: [
+      'Comprehensive fitness assessment',
       'Customized workout programs',
       'Form correction and technique guidance',
       'Progress tracking and adjustments',
-      'Nutritional advice and accountability',
-      'Flexible scheduling options'
+      'Nutritional guidance and accountability'
     ],
     image: '/personal-training.jpg',
     pricing: 'From £65 per session'
   },
   {
-    id: 'group-fitness',
-    title: 'Group Fitness Classes',
+    id: 'group-pt',
+    title: 'Group PT',
     icon: <FaUsers className="text-4xl text-[#56b5bd]" />,
-    description: "Experience the energy and motivation that comes from working out in a group. Our diverse class offerings cater to different interests and fitness levels, all led by certified instructors who create a supportive and challenging environment.",
+    description: "Experience the energy and motivation that comes from working out in a small group. Our group personal training sessions offer personalized attention in a supportive community setting, helping you stay motivated while achieving impressive results.",
     features: [
-      'Variety of class formats',
-      'Modifications for all fitness levels',
+      'Small group sizes for personalized attention',
+      'Cost-effective alternative to 1-1 training',
       'High-energy, motivating atmosphere',
       'Community support and accountability',
-      'Convenient scheduling'
+      'Varied and challenging workouts'
     ],
     image: '/group-fitness.jpg',
-    pricing: 'From £20 per class'
+    pricing: 'From £20 per session'
   },
   {
-    id: 'strength-conditioning',
-    title: 'Strength & Conditioning',
+    id: 'kickstart-group',
+    title: '8 Week Kickstart Group Programme',
     icon: <FaRunning className="text-4xl text-[#56b5bd]" />,
-    description: "Build strength, power, and athletic performance through our structured strength and conditioning programs. Whether you're looking to enhance sports performance or simply get stronger and more resilient, our science-backed approach delivers results.",
+    description: "Jump-start your fitness journey with our 8 Week Kickstart Group Programme. This structured group training experience combines effective workouts, supportive coaching, and the motivation of a like-minded community to help you establish sustainable healthy habits.",
     features: [
-      'Progressive resistance training',
-      'Functional movement patterns',
-      'Performance assessments',
-      'Periodized programming',
-      'Injury prevention focus'
+      'Progressive training plan over 8 weeks',
+      'Supportive group environment',
+      'Weekly progress check-ins',
+      'Beginner-friendly modifications',
+      'Results-focused approach'
     ],
-    image: '/strength.jpg',
-    pricing: 'From £55 per session'
+    image: '/kickstart-group.jpg',
+    pricing: 'From £199 for 8 weeks'
   },
   {
-    id: 'nutrition-coaching',
-    title: 'Nutrition Coaching',
-    icon: <FaAppleAlt className="text-4xl text-[#56b5bd]" />,
-    description: "Optimize your results with personalized nutrition guidance that complements your training. Our nutrition coaches provide practical, sustainable advice tailored to your lifestyle, preferences, and goals without extreme diets or restrictions.",
+    id: 'fat-loss-programme',
+    title: '8 Week Fat Loss Programme',
+    icon: <FaFire className="text-4xl text-[#56b5bd]" />,
+    description: "Transform your body with our comprehensive 8 Week Fat Loss Programme. Combining targeted training, nutrition guidance, and accountability, this specialized programme is designed to help you achieve sustainable fat loss results and develop healthy habits for life.",
     features: [
-      'Personalized nutrition plans',
-      'Meal planning and preparation tips',
-      'Habit-based approach',
-      'Ongoing support and accountability',
-      'Lifestyle integration strategies'
+      'Customized fat loss training plan',
+      'Nutritional guidance and meal planning',
+      'Regular body composition assessments',
+      'Support from experienced coaches',
+      'Sustainable approach to weight management'
     ],
-    image: '/nutrition.jpg',
-    pricing: 'From £75 per month'
+    image: '/fat-loss.jpg',
+    pricing: 'From £299 for 8 weeks'
   },
   {
     id: 'specialty-workshops',
@@ -92,16 +92,16 @@ const services = [
     id: 'recovery-wellness',
     title: 'Recovery & Wellness',
     icon: <FaHeartbeat className="text-4xl text-[#56b5bd]" />,
-    description: "Recovery is just as important as training. Our recovery and wellness services help you optimize your body's ability to recuperate, reduce injury risk, and enhance overall wellbeing through various modalities and techniques.",
+    description: "Recovery is just as important as training. Our recovery and wellness services include Pilates and mobility classes to help optimize your body's ability to recuperate, improve flexibility, reduce injury risk, and enhance overall wellbeing.",
     features: [
-      'Mobility and flexibility sessions',
-      'Guided meditation and relaxation',
-      'Foam rolling and self-myofascial release',
-      'Recovery protocol education',
-      'Stress management techniques'
+      'Pilates classes for core strength',
+      'Mobility sessions for improved range of motion',
+      'Guided relaxation techniques',
+      'Injury prevention strategies',
+      'Complement to your training routine'
     ],
     image: '/recovery.jpg',
-    pricing: 'From £35 per session'
+    pricing: 'From £15 per class'
   }
 ];
 
@@ -138,7 +138,7 @@ export default function ServicesPage() {
                 Transform Your Fitness Journey With Us
               </h2>
               <p className="text-gray-600">
-                At TP Health & Fitness, we believe in a holistic approach to fitness that addresses your unique needs, goals, and lifestyle. Our comprehensive services are designed to support you at every step of your journey, from personalized training to nutrition guidance and recovery strategies.
+                At TP Health & Fitness, we believe in a holistic approach to fitness that addresses your unique needs, goals, and lifestyle. Our comprehensive services are designed to support you at every step of your journey, from personalized training to specialized programmes and recovery strategies.
               </p>
             </div>
 

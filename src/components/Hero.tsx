@@ -20,7 +20,7 @@ const Hero = () => {
   const parallaxOffset = scrollY * 0.4;
 
   // Animated text splitting for the headline
-  const headlineWords = ['Discover', 'Your', 'Strength.', 'Build', 'Your', 'Community.'];
+  const headlineWords = ['Empower', 'Your', 'Strength.', 'Transform', 'Your', 'Life.'];
   const headlineColors = [
     'text-gray-800', 'text-gray-800', 'text-[#56b5bd]', 
     'text-gray-800', 'text-gray-800', 'text-[#56b5bd]'
@@ -176,10 +176,10 @@ const Hero = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center"
         >
           {[
-            { number: "500+", label: "Members" },
-            { number: "15+", label: "Trainers" },
+            { number: "150+", label: "Members" },
+            { number: "6", label: "Trainers" },
             { number: "30+", label: "Weekly Classes" },
-            { number: "98%", label: "Satisfaction" }
+            { number: "100%", label: "Retention Rate" }
           ].map((stat, index) => (
             <motion.div 
               key={index} 

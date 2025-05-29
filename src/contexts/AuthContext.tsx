@@ -42,7 +42,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [sessionTimeLeft, setSessionTimeLeft] = useState(0);
   const [sessionTimeout, setSessionTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [activityTimeout, setActivityTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Clear all timeouts
   const clearTimeouts = useCallback(() => {
@@ -50,11 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       clearTimeout(sessionTimeout);
       setSessionTimeout(null);
     }
-    if (activityTimeout) {
-      clearTimeout(activityTimeout);
-      setActivityTimeout(null);
-    }
-  }, [sessionTimeout, activityTimeout]);
+  }, [sessionTimeout]);
 
   // Logout function
   const logout = useCallback(() => {
@@ -84,49 +79,64 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setSessionTimeLeft(SESSION_TIMEOUT);
     
     // Clear existing timeout and set new one
-    clearTimeouts();
+    if (sessionTimeout) {
+      clearTimeout(sessionTimeout);
+    }
     
     const timeout = setTimeout(() => {
       logout();
     }, SESSION_TIMEOUT);
     
     setSessionTimeout(timeout);
-  }, [clearTimeouts, logout]);
+  }, [logout, sessionTimeout]);
 
-  // Track user activity
+  // Track user activity (throttled)
   const trackActivity = useCallback(() => {
-    if (isAuthenticated) {
-      extendSession();
+    if (!isAuthenticated) return;
+    
+    const newExpiry = Date.now() + SESSION_TIMEOUT;
+    localStorage.setItem('session_expiry', newExpiry.toString());
+    setSessionTimeLeft(SESSION_TIMEOUT);
+    
+    // Clear existing timeout and set new one
+    if (sessionTimeout) {
+      clearTimeout(sessionTimeout);
     }
-  }, [isAuthenticated, extendSession]);
+    
+    const timeout = setTimeout(() => {
+      logout();
+    }, SESSION_TIMEOUT);
+    
+    setSessionTimeout(timeout);
+  }, [isAuthenticated, logout, sessionTimeout]);
 
-  // Setup activity listeners
+  // Setup activity listeners with proper throttling
   useEffect(() => {
+    if (!isAuthenticated) return;
+
+    let lastActivity = 0;
+    const THROTTLE_INTERVAL = 60000; // 1 minute
+
+    const throttledTrackActivity = () => {
+      const now = Date.now();
+      if (now - lastActivity >= THROTTLE_INTERVAL) {
+        lastActivity = now;
+        trackActivity();
+      }
+    };
+
     const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
     
-    const throttledTrackActivity = (() => {
-      let lastCall = 0;
-      return () => {
-        const now = Date.now();
-        if (now - lastCall >= 60000) { // Throttle to once per minute
-          lastCall = now;
-          trackActivity();
-        }
-      };
-    })();
-
-    if (isAuthenticated) {
-      events.forEach(event => {
-        document.addEventListener(event, throttledTrackActivity, true);
-      });
-    }
+    events.forEach(event => {
+      document.addEventListener(event, throttledTrackActivity, true);
+    });
 
     return () => {
       events.forEach(event => {
         document.removeEventListener(event, throttledTrackActivity, true);
       });
     };
-  }, [isAuthenticated, trackActivity]);
+  }, [isAuthenticated]); // Only depend on isAuthenticated, not trackActivity
 
   // Update session countdown
   useEffect(() => {
@@ -167,9 +177,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               // Session expired
               if (rememberMe) {
                 // Extend session if remember me is enabled
-                extendSession();
+                const newExpiry = Date.now() + SESSION_TIMEOUT;
+                localStorage.setItem('session_expiry', newExpiry.toString());
+                setSessionTimeLeft(SESSION_TIMEOUT);
                 setIsAuthenticated(true);
                 setUser(parsedUser);
+                
+                const timeout = setTimeout(() => {
+                  logout();
+                }, SESSION_TIMEOUT);
+                setSessionTimeout(timeout);
               } else {
                 logout();
               }
@@ -187,9 +204,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
           } else {
             // No expiry set, create one
-            extendSession();
+            const newExpiry = Date.now() + SESSION_TIMEOUT;
+            localStorage.setItem('session_expiry', newExpiry.toString());
+            setSessionTimeLeft(SESSION_TIMEOUT);
             setIsAuthenticated(true);
             setUser(parsedUser);
+            
+            const timeout = setTimeout(() => {
+              logout();
+            }, SESSION_TIMEOUT);
+            setSessionTimeout(timeout);
           }
         } catch (error) {
           console.error('Error parsing stored user data:', error);
@@ -201,7 +225,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     checkAuth();
-  }, [extendSession, logout]);
+  }, []); // Empty dependency array - only run on mount
 
   // Login function
   const login = async (email: string, password: string, rememberMe = false): Promise<boolean> => {

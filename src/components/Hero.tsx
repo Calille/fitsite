@@ -1,11 +1,14 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useAnalytics } from '@/contexts/AnalyticsContext';
 
 const Hero = () => {
+  const { trackInteraction } = useAnalytics();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -25,6 +28,10 @@ const Hero = () => {
     'text-gray-800', 'text-gray-800', 'text-[#56b5bd]', 
     'text-gray-800', 'text-gray-800', 'text-[#56b5bd]'
   ];
+
+  const handleCTAClick = (buttonType: string) => {
+    trackInteraction('cta_button_click', { button: buttonType, location: 'hero' });
+  };
 
   return (
     <section className="relative min-h-screen flex items-center bg-white text-gray-800 overflow-hidden">
@@ -91,6 +98,7 @@ const Hero = () => {
               <Link 
                 href="/schedule" 
                 className="relative overflow-hidden group bg-[#56b5bd] text-white hover:bg-[#45a4ac] font-bold py-3 px-6 rounded-md transition-all text-center"
+                onClick={() => handleCTAClick('View Our Schedule')}
               >
                 <span className="relative z-10">View Our Schedule</span>
                 <motion.span 
@@ -103,6 +111,7 @@ const Hero = () => {
               <Link 
                 href="/services" 
                 className="relative overflow-hidden group bg-transparent border-2 border-[#56b5bd] text-[#56b5bd] font-bold py-3 px-6 rounded-md transition-all text-center"
+                onClick={() => handleCTAClick('Explore Services')}
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">Explore Services</span>
                 <motion.span 

@@ -1,9 +1,11 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaDumbbell, FaUsers, FaFire } from 'react-icons/fa';
+import { useAnalytics } from '@/contexts/AnalyticsContext';
 
 const services = [
   {
@@ -27,6 +29,12 @@ const services = [
 ];
 
 const ServicesFeature = () => {
+  const { trackInteraction } = useAnalytics();
+
+  const handleServiceClick = (serviceName: string) => {
+    trackInteraction('service_card_click', { service: serviceName });
+  };
+
   return (
     <section className="section-padding bg-[#56b5bd] text-white">
       <div className="container-custom">
@@ -51,7 +59,8 @@ const ServicesFeature = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#45a4ac] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+              className="bg-[#45a4ac] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={() => handleServiceClick(service.title)}
             >
               <div className="relative h-48 w-full">
                 <Image

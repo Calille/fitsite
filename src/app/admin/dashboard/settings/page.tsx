@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import Link from 'next/link';
 import { FiArrowLeft, FiSave, FiRefreshCw } from 'react-icons/fi';
 
@@ -30,7 +30,7 @@ export default function SettingsPage() {
     }
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
     // Handle nested objects (social links, SEO settings, etc.)
@@ -39,7 +39,7 @@ export default function SettingsPage() {
       setSettings({
         ...settings,
         [parent]: {
-          ...settings[parent],
+          ...(settings as any)[parent],
           [child]: value
         }
       });
@@ -51,14 +51,14 @@ export default function SettingsPage() {
     }
   };
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     const [parent, child] = name.split('.');
     
     setSettings({
       ...settings,
       [parent]: {
-        ...settings[parent],
+        ...(settings as any)[parent],
         [child]: checked
       }
     });

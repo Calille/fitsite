@@ -3,9 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
+import Image from 'next/image';
 
 const Hero = () => {
   const { trackInteraction } = useAnalytics();
@@ -52,21 +52,8 @@ const Hero = () => {
           Your browser does not support the video tag.
         </video>
         
-        {/* Fallback Image */}
-        {!videoLoaded && (
-          <div 
-            className="absolute inset-0 z-0"
-            style={{ transform: `translateY(${parallaxOffset}px)` }}
-          >
-            <Image
-              src="/hero-bg.jpg"
-              alt="Fitness training"
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-        )}
+       
+  
         
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
@@ -82,8 +69,8 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container-custom relative z-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="max-w-2xl">
+        <div className="flex justify-center items-center">
+          <div className="max-w-4xl text-center">
             {/* Animated Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 flex flex-wrap">
               {headlineWords.map((word, index) => (
@@ -146,58 +133,6 @@ const Hero = () => {
               </Link>
             </motion.div>
           </div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden lg:block relative h-[500px] w-full"
-          >
-            {/* Main feature image with enhanced styling for video background */}
-            <div className="absolute -right-20 top-0 h-full w-full drop-shadow-2xl">
-              <div className="relative h-full w-full">
-                <Image
-                  src="/hero-feature.png"
-                  alt="Fitness training"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                />
-                
-                {/* Enhanced circular highlight */}
-                <div className="absolute inset-0 bg-[#56b5bd] rounded-full opacity-20 blur-3xl transform scale-75 z-[-1]"></div>
-              </div>
-            </div>
-            
-            {/* Enhanced floating elements with better contrast */}
-            <motion.div 
-              animate={{ 
-                y: [0, -15, 0],
-              }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 4,
-                ease: "easeInOut" 
-              }}
-              className="absolute top-20 right-20 w-20 h-20 rounded-xl bg-white/95 backdrop-blur-sm shadow-2xl flex items-center justify-center z-50 border border-white/20"
-            >
-              <span className="text-3xl font-bold text-[#56b5bd]">15+</span>
-            </motion.div>
-            
-            <motion.div 
-              animate={{ 
-                y: [0, 15, 0],
-              }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 5,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-              className="absolute bottom-20 left-10 w-24 h-24 rounded-xl bg-white/95 backdrop-blur-sm shadow-2xl flex items-center justify-center z-50 border border-white/20"
-            >
-              <span className="text-3xl font-bold text-[#56b5bd]">30+</span>
-            </motion.div>
-          </motion.div>
         </div>
         
         {/* Enhanced Stats with better contrast */}

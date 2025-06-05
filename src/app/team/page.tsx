@@ -1,14 +1,13 @@
+'use client';
+
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaDumbbell, FaRunning, FaAppleAlt, FaUserGraduate, FaHandHoldingHeart } from 'react-icons/fa';
 import TeamMemberCard from '@/components/TeamMemberCard';
-
-export const metadata = {
-  title: 'Our Team | TP Health & Fitness Coaching',
-  description: 'Meet our dedicated team of fitness professionals at TP Health & Fitness Coaching - experts in personal training, nutrition, and wellness.',
-};
+import { useAnalytics } from '@/contexts/AnalyticsContext';
 
 // Team member data
 const teamMembers = [
@@ -17,39 +16,50 @@ const teamMembers = [
     role: 'Founder & Director, Head Coach',
     specialties: ['Sports Coaching', 'Strength Training', 'Community Building'],
     bio: 'Originally from Harpenden, Teighlor played women\'s football for 15 years at a high level and attended Loughborough University where she competed in elite sport. After working in the corporate world, she followed her passion for sport, health and fitness by founding TP during the pandemic. She coaches girls\' football, plays tennis at Townsend, and loves food, training and short getaways!',
-    image: '/img/logo.png'
+    image: '/team/teighlor.jpg'
   },
   {
     name: 'Sarah',
     role: 'Personal Trainer',
     specialties: ['Sports Science', 'Injury Rehabilitation', 'Endurance Training'],
     bio: 'Sarah is a level 3 personal trainer and qualified as a coach 6 years ago. Sarah studied sports science and music at Birmingham University. Previously an English Universities hockey player, she is now a keen skier, sailor, golfer, cyclist and trail runner. Having suffered from several chronic injuries in recent years, Sarah understands the physical restrictions and mental frustration of not being able to participate fully in sport and exercise. Her spare time is spent drinking flat whites and relaxing with her dogs!',
-    image: '/img/logo.png'
+    image: '/team/sarah.jpg'
   },
   {
     name: 'Ben',
     role: 'Personal Trainer',
     specialties: ['Rugby Training', 'Strength Building', 'Multi-generational Coaching'],
     bio: 'Our newest trainer Ben, joined TP in January 2024. He is a first team rugby player at Old Albanians and has a strong passion for health fitness and wellbeing. Having trained himself since his early teens, Ben is a physically strong and dedicated athlete. He has a calm, humble manor and is very patient as a coach. At 19, Ben is very mature and is a natural coach! Ben works with clients in their 80s to those in their teenage years and is very adaptable and knowledgable for such a short time in the industry. He rides his bike in his spare time and likes to travel!',
-    image: '/img/logo.png'
+    image: '/team/ben.jpg'
   },
   {
     name: 'Will',
     role: 'Personal Trainer',
     specialties: ['Nutrition', 'Fat Loss', 'Running'],
     bio: 'Will joined TP in the Summer of 24 after traveling in Australia. He is Harpenden born and bred, going to school at Roundwood. Will is a keen runner, gym goer and walker, He is very knowledgeable with nutrition and accountability having helped many of our fat loss clients achieve amazing results. Will is extremely personable, very kind and has a friendly approach to training.',
-    image: '/img/logo.png'
+    image: '/team/will.jpg'
   },
   {
     name: 'Seb',
     role: 'Personal Trainer',
     specialties: ['Rugby Training', 'Strength & Conditioning', 'Wellness Coaching'],
     bio: 'Seb grew up in Fareham on the South Coast and went to Hartpury University to play professional rugby, where he fell in love with fitness and training! He moved up to St Albans in September 2022 where he completed his PT course and then joined TP in Summer 2023. Seb is dedicated to helping others and follows his Mum who was an Osteopath, he has a strong passion to impact people\'s lives through health, well-being and fitness.',
-    image: '/img/logo.png'
+    image: '/team/seb.jpg'
   }
 ];
 
 export default function TeamPage() {
+  const { trackInteraction } = useAnalytics();
+
+  // Track page view
+  useEffect(() => {
+    trackInteraction('team_page_view');
+  }, [trackInteraction]);
+
+  const handleCTAClick = (buttonType: string, location: string) => {
+    trackInteraction('team_cta_click', { button: buttonType, location });
+  };
+
   return (
     <>
       <Header />
@@ -77,10 +87,18 @@ export default function TeamPage() {
               More than just a gym, TP Health & Fitness Coaching is a community dedicated to helping you achieve your fitness goals through personalized training, group classes, and specialized programs.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/schedule" className="bg-[#56b5bd] text-white hover:bg-[#45a4ac] px-6 py-3 rounded-md font-medium transition-all">
+              <Link 
+                href="/schedule" 
+                className="bg-[#56b5bd] text-white hover:bg-[#45a4ac] px-6 py-3 rounded-md font-medium transition-all"
+                onClick={() => handleCTAClick('View Our Schedule', 'hero')}
+              >
                 View Our Schedule
               </Link>
-              <Link href="/services" className="border-2 border-[#56b5bd] text-[#56b5bd] hover:bg-[#f0f9fa] px-6 py-3 rounded-md font-medium transition-all">
+              <Link 
+                href="/services" 
+                className="border-2 border-[#56b5bd] text-[#56b5bd] hover:bg-[#f0f9fa] px-6 py-3 rounded-md font-medium transition-all"
+                onClick={() => handleCTAClick('Explore Services', 'hero')}
+              >
                 Explore Services
               </Link>
             </div>
@@ -190,10 +208,18 @@ export default function TeamPage() {
               Take the first step toward your fitness goals with personalized coaching from our experienced team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/services" className="bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-8 rounded-md transition-all inline-block">
+              <Link 
+                href="/services" 
+                className="bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-8 rounded-md transition-all inline-block"
+                onClick={() => handleCTAClick('View Our Services', 'footer')}
+              >
                 View Our Services
               </Link>
-              <Link href="/contact" className="bg-[#45a4ac] text-white hover:bg-[#3a8c93] font-bold py-3 px-8 rounded-md transition-all inline-block">
+              <Link 
+                href="/contact" 
+                className="bg-[#45a4ac] text-white hover:bg-[#3a8c93] font-bold py-3 px-8 rounded-md transition-all inline-block"
+                onClick={() => handleCTAClick('Book a Consultation', 'footer')}
+              >
                 Book a Consultation
               </Link>
             </div>

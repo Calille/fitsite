@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,7 +16,7 @@ export default function NewBlogPost() {
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState('');
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function NewBlogPost() {
     slug: '',
     excerpt: '',
     content: '',
-    featuredImage: null,
+    featuredImage: null as File | null,
   });
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function NewBlogPost() {
     setLoading(false);
   }, [router]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
     // Auto-generate slug from title
@@ -73,25 +73,29 @@ export default function NewBlogPost() {
     }
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       // In a real application, you would upload this to a server/storage
       // For this demo, we'll just create a preview URL
       const reader = new FileReader();
       reader.onload = () => {
-        setImagePreview(reader.result);
-        setFormData({
-          ...formData,
-          featuredImage: file
-        });
+        if (reader.result && typeof reader.result === 'string') {
+          setImagePreview(reader.result);
+          setFormData({
+            ...formData,
+            featuredImage: file
+          });
+        }
       };
       reader.readAsDataURL(file);
     }
   };
 
   const triggerFileInput = () => {
-    fileInputRef.current.click();
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   const removeImage = () => {

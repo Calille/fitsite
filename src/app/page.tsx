@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ServicesFeature from '@/components/ServicesFeature';
+import PremiumStudio from '@/components/PremiumStudio';
 import ClassSchedule from '@/components/ClassSchedule';
 import Testimonials from '@/components/Testimonials';
 import BlogPreview from '@/components/BlogPreview';
@@ -17,6 +18,10 @@ export default function Home() {
         
         <AnimatedSection>
           <ServicesFeature />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.1}>
+          <PremiumStudio />
         </AnimatedSection>
         
         <AnimatedSection delay={0.2}>

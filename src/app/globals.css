@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure content is visible by default for static exports */
+body, html, #__next, [data-reactroot] {
+  opacity: 1 !important;
+}
+
+/* Force visibility for static export elements only */
+.fade-in-wrapper * {
+  opacity: 1 !important;
+}
+
+/* Override hidden animations only for specific components */
+.animated-section [style*="opacity:0"] {
+  opacity: 1 !important;
+}
+
+/* Fallback animation for static exports */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in-wrapper {
+  opacity: 1 !important;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+:root {
+  --primary: #56b5bd;
+  --primary-dark: #45a4ac;
+  --secondary: #333333;
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: #f5f5f5;
+}
+
+
+html {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  overflow-x: hidden; /* Prevent horizontal scroll at html level too */
+}
+
+body {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Force white background on all containers */
+#__next, [data-reactroot], .fade-in-wrapper {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+/* Force white background on main containers only */
+#__next, [data-reactroot], .fade-in-wrapper {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+/* Ensure the root elements are definitely white */
+:root {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+/* Performance optimizations for team page */
+* {
+  /* Hardware acceleration for smooth scrolling */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Optimize image loading */
+img {
+  content-visibility: auto;
+}
+
+/* Reduce layout shifts */
+.team-grid {
+  contain: layout style;
+}
+
+/* Optimize animations */
+.transition-shadow {
+  will-change: box-shadow;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#56b5bd] hover:bg-[#45a4ac] text-white font-bold py-3 px-6 rounded-md transition-all;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  /* Hero section specific styles */
+  .hero-section {
+    opacity: 1 !important;
+  }
+  
+  .hero-video {
+    opacity: 1 !important;
+  }
+  
+  /* Continuous scrolling animations */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-scroll-left {
+    animation: scroll-left 50s linear infinite;
+  }
+  
+  .animate-scroll-left-delayed {
+    animation: scroll-left 50s linear infinite;
+    transform: translateX(100%);
+  }
+}

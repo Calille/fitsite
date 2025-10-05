@@ -137,7 +137,7 @@ export default function ProgramTimeline() {
   const progressPercentage = (selectedWeek / 8) * 100;
 
   return (
-    <section className="py-20 px-6 bg-zinc-950">
+    <section className="py-20 px-6 bg-[#56b5bd]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -150,7 +150,7 @@ export default function ProgramTimeline() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Your 8-Week Transformation Journey
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
             A clear, step-by-step roadmap to sustainable fat loss. Click any week to see what you'll accomplish.
           </p>
         </motion.div>
@@ -163,9 +163,9 @@ export default function ProgramTimeline() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <div className="relative h-2 bg-zinc-800 rounded-full overflow-hidden">
+          <div className="relative h-2 bg-white/30 rounded-full overflow-hidden">
             <motion.div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan-500 to-cyan-400"
+              className="absolute top-0 left-0 h-full bg-white"
               initial={{ width: 0 }}
               animate={{ width: `${progressPercentage}%` }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -191,23 +191,23 @@ export default function ProgramTimeline() {
                 viewport={{ once: true }}
                 className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 ${
                   selectedWeek === week.week
-                    ? 'bg-cyan-500/20 border-cyan-500'
-                    : 'bg-zinc-900/50 border-zinc-800 hover:border-cyan-500/50'
+                    ? 'bg-white border-white'
+                    : 'bg-white/80 border-white/50 hover:border-white'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       selectedWeek === week.week
-                        ? 'bg-cyan-500 text-white'
-                        : 'bg-zinc-800 text-gray-400'
+                        ? 'bg-[#56b5bd] text-white'
+                        : 'bg-gray-200 text-gray-600'
                     }`}
                   >
                     {week.week}
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Week {week.week}</div>
-                    <div className="font-semibold text-white">{week.title}</div>
+                    <div className="font-semibold text-gray-900">{week.title}</div>
                   </div>
                 </div>
               </motion.button>
@@ -233,28 +233,28 @@ export default function ProgramTimeline() {
                     onMouseLeave={() => setHoveredWeek(null)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 ${
                       selectedWeek === week.week
-                        ? 'bg-cyan-500/20 border-cyan-500 transform scale-105'
+                        ? 'bg-white border-white transform scale-105'
                         : hoveredWeek === week.week
-                        ? 'bg-zinc-800 border-cyan-500/50 transform scale-102'
-                        : 'bg-zinc-900/50 border-zinc-800'
+                        ? 'bg-white/80 border-white/50 transform scale-102'
+                        : 'bg-white/50 border-gray-200'
                     }`}
                   >
                     <div
                       className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center font-bold text-lg ${
                         selectedWeek === week.week
-                          ? 'bg-cyan-500 text-white'
-                          : 'bg-zinc-800 text-gray-400'
+                          ? 'bg-[#56b5bd] text-white'
+                          : 'bg-gray-200 text-gray-600'
                       }`}
                     >
                       {week.week}
                     </div>
                     <div className="text-xs text-gray-500 mb-1">Week {week.week}</div>
-                    <div className="font-semibold text-white text-sm">{week.title}</div>
+                    <div className="font-semibold text-gray-900 text-sm">{week.title}</div>
                   </button>
                   
                   {/* Connector Line */}
                   {index < 3 && (
-                    <div className="absolute top-6 -right-4 w-8 h-0.5 bg-zinc-700" />
+                    <div className="absolute top-6 -right-4 w-8 h-0.5 bg-white/50" />
                   )}
                 </motion.div>
               ))}
@@ -262,7 +262,7 @@ export default function ProgramTimeline() {
 
             {/* Vertical Connector */}
             <div className="flex justify-end my-4">
-              <div className="w-0.5 h-12 bg-zinc-700" />
+              <div className="w-0.5 h-12 bg-white/50" />
             </div>
 
             <div className="grid grid-cols-4 gap-8">
@@ -282,28 +282,28 @@ export default function ProgramTimeline() {
                     onMouseLeave={() => setHoveredWeek(null)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 ${
                       selectedWeek === week.week
-                        ? 'bg-cyan-500/20 border-cyan-500 transform scale-105'
+                        ? 'bg-white border-white transform scale-105'
                         : hoveredWeek === week.week
-                        ? 'bg-zinc-800 border-cyan-500/50 transform scale-102'
-                        : 'bg-zinc-900/50 border-zinc-800'
+                        ? 'bg-white/80 border-white/50 transform scale-102'
+                        : 'bg-white/50 border-gray-200'
                     }`}
                   >
                     <div
                       className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center font-bold text-lg ${
                         selectedWeek === week.week
-                          ? 'bg-cyan-500 text-white'
-                          : 'bg-zinc-800 text-gray-400'
+                          ? 'bg-[#56b5bd] text-white'
+                          : 'bg-gray-200 text-gray-600'
                       }`}
                     >
                       {week.week}
                     </div>
                     <div className="text-xs text-gray-500 mb-1">Week {week.week}</div>
-                    <div className="font-semibold text-white text-sm">{week.title}</div>
+                    <div className="font-semibold text-gray-900 text-sm">{week.title}</div>
                   </button>
                   
                   {/* Connector Line */}
                   {index < 3 && (
-                    <div className="absolute top-6 -left-4 w-8 h-0.5 bg-zinc-700" />
+                    <div className="absolute top-6 -left-4 w-8 h-0.5 bg-white/50" />
                   )}
                 </motion.div>
               ))}
@@ -317,26 +317,26 @@ export default function ProgramTimeline() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="bg-zinc-900 border border-zinc-800 rounded-xl p-8 md:p-12"
+          className="bg-white/95 border border-white/50 rounded-xl p-8 md:p-12"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full bg-cyan-500 flex items-center justify-center text-white text-2xl font-bold">
+            <div className="w-16 h-16 rounded-full bg-[#56b5bd] flex items-center justify-center text-white text-2xl font-bold">
               {currentWeekData.week}
             </div>
             <div>
               <div className="text-sm text-gray-500">Week {currentWeekData.week}</div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
                 {currentWeekData.title}
               </h3>
             </div>
           </div>
 
-          <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
             {currentWeekData.description}
           </p>
 
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">What You'll Accomplish:</h4>
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">What You'll Accomplish:</h4>
             <div className="space-y-3">
               {currentWeekData.highlights.map((highlight, index) => (
                 <motion.div
@@ -346,7 +346,7 @@ export default function ProgramTimeline() {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className="flex items-start gap-3"
                 >
-                  <FaCheckCircle className="text-cyan-400 flex-shrink-0 mt-1" />
+                  <FaCheckCircle className="text-[#56b5bd] flex-shrink-0 mt-1" />
                   <span className="text-gray-300">{highlight}</span>
                 </motion.div>
               ))}
@@ -354,7 +354,7 @@ export default function ProgramTimeline() {
           </div>
 
           {/* Navigation Hint */}
-          <div className="mt-8 pt-6 border-t border-zinc-800 text-center text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
             Use arrow keys ← → or click weeks above to explore the timeline
           </div>
         </motion.div>

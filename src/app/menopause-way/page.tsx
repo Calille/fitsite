@@ -1,19 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaCheck, FaChevronDown } from 'react-icons/fa';
 import ProgramTimeline from '@/components/ProgramTimeline';
 import Image from 'next/image';
+import QuizPopup from '@/components/QuizPopup';
 
 // ============================================
-// PLACEHOLDER DATA - REPLACE WITH ACTUAL VALUES
+// PLACEHOLDER DATA
 // ============================================
 const PLACEHOLDERS = {
   CAPACITY: "12",
-  TIER1_CHECKOUT_URL: "https://checkout.stripe.com/tier1-placeholder", // TODO: Replace with actual Stripe checkout URL
-  TIER2_CHECKOUT_URL: "https://checkout.stripe.com/tier2-placeholder", // TODO: Replace with actual Stripe checkout URL
-  TIER3_CHECKOUT_URL: "https://checkout.stripe.com/tier3-placeholder" // TODO: Replace with actual Stripe checkout URL
+  TIER1_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGJFotRPmSpgB", // £297 Self-Paced Course
+  TIER2_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGJeyZt3y1sL7", // £497 Coaching Programme
+  TIER3_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGE1fYYICI915" // £1,497 VIP Accelerator
 };
 
 // ============================================
@@ -95,18 +96,28 @@ const faqData = [
 // ============================================
 export default function MenopauseWayPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
+  // Open quiz popup after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsQuizOpen(true);
+    }, 5000); // 5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="bg-zinc-950 min-h-screen">
+    <div className="bg-white min-h-screen">
       
       {/* ============================================
           SECTION 1: HERO (Above the Fold)
           ============================================ */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-zinc-950 to-zinc-900 px-6">
+      <section className="min-h-screen flex items-center justify-center bg-[#56b5bd] px-6">
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}
@@ -117,13 +128,13 @@ export default function MenopauseWayPage() {
             Finally, Fat Loss Results You Didn't Think Were Possible, Made Easier Than You Ever Imagined.
           </h1>
           
-          <h2 className="text-lg md:text-xl lg:text-2xl text-gray-400 mt-6 leading-relaxed mb-10">
+          <h2 className="text-lg md:text-xl lg:text-2xl text-white/90 mt-6 leading-relaxed mb-10">
             The 8-Week Coaching Programme for Women 40+ to Lose Stubborn Menopausal Weight, Reclaim Your Energy, and Feel in Control—Without Restrictive Diets or Giving Up Your Social Life.
           </h2>
           
           <motion.button
             onClick={scrollToPricing}
-            className="inline-block px-8 py-4 text-lg bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
+            className="inline-block px-8 py-4 text-lg bg-white hover:bg-gray-50 text-[#56b5bd] font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#56b5bd] shadow-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -135,15 +146,15 @@ export default function MenopauseWayPage() {
       {/* ============================================
           VIDEO SECTION
           ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
+      <section className="py-20 px-6 bg-gray-50">
         <motion.div 
           className="max-w-5xl mx-auto"
           {...fadeInUp}
         >
-          <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-white">
+          <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900">
             Watch: How The Menopause Way Works
           </h3>
-          <p className="text-lg text-gray-400 text-center mb-10 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 text-center mb-10 max-w-3xl mx-auto">
             Discover the simple approach that's helping women over 40 finally break free from the menopausal weight struggle.
           </p>
           
@@ -173,13 +184,13 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 2: GUARANTEE (Risk Reversal)
           ============================================ */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#56b5bd]">
         <motion.div 
           className="max-w-4xl mx-auto"
           {...scaleIn}
         >
-          <div className="bg-cyan-500/10 border-2 border-cyan-500/50 rounded-xl p-8 md:p-12">
-            <div className="text-cyan-400 text-sm font-bold uppercase tracking-wide mb-4 text-center">
+          <div className="bg-white/10 border-2 border-white/50 rounded-xl p-8 md:p-12">
+            <div className="text-white text-sm font-bold uppercase tracking-wide mb-4 text-center">
               100% GUARANTEE
             </div>
             
@@ -187,7 +198,7 @@ export default function MenopauseWayPage() {
               Your Success is Guaranteed. The Risk is All Mine.
             </h3>
             
-            <p className="text-lg text-gray-300 leading-relaxed text-center">
+            <p className="text-lg text-white/90 leading-relaxed text-center">
               I am 100% confident in this process. My commitment to you is this: if you check in at least 80% of the time over these 8 weeks, follow the plan, and still don't see the progress you were hoping for, I will coach you for an additional 4 to 8 weeks, completely free of charge. Your success is my success.
             </p>
           </div>
@@ -197,16 +208,16 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 3: THE PROBLEM ("She Gets Me")
           ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
+      <section className="py-20 px-6 bg-white">
         <motion.div 
           className="max-w-4xl mx-auto"
           {...fadeInUp}
         >
-          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">
             Does this sound familiar?
           </h3>
           
-          <div className="space-y-6 text-lg leading-relaxed text-gray-300">
+          <div className="space-y-6 text-lg leading-relaxed text-gray-700">
             <p>
               You feel like your body isn't playing by the rules anymore. You're stuck in a "vicious cycle" of eating well all week, only to see the scales refuse to budge, leaving you feeling frustrated and defeated.
             </p>
@@ -224,7 +235,7 @@ export default function MenopauseWayPage() {
             </p>
           </div>
           
-          <p className="text-xl md:text-2xl font-semibold text-cyan-400 mt-10">
+          <p className="text-xl md:text-2xl font-semibold text-[#56b5bd] mt-10">
             It's not a lack of willpower. It's a lack of the right strategy.
           </p>
         </motion.div>
@@ -233,7 +244,7 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 4: BENEFITS (The Transformation)
           ============================================ */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#56b5bd]">
         <div className="max-w-6xl mx-auto">
           <motion.h3 
             className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
@@ -243,7 +254,7 @@ export default function MenopauseWayPage() {
           </motion.h3>
           
           <motion.p 
-            className="text-lg text-gray-300 mb-10 text-center max-w-3xl mx-auto"
+            className="text-lg text-white/90 mb-10 text-center max-w-3xl mx-auto"
             {...fadeInUp}
           >
             This isn't just about weight loss. This is about reclaiming your health, your confidence, and your quality of life. When you follow The Menopause Way, you will:
@@ -265,11 +276,11 @@ export default function MenopauseWayPage() {
             ].map((benefit, index) => (
               <motion.div
                 key={index}
-                className="bg-zinc-900/50 p-6 rounded-lg border border-zinc-800 flex items-start gap-4 hover:border-cyan-500/50 transition-colors duration-300"
+                className="bg-white p-6 rounded-lg border border-white/20 flex items-start gap-4 hover:border-white transition-colors duration-300"
                 variants={fadeInUp}
               >
-                <FaCheckCircle className="text-cyan-400 text-2xl flex-shrink-0 mt-1" />
-                <p className="text-gray-300 text-lg">{benefit}</p>
+                <FaCheckCircle className="text-[#56b5bd] text-2xl flex-shrink-0 mt-1" />
+                <p className="text-gray-900 text-lg">{benefit}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -279,22 +290,22 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 5: CASE STUDY (Nic's Story)
           ============================================ */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-gray-50">
         <motion.div 
           className="max-w-5xl mx-auto"
           {...scaleIn}
         >
-          <div className="bg-zinc-900 p-8 md:p-12 rounded-xl border border-zinc-800">
-            <div className="text-cyan-400 text-sm font-semibold uppercase tracking-wide mb-4">
+          <div className="bg-white p-8 md:p-12 rounded-xl border border-gray-200">
+            <div className="text-[#56b5bd] text-sm font-semibold uppercase tracking-wide mb-4">
               Success Story
             </div>
             
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
               "My chiropractor asked me if I was on Ozempic!"
             </h3>
             
             <div className="flex justify-center mb-8">
-              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-cyan-500 overflow-hidden">
+              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-[#56b5bd] overflow-hidden">
                 <Image
                   src="/nic.webp"
                   alt="Nic's Transformation"
@@ -305,7 +316,7 @@ export default function MenopauseWayPage() {
               </div>
             </div>
             
-            <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
               <p>
                 When Nic joined, she was a busy mum who felt stuck. She was weighing herself every day, frustrated by the lack of progress, and anxious about an upcoming holiday to Italy. She felt that every time she made progress, a social event would set her back.
               </p>
@@ -318,18 +329,18 @@ export default function MenopauseWayPage() {
                 The result: She lost 10lbs (4.5kg) and 9cm from her hips, and her clothes became too loose.
               </p>
               
-              <p className="font-semibold text-white">
+              <p className="font-semibold text-gray-900">
                 Her biggest takeaway?
               </p>
             </div>
             
-            <blockquote className="border-l-4 border-cyan-500 pl-6 my-8">
-              <p className="text-xl md:text-2xl font-semibold text-white italic">
+            <blockquote className="border-l-4 border-[#56b5bd] pl-6 my-8">
+              <p className="text-xl md:text-2xl font-semibold text-gray-900 italic">
                 "It really has given me results I just didn't think could happen for me and in the easiest way I've ever found."
               </p>
             </blockquote>
             
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-700">
               Nic's story isn't an exception. It's what happens when you use the right system.
             </p>
           </div>
@@ -344,10 +355,10 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 6: PRICING TABLE
           ============================================ */}
-      <section id="pricing" className="py-20 px-6 scroll-mt-20">
+      <section id="pricing" className="py-20 px-6 scroll-mt-20 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.h3 
-            className="text-3xl md:text-4xl font-bold mb-16 text-center text-white"
+            className="text-3xl md:text-4xl font-bold mb-16 text-center text-gray-900"
             {...fadeInUp}
           >
             Choose Your Path
@@ -363,18 +374,18 @@ export default function MenopauseWayPage() {
             
             {/* TIER 1: Self-Paced Course */}
             <motion.div
-              className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all duration-300 h-full flex flex-col"
+              className="bg-white p-8 rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <h4 className="text-2xl font-bold text-white mb-2">Self-Paced Course</h4>
-              <div className="text-5xl font-bold text-cyan-400 mb-6">£297</div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-2">Self-Paced Course</h4>
+              <div className="text-5xl font-bold text-[#56b5bd] mb-6">£297</div>
               
               <ul className="space-y-4 mb-8 flex-grow">
                 {[
                   "8 Comprehensive Modules"
                 ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 text-gray-300">
-                    <FaCheck className="text-cyan-400 flex-shrink-0 mt-1" />
+                  <li key={index} className="flex items-start gap-3 text-gray-700">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -382,7 +393,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER1_CHECKOUT_URL}
-                className="block w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-white text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="block w-full py-4 bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
               >
                 Enrol Now
               </a>
@@ -390,15 +401,15 @@ export default function MenopauseWayPage() {
 
             {/* TIER 2: Coaching Programme (MOST POPULAR) */}
             <motion.div
-              className="bg-zinc-900 p-8 rounded-xl border-2 border-cyan-500 relative md:scale-105 hover:border-cyan-400 transition-all duration-300 h-full flex flex-col"
+              className="bg-white p-8 rounded-xl border-2 border-[#56b5bd] relative md:scale-105 hover:border-[#56b5bd] transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#56b5bd] text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
                 Most Popular
               </div>
               
-              <h4 className="text-2xl font-bold text-white mb-2 mt-2">Coaching Programme</h4>
-              <div className="text-5xl font-bold text-cyan-400 mb-6">£497</div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-2 mt-2">Coaching Programme</h4>
+              <div className="text-5xl font-bold text-[#56b5bd] mb-6">£497</div>
               
               <ul className="space-y-4 mb-8 flex-grow">
                 {[
@@ -406,8 +417,8 @@ export default function MenopauseWayPage() {
                   "Weekly coaching check-ins with a PN L1 Nutritionist",
                   "Direct Coach Support"
                 ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 text-gray-300">
-                    <FaCheck className="text-cyan-400 flex-shrink-0 mt-1" />
+                  <li key={index} className="flex items-start gap-3 text-gray-700">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -415,7 +426,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER2_CHECKOUT_URL}
-                className="block w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-white text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="block w-full py-4 bg-[#56b5bd] hover:bg-[#56b5bd] text-gray-900 text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
               >
                 Enrol Now
               </a>
@@ -423,11 +434,11 @@ export default function MenopauseWayPage() {
 
             {/* TIER 3: VIP Accelerator */}
             <motion.div
-              className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all duration-300 h-full flex flex-col"
+              className="bg-white p-8 rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <h4 className="text-2xl font-bold text-white mb-2">VIP Accelerator</h4>
-              <div className="text-5xl font-bold text-cyan-400 mb-6">£1,497</div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-2">VIP Accelerator</h4>
+              <div className="text-5xl font-bold text-[#56b5bd] mb-6">£1,497</div>
               
               <ul className="space-y-4 mb-8 flex-grow">
                 {[
@@ -437,8 +448,8 @@ export default function MenopauseWayPage() {
                   "Priority Support",
                   "VIP Community Access"
                 ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 text-gray-300">
-                    <FaCheck className="text-cyan-400 flex-shrink-0 mt-1" />
+                  <li key={index} className="flex items-start gap-3 text-gray-700">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -446,7 +457,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER3_CHECKOUT_URL}
-                className="block w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-white text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="block w-full py-4 bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
               >
                 Enrol Now
               </a>
@@ -468,10 +479,10 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 8: FAQ
           ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.h3 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
+            className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900"
             {...fadeInUp}
           >
             Frequently Asked Questions
@@ -487,18 +498,18 @@ export default function MenopauseWayPage() {
             {faqData.map((faq, index) => (
               <motion.div
                 key={index}
-                className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"
+                className="bg-white border border-gray-200 rounded-lg overflow-hidden"
                 variants={fadeInUp}
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="w-full flex items-center justify-between p-6 text-left hover:bg-zinc-800/50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-[#56b5bd]/50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
                 >
-                  <span className="text-lg font-semibold text-white pr-8">
+                  <span className="text-lg font-semibold text-gray-900 pr-8">
                     {faq.question}
                   </span>
                   <FaChevronDown 
-                    className={`text-cyan-400 flex-shrink-0 transition-transform duration-300 ${
+                    className={`text-[#56b5bd] flex-shrink-0 transition-transform duration-300 ${
                       openFaqIndex === index ? 'rotate-180' : ''
                     }`}
                   />
@@ -513,7 +524,7 @@ export default function MenopauseWayPage() {
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="p-6 pt-0 text-gray-300 leading-relaxed">
+                  <div className="p-6 pt-0 text-gray-700 leading-relaxed">
                     {faq.answer}
                   </div>
                 </motion.div>
@@ -525,6 +536,9 @@ export default function MenopauseWayPage() {
 
       {/* Footer Spacing */}
       <div className="h-20"></div>
+
+      {/* Quiz Popup - Opens after 5 seconds */}
+      <QuizPopup isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
     </div>
   );
 }

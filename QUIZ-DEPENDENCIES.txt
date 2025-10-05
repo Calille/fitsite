@@ -1,0 +1,61 @@
+========================================
+REQUIRED NPM PACKAGES FOR QUIZ PLUGIN
+========================================
+
+Run this command to install all required dependencies:
+
+npm install nodemailer
+
+And install type definitions for TypeScript:
+
+npm install --save-dev @types/nodemailer
+
+
+========================================
+EXISTING DEPENDENCIES (Already in your project)
+========================================
+
+✅ react (already installed)
+✅ next (already installed)
+✅ framer-motion (already installed)
+✅ react-icons (already installed)
+✅ tailwindcss (already installed)
+
+
+========================================
+ALTERNATIVE EMAIL PROVIDERS
+========================================
+
+If you want to use SendGrid instead of Nodemailer:
+
+npm install @sendgrid/mail
+
+Then update /src/app/api/sendEmail/route.ts to use SendGrid's library.
+
+
+========================================
+ENVIRONMENT VARIABLES
+========================================
+
+Create .env.local file in your project root:
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@example.com
+EMAIL_PASSWORD=your-app-specific-password
+
+MOMENCE_API_KEY=your-momence-api-key
+MOMENCE_HOST_ID=your-momence-host-id
+MOMENCE_SOURCE_ID=your-momence-source-id
+
+
+========================================
+AFTER INSTALLATION
+========================================
+
+1. Run: npm install
+2. Create .env.local with your credentials
+3. Restart your dev server: npm run dev
+4. Test the quiz on your page!
+
+========================================

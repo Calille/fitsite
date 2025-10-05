@@ -300,90 +300,10 @@ export default function MenopauseWayPage() {
         </motion.div>
       </section>
 
-      {/* ============================================
-          SECTION 3: THE PROBLEM ("She Gets Me")
-          ============================================ */}
-      <section className="py-20 px-6 bg-[#56b5bd]">
-        <motion.div 
-          className="max-w-4xl mx-auto"
-          {...fadeInUp}
-        >
-          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-white">
-            Does this sound familiar?
-          </h3>
-          
-          <div className="space-y-6 text-lg leading-relaxed text-white/90">
-            <p>
-              You feel like your body isn't playing by the rules anymore. You're stuck in a "vicious cycle" of eating well all week, only to see the scales refuse to budge, leaving you feeling frustrated and defeated.
-            </p>
-            
-            <p>
-              You're caught in the "pound on and a pound off" loop, and it's slowly chipping away at your motivation.
-            </p>
-            
-            <p>
-              A holiday or a simple dinner out with friends fills you with anxiety, because you're worried it will "undo all the work". You feel like you have to choose between having a social life and making progress.
-            </p>
-            
-            <p>
-              You've been told this is just part of menopause. It isn't.
-            </p>
-          </div>
-          
-          <p className="text-xl md:text-2xl font-semibold text-white mt-10">
-            It's not a lack of willpower. It's a lack of the right strategy.
-          </p>
-        </motion.div>
-      </section>
+
 
       {/* ============================================
-          SECTION 4: BENEFITS (The Transformation)
-          ============================================ */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.h3
-            className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900"
-            {...fadeInUp}
-          >
-            A Different Kind of Result
-          </motion.h3>
-
-          <motion.p
-            className="text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto"
-            {...fadeInUp}
-          >
-            This isn't just about weight loss. This is about reclaiming your health, your confidence, and your quality of life. When you follow The Menopause Way, you will:
-          </motion.p>
-          
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-          >
-            {[
-              "Potentially Reduce or Eliminate Hormone-Related Migraines",
-              "Finally Fit into the Clothes in Your Wardrobe",
-              "Gain the Confidence to Feel Amazing in Swimwear",
-              "Stabilise Your Energy and Crush Cravings",
-              "Receive Compliments from Friends (and even your Chiropractor)"
-            ].map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-50 p-6 rounded-lg border border-gray-200 flex items-start gap-4 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300"
-                variants={fadeInUp}
-              >
-                <FaCheckCircle className="text-[#56b5bd] text-2xl flex-shrink-0 mt-1" />
-                <p className="text-gray-900 text-lg">{benefit}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 5: CASE STUDY (Nicola's Story)
+          SECTION 3: CASE STUDY (Nicola's Story)
           ============================================ */}
       <section className="py-20 px-6 bg-white relative overflow-hidden">
         {/* Background Image */}
@@ -475,12 +395,12 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          NEW SECTION: 8-WEEK PROGRAM TIMELINE
+          SECTION 4: 8-WEEK PROGRAM TIMELINE
           ============================================ */}
       <ProgramTimeline />
 
       {/* ============================================
-          SECTION 6: PRICING TABLE
+          SECTION 5: PRICING TABLE
           ============================================ */}
       <section id="pricing" className="py-20 px-6 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -632,15 +552,45 @@ export default function MenopauseWayPage() {
             className="text-center mt-12"
             {...fadeInUp}
           >
-            <p className="text-amber-400 font-semibold text-[38px]">
-              Spots are strictly limited to {PLACEHOLDERS.CAPACITY} women to ensure everyone gets personal coaching.
-            </p>
+            <div className="relative inline-block max-w-4xl">
+              {/* Subtle professional glow */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#56b5bd] to-[#45a4ac] rounded-xl blur-sm opacity-50"></div>
+              
+              {/* Main content container */}
+              <div className="relative bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] p-8 md:p-12 rounded-xl shadow-xl border border-white/20">
+                {/* Professional inner border */}
+                <div className="absolute inset-2 border border-white/30 rounded-lg"></div>
+                
+                {/* Urgency indicator */}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="flex items-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    <motion.div
+                      className="w-2 h-2 bg-white rounded-full"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                    <span>LIMITED AVAILABILITY</span>
+                  </div>
+                </div>
+                
+                {/* Main text content */}
+                <div className="relative z-10">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                    Spots are strictly limited to{" "}
+                    <span className="text-yellow-300 font-black">
+                      {PLACEHOLDERS.CAPACITY} clients
+                    </span>{" "}
+                    to keep the coaching standard as high as possible.
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================
-          SECTION 8: FAQ
+          SECTION 6: FAQ
           ============================================ */}
       <section className="py-20 px-6 bg-white relative overflow-hidden">
         {/* Background decoration */}

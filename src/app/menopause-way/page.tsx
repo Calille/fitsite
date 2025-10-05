@@ -632,7 +632,7 @@ export default function MenopauseWayPage() {
             className="text-center mt-12"
             {...fadeInUp}
           >
-            <p className="text-[#56b5bd] font-semibold text-[38px]">
+            <p className="text-amber-400 font-semibold text-[38px]">
               Spots are strictly limited to {PLACEHOLDERS.CAPACITY} women to ensure everyone gets personal coaching.
             </p>
           </motion.div>

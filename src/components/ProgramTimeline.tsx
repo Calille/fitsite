@@ -14,90 +14,90 @@ interface WeekData {
 const weekData: WeekData[] = [
   {
     week: 1,
-    title: "Foundation & Setup",
-    description: "We start by understanding your current habits, metabolism, and unique challenges. You'll learn the Plate Method basics and set up your personalized tracking system.",
+    title: "The Foundation — Awareness & Daily Movement",
+    description: "You'll start by building awareness — the skill that underpins every long-term change. This week focuses on understanding your current habits, tracking your movement, and introducing gentle daily activity. You'll learn how menopause affects metabolism and why non-exercise activity (steps, movement, posture) is your secret weapon. No calorie counting, no judgement — just awareness and action.",
     highlights: [
-      "Complete your health assessment",
-      "Learn the Plate Method fundamentals",
-      "Set realistic, achievable goals",
-      "Join the private support community"
+      "Build awareness of your current habits",
+      "Learn how menopause affects metabolism",
+      "Introduce gentle daily movement",
+      "Understand non-exercise activity benefits"
     ]
   },
   {
     week: 2,
-    title: "Protein Mastery",
-    description: "This week focuses on optimizing your protein intake to protect your metabolism and control hunger. You'll discover easy protein sources and meal ideas.",
+    title: "The Effortless Deficit — Eating for Fat Loss Without Dieting",
+    description: "This week turns awareness into action. You'll learn how to create a gentle calorie deficit using the Menopause Plate Method — no tracking apps or meal plans required. You'll discover how to eat with your family, feel full, and still make progress. It's about eating smarter, not less, and finally dropping the \"dieting\" mindset for good.",
     highlights: [
-      "Master protein portions for your body",
-      "Learn hunger management strategies",
-      "Receive personalized meal templates",
-      "First check-in and progress review"
+      "Learn the Menopause Plate Method",
+      "Create gentle calorie deficit naturally",
+      "Eat with family without restriction",
+      "Drop the dieting mindset for good"
     ]
   },
   {
     week: 3,
-    title: "Energy Balance",
-    description: "Understanding how to balance your energy without feeling deprived. You'll learn to manage portions naturally while enjoying the foods you love.",
+    title: "Protein Mastery — Your Secret Weapon for a Stronger Metabolism",
+    description: "Protein becomes your best ally. You'll learn why it's crucial for strength, satiety, and metabolism during menopause — and how to easily hit your target without endless chicken and shakes. You'll get practical strategies, budget-friendly swaps, and snack ideas that keep you full for hours. This is the week your energy and body composition start to shift.",
     highlights: [
-      "Fine-tune your portion sizes",
-      "Learn sustainable eating strategies",
-      "Address energy slumps and cravings",
-      "Navigate social eating situations"
+      "Understand protein's role in menopause",
+      "Learn practical protein strategies",
+      "Discover budget-friendly protein swaps",
+      "Experience energy and body composition shifts"
     ]
   },
   {
     week: 4,
-    title: "Midpoint Review",
-    description: "Time to assess your progress and make any necessary adjustments. Most women start seeing noticeable changes by now.",
+    title: "Your Complete Fitness Blueprint — Strength, Cardio & Bone Health",
+    description: "This is where your training clicks. You'll understand why lifting weights and moving with purpose are essential for long-term fat loss, strength, and bone density. You'll learn how to combine strength and cardio effectively, what \"progressive overload\" means, and how to get results that go beyond the scale. The goal: feel stronger, move better, and own your workouts.",
     highlights: [
-      "Comprehensive progress assessment",
-      "Adjust your plan based on results",
-      "Troubleshoot any challenges",
-      "Celebrate your wins so far"
+      "Understand strength training for menopause",
+      "Learn effective cardio combinations",
+      "Master progressive overload principles",
+      "Get results beyond the scale"
     ]
   },
   {
     week: 5,
-    title: "Social Eating Confidence",
-    description: "Master the art of enjoying dinners out, holidays, and celebrations without derailing your progress. This is where true freedom begins.",
+    title: "Mastering Your Inner World — Hunger, Cravings & Emotional Wellbeing",
+    description: "Fat loss isn't just about food — it's about your mindset. This week helps you understand emotional hunger, cravings, and stress eating so you can stay in control without guilt. You'll build practical tools to manage poor sleep, stress, and hormonal shifts with calm and confidence. This is the week where peace of mind meets progress.",
     highlights: [
-      "Restaurant navigation strategies",
-      "The 'flex day' approach",
-      "Maintaining progress during events",
-      "Building long-term flexibility"
+      "Understand emotional hunger patterns",
+      "Build tools for stress management",
+      "Manage hormonal shifts with confidence",
+      "Achieve peace of mind with progress"
     ]
   },
   {
     week: 6,
-    title: "Plateau Prevention",
-    description: "Learn the Plateau Protocol to keep results coming. We'll implement strategies to ensure your metabolism stays responsive.",
+    title: "Thriving in the Real World — Socials, Speed & Sanity",
+    description: "Life doesn't stop for your goals — and now you won't need it to. This week teaches you how to handle meals out, travel, social events, and busy evenings without losing momentum. You'll master flexible eating, the 80/20 rule, and how to \"never miss twice.\" You'll learn to live, not diet — with confidence in any situation.",
     highlights: [
-      "Introduction to the Plateau Protocol",
-      "Metabolic adaptation strategies",
-      "Advanced portion adjustments",
-      "Maintaining momentum"
+      "Master flexible eating strategies",
+      "Learn the 80/20 rule approach",
+      "Handle social events with confidence",
+      "Never miss twice principle"
     ]
   },
   {
     week: 7,
-    title: "Lifestyle Integration",
-    description: "Making these habits stick for life. You'll learn how to maintain your results without constant effort or restriction.",
+    title: "From Dieting to Thriving — Building Your New Identity & Resilience",
+    description: "You've built habits — now we make them who you are. This week focuses on identity, resilience, and navigating plateaus without frustration. You'll learn how to shift from \"doing\" healthy things to being a healthy person. You'll reframe self-talk, reconnect with your \"why,\" and build confidence that lasts beyond the programme.",
     highlights: [
-      "Create your maintenance plan",
-      "Develop long-term habits",
-      "Learn to navigate setbacks",
-      "Build sustainable routines"
+      "Shift from doing to being healthy",
+      "Build resilience and identity",
+      "Reframe negative self-talk",
+      "Reconnect with your deeper why"
     ]
   },
   {
     week: 8,
-    title: "Completion & Beyond",
-    description: "Final measurements, celebration of your transformation, and your personalized roadmap for continued success beyond the program.",
+    title: "Future-Proofing Your Health — Graduation & Beyond",
+    description: "This is your graduation week — and the start of lifelong results. You'll create your personal \"Owner's Manual\" for health, setting non-negotiables that keep you on track. You'll learn how to maintain results effortlessly, support bone and muscle health, and use smart supplementation if needed. This week ties everything together so you can live strong, confident, and energised for years to come.",
     highlights: [
-      "Final progress assessment",
-      "Receive your personalized maintenance guide",
-      "Celebrate your transformation",
-      "Access to continued community support"
+      "Create your personal Owner's Manual",
+      "Set non-negotiable health habits",
+      "Learn effortless maintenance strategies",
+      "Support long-term bone and muscle health"
     ]
   }
 ];
@@ -148,10 +148,10 @@ export default function ProgramTimeline() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Your 8-Week Transformation Journey
+            Welcome to Your Transformation
           </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            A clear, step-by-step roadmap to sustainable fat loss. Click any week to see what you'll accomplish.
+          <p className="text-lg text-white/90 max-w-4xl mx-auto">
+            Your journey starts here. This programme is built for women who want lasting fat loss, renewed energy, and confidence through menopause — without restrictive dieting. You'll learn how to work with your body, not against it, by mastering science-backed nutrition, strength, and lifestyle habits. The focus is on real life: flexibility, consistency, and results that last.
           </p>
         </motion.div>
 

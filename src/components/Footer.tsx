@@ -73,7 +73,7 @@ const Footer = () => {
               <li>Harpenden, Hertfordshire</li>
               <li>AL5 3BL, England, UK</li>
               <li>Email: info@tphealthfitness.com</li>
-              <li>Phone: +44 7123 456789</li>
+              <li>Phone: 07447 333743</li>
               <li className="pt-2">
                 <Link href="/contact" className="text-[#56b5bd] hover:underline">
                   Get Directions →

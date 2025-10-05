@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 // Array of rotating hero images (14 total images - shuffled for contact page)
 const heroImages = [
@@ -85,7 +86,7 @@ export default function ContactClient() {
                   </div>
                 ))}
               </div>
-              
+
               {/* Second set of images for seamless loop */}
               <div className="absolute inset-0 flex animate-scroll-left-delayed">
                 {heroImages.map((imageSrc, index) => (

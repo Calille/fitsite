@@ -171,7 +171,7 @@ export default function ProgramTimeline() {
               transition={{ duration: 0.5, ease: 'easeOut' }}
             />
           </div>
-          <div className="flex justify-between mt-2 text-xs text-gray-500">
+          <div className="flex justify-between mt-2 text-xs text-white/70">
             <span>Week 1</span>
             <span>Week 8</span>
           </div>
@@ -191,23 +191,23 @@ export default function ProgramTimeline() {
                 viewport={{ once: true }}
                 className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 ${
                   selectedWeek === week.week
-                    ? 'bg-white border-white'
-                    : 'bg-white/80 border-white/50 hover:border-white'
+                    ? 'bg-white border-white text-gray-900 shadow-lg'
+                    : 'bg-white/90 border-white/50 hover:border-white hover:bg-white'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       selectedWeek === week.week
-                        ? 'bg-[#56b5bd] text-white'
-                        : 'bg-gray-200 text-gray-600'
+                        ? 'bg-[#56b5bd] text-white border-2 border-[#56b5bd]'
+                        : 'bg-white/20 text-white border-2 border-white/30'
                     }`}
                   >
                     {week.week}
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500">Week {week.week}</div>
-                    <div className="font-semibold text-gray-900">{week.title}</div>
+                    <div className={`text-sm ${selectedWeek === week.week ? 'text-gray-600' : 'text-white/80'}`}>Week {week.week}</div>
+                    <div className={`font-semibold ${selectedWeek === week.week ? 'text-gray-900' : 'text-white'}`}>{week.title}</div>
                   </div>
                 </div>
               </motion.button>
@@ -233,23 +233,23 @@ export default function ProgramTimeline() {
                     onMouseLeave={() => setHoveredWeek(null)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 ${
                       selectedWeek === week.week
-                        ? 'bg-white border-white transform scale-105'
+                        ? 'bg-white border-white text-gray-900 transform scale-105 shadow-lg'
                         : hoveredWeek === week.week
                         ? 'bg-white/80 border-white/50 transform scale-102'
-                        : 'bg-white/50 border-gray-200'
+                        : 'bg-white/50 border-white/30 hover:border-white/50 hover:bg-white/70'
                     }`}
                   >
                     <div
                       className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center font-bold text-lg ${
                         selectedWeek === week.week
-                          ? 'bg-[#56b5bd] text-white'
-                          : 'bg-gray-200 text-gray-600'
+                          ? 'bg-[#56b5bd] text-white border-2 border-[#56b5bd]'
+                          : 'bg-white/20 text-white border-2 border-white/30'
                       }`}
                     >
                       {week.week}
                     </div>
-                    <div className="text-xs text-gray-500 mb-1">Week {week.week}</div>
-                    <div className="font-semibold text-gray-900 text-sm">{week.title}</div>
+                    <div className={`text-xs mb-1 ${selectedWeek === week.week ? 'text-gray-600' : 'text-white/80'}`}>Week {week.week}</div>
+                    <div className={`font-semibold text-sm ${selectedWeek === week.week ? 'text-gray-900' : 'text-white'}`}>{week.title}</div>
                   </button>
                   
                   {/* Connector Line */}
@@ -282,23 +282,23 @@ export default function ProgramTimeline() {
                     onMouseLeave={() => setHoveredWeek(null)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 ${
                       selectedWeek === week.week
-                        ? 'bg-white border-white transform scale-105'
+                        ? 'bg-white border-white text-gray-900 transform scale-105 shadow-lg'
                         : hoveredWeek === week.week
                         ? 'bg-white/80 border-white/50 transform scale-102'
-                        : 'bg-white/50 border-gray-200'
+                        : 'bg-white/50 border-white/30 hover:border-white/50 hover:bg-white/70'
                     }`}
                   >
                     <div
                       className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center font-bold text-lg ${
                         selectedWeek === week.week
-                          ? 'bg-[#56b5bd] text-white'
-                          : 'bg-gray-200 text-gray-600'
+                          ? 'bg-[#56b5bd] text-white border-2 border-[#56b5bd]'
+                          : 'bg-white/20 text-white border-2 border-white/30'
                       }`}
                     >
                       {week.week}
                     </div>
-                    <div className="text-xs text-gray-500 mb-1">Week {week.week}</div>
-                    <div className="font-semibold text-gray-900 text-sm">{week.title}</div>
+                    <div className={`text-xs mb-1 ${selectedWeek === week.week ? 'text-gray-600' : 'text-white/80'}`}>Week {week.week}</div>
+                    <div className={`font-semibold text-sm ${selectedWeek === week.week ? 'text-gray-900' : 'text-white'}`}>{week.title}</div>
                   </button>
                   
                   {/* Connector Line */}
@@ -347,7 +347,7 @@ export default function ProgramTimeline() {
                   className="flex items-start gap-3"
                 >
                   <FaCheckCircle className="text-[#56b5bd] flex-shrink-0 mt-1" />
-                  <span className="text-gray-300">{highlight}</span>
+                  <span className="text-gray-900">{highlight}</span>
                 </motion.div>
               ))}
             </div>

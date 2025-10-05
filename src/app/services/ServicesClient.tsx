@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaDumbbell, FaUsers, FaRunning, FaFire, FaChalkboardTeacher, FaHeartbeat } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import FadeInWrapper from '@/components/FadeInWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 
@@ -194,7 +195,7 @@ export default function ServicesClient() {
                   </div>
                 ))}
               </div>
-              
+
               {/* Second set of images for seamless loop */}
               <div className="absolute inset-0 flex animate-scroll-left-delayed">
                 {heroImages.map((imageSrc, index) => (

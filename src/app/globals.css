@@ -131,11 +131,11 @@ img {
       transform: translateX(-100%);
     }
   }
-  
+
   .animate-scroll-left {
     animation: scroll-left 50s linear infinite;
   }
-  
+
   .animate-scroll-left-delayed {
     animation: scroll-left 50s linear infinite;
     transform: translateX(100%);

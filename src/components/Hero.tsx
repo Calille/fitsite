@@ -16,12 +16,12 @@ const Hero = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
     // Debug video loading
     console.log('🎬 Hero component mounted, checking video...');
-    
+
     // Simple video check
     const checkVideo = setTimeout(() => {
       const video = document.querySelector('.hero-video') as HTMLVideoElement;
@@ -33,7 +33,7 @@ const Hero = () => {
         setVideoLoaded(false);
       }
     }, 2000);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(checkVideo);
@@ -68,13 +68,13 @@ const Hero = () => {
       {/* Hero Background */}
       <div className="absolute inset-0 z-0">
         {/* Main background image */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(/hero1.webp)'
           }}
         />
-        
+
         {/* Hero Video - Simplified */}
         <video
           autoPlay
@@ -90,22 +90,22 @@ const Hero = () => {
           <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+
         {/* Fallback background image - only shows if video fails */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(/hero1.webp)',
             zIndex: 0
           }}
         />
-        
-       
-  
-        
+
+
+
+
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
-        
+
         {/* Gradient overlay for better text contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-20"></div>
       </div>
@@ -114,6 +114,7 @@ const Hero = () => {
       <div className="absolute top-20 left-10 w-32 h-32 bg-[#56b5bd] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob z-30"></div>
       <div className="absolute bottom-20 right-10 w-32 h-32 bg-[#56b5bd] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000 z-30"></div>
       <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-[#56b5bd] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000 z-30"></div>
+
 
       {/* Content */}
       <div className="container-custom relative z-40">

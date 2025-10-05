@@ -5,6 +5,34 @@ import Image from 'next/image';
 // Animations removed for better performance
 import { useAnalytics } from '@/contexts/AnalyticsContext';
 
+// Custom shimmer placeholder for team member images
+const shimmer = (w: number, h: number) => `
+  <svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="g">
+        <stop stop-color="#56b5bd" offset="20%" />
+        <stop stop-color="#e0e0e0" offset="50%" />
+        <stop stop-color="#56b5bd" offset="70%" />
+      </linearGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="#e0e0e0" />
+    <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+    <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite" />
+  </svg>`;
+
+// Helper function to create base64 encoded shimmer placeholder
+const toBase64 = (str: string) => {
+  if (typeof window === 'undefined') {
+    // Server-side fallback
+    return Buffer.from(str).toString('base64');
+  }
+  try {
+    return window.btoa(str);
+  } catch (e) {
+    return Buffer.from(str).toString('base64');
+  }
+};
+
 interface TeamMemberProps {
   name: string;
   role: string;
@@ -32,23 +60,24 @@ export default function TeamMemberCard({ name, role, specialties, bio, image }: 
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden text-gray-800 hover:shadow-lg transition-shadow duration-300">
-      <div className="relative h-80 w-full overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden text-gray-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+      <div className="relative h-80 w-full overflow-hidden rounded-t-lg">
         {!imageError ? (
           <Image
             src={image}
             alt={`${name} - ${role} at TP Health & Fitness`}
-            fill
-            className="object-cover"
+            width={400}
+            height={320}
+            className="object-cover hover:scale-105 transition-transform duration-300 w-full h-full"
             onError={handleImageError}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            loading="lazy"
+            loading="eager"
+            priority
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyArKvnOPPkn+jRVoejq3n8C6xCpghyQzk4LvQfgmJOFTfcxr5rZlF5seuMV"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 320))}`}
           />
         ) : (
           // Fallback when image fails to load
-          <div className="w-full h-full bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] flex items-center justify-center">
+          <div className="w-full h-full bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] flex items-center justify-center rounded-t-lg">
             <div className="text-center text-white">
               <div className="text-6xl font-bold mb-2">
                 {name.charAt(0).toUpperCase()}
@@ -95,8 +124,8 @@ export default function TeamMemberCard({ name, role, specialties, bio, image }: 
         </div>
         
         <div className="mt-6 text-center">
-          <button 
-            className="px-6 py-2 bg-[#56b5bd] text-white rounded-md hover:bg-[#45a4ac] transition-colors font-medium shadow-sm hover:shadow-md"
+          <button
+            className="px-6 py-2 bg-[#56b5bd] text-white rounded-lg hover:bg-[#45a4ac] transition-all duration-300 font-medium shadow-sm hover:shadow-md hover:scale-105"
             onClick={handleViewMore}
             aria-label={`${showFullBio ? 'Show less about' : 'View more about'} ${name}`}
           >

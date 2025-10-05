@@ -1,21 +1,19 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaCheck, FaUtensils, FaDumbbell, FaChartLine } from 'react-icons/fa';
+import { FaCheckCircle, FaCheck, FaChevronDown } from 'react-icons/fa';
+import ProgramTimeline from '@/components/ProgramTimeline';
 import Image from 'next/image';
-import Link from 'next/link';
 
 // ============================================
 // PLACEHOLDER DATA - REPLACE WITH ACTUAL VALUES
 // ============================================
 const PLACEHOLDERS = {
-  SIGNUP_DEADLINE: "Friday, 15th November 2024",
   CAPACITY: "12",
   TIER1_CHECKOUT_URL: "https://checkout.stripe.com/tier1-placeholder", // TODO: Replace with actual Stripe checkout URL
   TIER2_CHECKOUT_URL: "https://checkout.stripe.com/tier2-placeholder", // TODO: Replace with actual Stripe checkout URL
-  TIER3_CHECKOUT_URL: "https://checkout.stripe.com/tier3-placeholder", // TODO: Replace with actual Stripe checkout URL
-  CALENDLY_URL: "https://calendly.com/placeholder", // TODO: Replace with actual Calendly URL
-  NIC_PHOTO_PATH: "/images/nic-testimonial-placeholder.jpg" // TODO: Add actual testimonial photo
+  TIER3_CHECKOUT_URL: "https://checkout.stripe.com/tier3-placeholder" // TODO: Replace with actual Stripe checkout URL
 };
 
 // ============================================
@@ -59,9 +57,49 @@ const scrollToPricing = () => {
 };
 
 // ============================================
+// FAQ DATA
+// ============================================
+const faqData = [
+  {
+    question: "What makes The Menopause Way different from other weight loss programs?",
+    answer: "The Menopause Way is specifically designed for women over 40 experiencing hormonal changes. Unlike generic programs, we focus on sustainable fat loss without restrictive diets, addressing the unique challenges of menopause including metabolism changes, energy levels, and social eating."
+  },
+  {
+    question: "Do I need to track calories or macros?",
+    answer: "No! We use the Plate Method, which allows for effortless fat loss without the hassle of tracking. You'll learn simple portion guidelines that work with your lifestyle, not against it."
+  },
+  {
+    question: "What if I can't stick to it 100%?",
+    answer: "That's completely normal and expected! The programme is designed to work around your real life - holidays, dinners out, and social events are all part of the plan. You'll learn how to enjoy these moments without derailing your progress."
+  },
+  {
+    question: "How much time will I need to commit each week?",
+    answer: "The programme requires minimal time investment - just a few minutes for your weekly check-ins and implementing the simple strategies. There's no meal prep marathons or hours of exercise required."
+  },
+  {
+    question: "What if I don't see results?",
+    answer: "Your success is guaranteed! If you check in at least 80% of the time over the 8 weeks, follow the plan, and still don't see the progress you were hoping for, I will coach you for an additional 4 to 8 weeks completely free of charge."
+  },
+  {
+    question: "Is this suitable for beginners?",
+    answer: "Absolutely! The Menopause Way is designed to be simple and accessible for everyone, regardless of your previous experience with nutrition or fitness programmes. Everything is explained clearly with step-by-step guidance."
+  },
+  {
+    question: "When does the next cohort start?",
+    answer: "Cohorts begin regularly throughout the year. Spots are limited to 12 women to ensure everyone receives personalized attention and support. Once you enrol, you'll receive immediate access to the materials and join the next starting group."
+  }
+];
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 export default function MenopauseWayPage() {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   return (
     <div className="bg-zinc-950 min-h-screen">
       
@@ -95,9 +133,71 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          SECTION 2: THE PROBLEM ("She Gets Me")
+          VIDEO SECTION
+          ============================================ */}
+      <section className="py-20 px-6 bg-zinc-900/30">
+        <motion.div 
+          className="max-w-5xl mx-auto"
+          {...fadeInUp}
+        >
+          <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-white">
+            Watch: How The Menopause Way Works
+          </h3>
+          <p className="text-lg text-gray-400 text-center mb-10 max-w-3xl mx-auto">
+            Discover the simple approach that's helping women over 40 finally break free from the menopausal weight struggle.
+          </p>
+          
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            {/* TODO: Replace with actual video URL (YouTube, Vimeo, or custom video) */}
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-xl shadow-2xl"
+              src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+              title="The Menopause Way Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+            {/* Alternative: For custom video file, uncomment below and remove iframe above
+            <video
+              className="absolute top-0 left-0 w-full h-full rounded-xl shadow-2xl"
+              controls
+              poster="/path-to-thumbnail.jpg"
+            >
+              <source src="/path-to-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            */}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ============================================
+          SECTION 2: GUARANTEE (Risk Reversal)
           ============================================ */}
       <section className="py-20 px-6">
+        <motion.div 
+          className="max-w-4xl mx-auto"
+          {...scaleIn}
+        >
+          <div className="bg-cyan-500/10 border-2 border-cyan-500/50 rounded-xl p-8 md:p-12">
+            <div className="text-cyan-400 text-sm font-bold uppercase tracking-wide mb-4 text-center">
+              100% GUARANTEE
+            </div>
+            
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white text-center">
+              Your Success is Guaranteed. The Risk is All Mine.
+            </h3>
+            
+            <p className="text-lg text-gray-300 leading-relaxed text-center">
+              I am 100% confident in this process. My commitment to you is this: if you check in at least 80% of the time over these 8 weeks, follow the plan, and still don't see the progress you were hoping for, I will coach you for an additional 4 to 8 weeks, completely free of charge. Your success is my success.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ============================================
+          SECTION 3: THE PROBLEM ("She Gets Me")
+          ============================================ */}
+      <section className="py-20 px-6 bg-zinc-900/30">
         <motion.div 
           className="max-w-4xl mx-auto"
           {...fadeInUp}
@@ -131,9 +231,9 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          SECTION 3: BENEFITS (The Transformation)
+          SECTION 4: BENEFITS (The Transformation)
           ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
+      <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.h3 
             className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
@@ -177,7 +277,7 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          SECTION 4: CASE STUDY (Nic's Story)
+          SECTION 5: CASE STUDY (Nic's Story)
           ============================================ */}
       <section className="py-20 px-6">
         <motion.div 
@@ -193,10 +293,15 @@ export default function MenopauseWayPage() {
               "My chiropractor asked me if I was on Ozempic!"
             </h3>
             
-            {/* TODO: Replace placeholder image with actual photo */}
             <div className="flex justify-center mb-8">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-zinc-800 border-2 border-cyan-500 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Photo</span>
+              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-cyan-500 overflow-hidden">
+                <Image
+                  src="/nic.webp"
+                  alt="Nic's Transformation"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 96px, 128px"
+                />
               </div>
             </div>
             
@@ -232,123 +337,12 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          SECTION 5: THE METHOD EXPLAINED
+          NEW SECTION: 8-WEEK PROGRAM TIMELINE
           ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
-        <div className="max-w-6xl mx-auto">
-          <motion.h3 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
-            {...fadeInUp}
-          >
-            Introducing "The Menopause Way": Your User Manual for Your 40+ Body
-          </motion.h3>
-          
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-          >
-            {/* Pillar 1 */}
-            <motion.div
-              className="bg-zinc-900/50 p-8 rounded-lg border border-zinc-800 text-center hover:border-cyan-500/50 transition-colors duration-300"
-              variants={fadeInUp}
-            >
-              <FaUtensils className="text-cyan-400 text-4xl mb-4 mx-auto" />
-              <h4 className="text-xl font-bold text-white mb-3">The Plate Method</h4>
-              <p className="text-gray-300">For effortless fat loss without tracking.</p>
-            </motion.div>
-            
-            {/* Pillar 2 */}
-            <motion.div
-              className="bg-zinc-900/50 p-8 rounded-lg border border-zinc-800 text-center hover:border-cyan-500/50 transition-colors duration-300"
-              variants={fadeInUp}
-            >
-              <FaDumbbell className="text-cyan-400 text-4xl mb-4 mx-auto" />
-              <h4 className="text-xl font-bold text-white mb-3">Protein Mastery</h4>
-              <p className="text-gray-300">To protect metabolism and control hunger.</p>
-            </motion.div>
-            
-            {/* Pillar 3 */}
-            <motion.div
-              className="bg-zinc-900/50 p-8 rounded-lg border border-zinc-800 text-center hover:border-cyan-500/50 transition-colors duration-300"
-              variants={fadeInUp}
-            >
-              <FaChartLine className="text-cyan-400 text-4xl mb-4 mx-auto" />
-              <h4 className="text-xl font-bold text-white mb-3">The Plateau Protocol</h4>
-              <p className="text-gray-300">Our built-in plan for when progress stalls.</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <ProgramTimeline />
 
       {/* ============================================
-          SECTION 6: GUARANTEE (Risk Reversal)
-          ============================================ */}
-      <section className="py-20 px-6">
-        <motion.div 
-          className="max-w-4xl mx-auto"
-          {...scaleIn}
-        >
-          <div className="bg-cyan-500/10 border-2 border-cyan-500/50 rounded-xl p-8 md:p-12">
-            <div className="text-cyan-400 text-sm font-bold uppercase tracking-wide mb-4 text-center">
-              100% GUARANTEE
-            </div>
-            
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white text-center">
-              Your Success is Guaranteed. The Risk is All Mine.
-            </h3>
-            
-            <p className="text-lg text-gray-300 leading-relaxed text-center">
-              I am 100% confident in this process. My commitment to you is this: if you check in at least 80% of the time over these 8 weeks, follow the plan, and still don't see the progress you were hoping for, I will coach you for an additional 4 to 8 weeks, completely free of charge. Your success is my success.
-            </p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ============================================
-          SECTION 7: FINAL CALL TO ACTION
-          ============================================ */}
-      <section className="py-20 px-6 bg-zinc-900/30">
-        <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          {...fadeInUp}
-        >
-          <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            It's Time to Take Control
-          </h3>
-          
-          <p className="text-lg mb-8">
-            <span className="text-amber-400 font-semibold">
-              Enrolment for our next cohort closes on {PLACEHOLDERS.SIGNUP_DEADLINE}. Spots are strictly limited to {PLACEHOLDERS.CAPACITY} women to ensure everyone gets personal coaching.
-            </span>
-          </p>
-          
-          <motion.button
-            onClick={scrollToPricing}
-            className="inline-block px-10 py-5 text-xl bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            animate={{ 
-              boxShadow: [
-                '0 0 0 0 rgba(6, 182, 212, 0)',
-                '0 0 0 10px rgba(6, 182, 212, 0)',
-              ]
-            }}
-            transition={{ 
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: 'loop'
-            }}
-          >
-            Yes, I'm Ready to Take Control
-          </motion.button>
-        </motion.div>
-      </section>
-
-      {/* ============================================
-          SECTION 8: PRICING TABLE
+          SECTION 6: PRICING TABLE
           ============================================ */}
       <section id="pricing" className="py-20 px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
@@ -377,10 +371,7 @@ export default function MenopauseWayPage() {
               
               <ul className="space-y-4 mb-8 flex-grow">
                 {[
-                  "8 Comprehensive Modules",
-                  "Community Access",
-                  "Lifetime Access to Materials",
-                  "Self-Guided Learning"
+                  "8 Comprehensive Modules"
                 ].map((feature, index) => (
                   <li key={index} className="flex items-start gap-3 text-gray-300">
                     <FaCheck className="text-cyan-400 flex-shrink-0 mt-1" />
@@ -412,10 +403,8 @@ export default function MenopauseWayPage() {
               <ul className="space-y-4 mb-8 flex-grow">
                 {[
                   "Everything in Self-Paced",
-                  "Weekly Coaching Check-ins",
-                  "Personal Progress Tracking",
-                  "Direct Coach Support",
-                  "Group Accountability"
+                  "Weekly coaching check-ins with a PN L1 Nutritionist",
+                  "Direct Coach Support"
                 ].map((feature, index) => (
                   <li key={index} className="flex items-start gap-3 text-gray-300">
                     <FaCheck className="text-cyan-400 flex-shrink-0 mt-1" />
@@ -464,20 +453,72 @@ export default function MenopauseWayPage() {
             </motion.div>
           </motion.div>
 
-          {/* Secondary CTA */}
+          {/* Limited Spots Notice */}
           <motion.div 
             className="text-center mt-12"
             {...fadeInUp}
           >
-            <p className="text-gray-400">
-              Have a few questions before you join?{' '}
-              <a 
-                href={PLACEHOLDERS.CALENDLY_URL}
-                className="text-cyan-400 underline hover:text-cyan-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded"
-              >
-                Click here to book a quick 15-minute chat with me.
-              </a>
+            <p className="text-amber-400 font-semibold text-[38px]">
+              Spots are strictly limited to {PLACEHOLDERS.CAPACITY} women to ensure everyone gets personal coaching.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 8: FAQ
+          ============================================ */}
+      <section className="py-20 px-6 bg-zinc-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.h3 
+            className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
+            {...fadeInUp}
+          >
+            Frequently Asked Questions
+          </motion.h3>
+          
+          <motion.div 
+            className="space-y-4"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+          >
+            {faqData.map((faq, index) => (
+              <motion.div
+                key={index}
+                className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"
+                variants={fadeInUp}
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-zinc-800/50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                >
+                  <span className="text-lg font-semibold text-white pr-8">
+                    {faq.question}
+                  </span>
+                  <FaChevronDown 
+                    className={`text-cyan-400 flex-shrink-0 transition-transform duration-300 ${
+                      openFaqIndex === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: openFaqIndex === index ? 'auto' : 0,
+                    opacity: openFaqIndex === index ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="p-6 pt-0 text-gray-300 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>

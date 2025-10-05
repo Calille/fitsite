@@ -181,9 +181,19 @@ export default function QuizPopup({ isOpen, onClose }: QuizPopupProps) {
       });
 
       if (!emailResponse.ok) {
-        const emailError = await emailResponse.json();
-        throw new Error(emailError.error || 'Failed to send email');
+        let errorMessage = 'Failed to send email';
+        try {
+          const emailError = await emailResponse.json();
+          errorMessage = emailError.error || errorMessage;
+        } catch (parseError) {
+          // If JSON parsing fails, use status text
+          errorMessage = `Failed to send email: ${emailResponse.status} ${emailResponse.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
+
+      // Log success
+      console.log('✅ Quiz submitted successfully');
 
       // TODO: Momence integration disabled until correct API endpoint is confirmed
       // Contact Momence support for API documentation

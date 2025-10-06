@@ -11,6 +11,7 @@
     "deploy": "next build"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.6.3",
     "next": "15.2.4",
     "nodemailer": "^7.0.6",

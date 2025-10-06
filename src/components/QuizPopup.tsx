@@ -153,9 +153,9 @@ export default function QuizPopup({ isOpen, onClose }: QuizPopupProps) {
     }, 300);
   };
 
-  // Validate email format
+  // Validate email format - more lenient regex
   const isValidEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   };
 
@@ -164,60 +164,61 @@ export default function QuizPopup({ isOpen, onClose }: QuizPopupProps) {
     e.preventDefault();
     setError('');
 
-    // Validate email
+    // Validate email with better error message
     if (!isValidEmail(answers.email)) {
-      setError('Please enter a valid email address');
+      setError(`Please enter a valid email address. You entered: "${answers.email}"`);
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // Send email with quiz results
-      const emailResponse = await fetch('/api/sendEmail', {
+      // Send quiz results to PHP file for personalized email generation
+      const formData = new FormData();
+      formData.append('firstName', answers.firstName);
+      formData.append('lastName', answers.lastName);
+      formData.append('email', answers.email);
+      formData.append('phoneNumber', answers.phoneNumber);
+      formData.append('q1', answers.q1);
+      formData.append('q2', answers.q2);
+      formData.append('q3', answers.q3);
+      formData.append('q4', answers.q4);
+      formData.append('q5', answers.q5);
+      formData.append('q6', answers.q6);
+      formData.append('q7', answers.q7);
+
+      console.log('Sending form data:', Object.fromEntries(formData));
+      
+      // UPDATED: Use /api/ path
+      const response = await fetch('/api/send-quiz-email.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(answers)
+        body: formData
       });
 
-      if (!emailResponse.ok) {
-        let errorMessage = 'Failed to send email';
-        try {
-          const emailError = await emailResponse.json();
-          errorMessage = emailError.error || errorMessage;
-        } catch (parseError) {
-          // If JSON parsing fails, use status text
-          errorMessage = `Failed to send email: ${emailResponse.status} ${emailResponse.statusText}`;
-        }
-        throw new Error(errorMessage);
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Log success
-      console.log('✅ Quiz submitted successfully');
+      const result = await response.json();
+      console.log('Response data:', result);
+      
+      if (result.success) {
+        // Log success
+        console.log('✅ Quiz submitted successfully via PHP');
+        
+        // Show success message
+        setIsSuccess(true);
 
-      // TODO: Momence integration disabled until correct API endpoint is confirmed
-      // Contact Momence support for API documentation
-      // Uncomment below when endpoint is available:
-      /*
-      const momenceResponse = await fetch('/api/momence', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(answers)
-      });
-
-      if (!momenceResponse.ok) {
-        const momenceError = await momenceResponse.json();
-        console.error('Momence API error:', momenceError);
+        // Close popup after 3 seconds
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        throw new Error(result.error || 'Failed to send email');
       }
-      */
-
-      // Show success message
-      setIsSuccess(true);
-
-      // Close popup after 3 seconds
-      setTimeout(() => {
-        onClose();
-      }, 3000);
 
     } catch (err) {
       console.error('Quiz submission error:', err);

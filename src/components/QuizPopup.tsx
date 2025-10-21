@@ -483,6 +483,9 @@ export default function QuizPopup({ isOpen, onClose }: QuizPopupProps) {
                       <p className="mt-1 text-xs text-gray-500">{currentCountry.helpText}</p>
                     </div>
 
+                    {/* Mailchimp Tags - Auto-tag subscribers as "Menopause Guide" */}
+                    <input type="hidden" name="tags" value="7774190" />
+
                     {/* Honeypot */}
                     <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                       <input

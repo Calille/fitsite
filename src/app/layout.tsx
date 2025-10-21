@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://momence.com https://*.momence.com https://my.matterport.com https://*.matterport.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://momence.com https://*.momence.com;" />
+        <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://momence.com https://*.momence.com https://my.matterport.com https://*.matterport.com https://www.google.com https://*.google.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://momence.com https://*.momence.com;" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://tphealthfitness.com" />

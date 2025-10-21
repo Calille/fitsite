@@ -6,278 +6,251 @@ import Image from 'next/image';
 import { FaQuoteLeft, FaUser, FaStar, FaSpinner } from 'react-icons/fa';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
 
-// Static testimonials data
+// Real Google Reviews from TP Health & Fitness
 const staticTestimonials = [
   {
-    id: 'testimonial-1',
-    name: 'Sarah M.',
-    timeAgo: '2 weeks ago',
-    quote: 'TP Health & Fitness has completely transformed my approach to fitness. The trainers are incredibly knowledgeable and supportive. I\'ve never felt stronger or more confident!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'S',
-  },
-  {
-    id: 'testimonial-2',
-    name: 'James R.',
-    timeAgo: '1 month ago',
-    quote: 'Amazing gym with fantastic trainers. The community here is so welcoming and motivating. I look forward to every session!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'J',
-  },
-  {
-    id: 'testimonial-3',
-    name: 'Emma L.',
-    timeAgo: '3 weeks ago',
-    quote: 'Best fitness studio in town! The personalized training approach really works. I\'ve achieved goals I never thought possible.',
+    id: 'review-1',
+    name: 'E Paley',
+    timeAgo: '1 week ago',
+    quote: 'Absolutely brilliant sessions! I\'ve been training at TP PT for 2 years and the team worked hard to find a schedule which fitted my lifestyle. I\'ve been training with Will Mitchell in the early mornings during that time. Will is a thoughtful and motivating trainer.',
     rating: 5,
     source: 'Google',
     profileInitial: 'E',
   },
   {
-    id: 'testimonial-4',
-    name: 'Michael T.',
-    timeAgo: '2 months ago',
-    quote: 'The team at TP are professional, friendly and really know their stuff. Great facilities and excellent coaching. Highly recommend!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'M',
-  },
-  {
-    id: 'testimonial-5',
-    name: 'Lisa K.',
+    id: 'review-2',
+    name: 'Gautham Pandian',
     timeAgo: '1 week ago',
-    quote: 'I\'ve been training here for 6 months and the results speak for themselves. The trainers really care about your progress and wellbeing.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'L',
-  },
-  {
-    id: 'testimonial-6',
-    name: 'David H.',
-    timeAgo: '3 days ago',
-    quote: 'Outstanding personal training services! The trainers really understand how to push you while keeping safety first. I\'ve seen incredible progress in just 3 months.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'D',
-  },
-  {
-    id: 'testimonial-7',
-    name: 'Rachel S.',
-    timeAgo: '1 week ago',
-    quote: 'The group fitness classes are phenomenal! Great energy, motivating instructors, and a supportive community. I actually enjoy working out now!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'R',
-  },
-  {
-    id: 'testimonial-8',
-    name: 'Tom W.',
-    timeAgo: '2 weeks ago',
-    quote: 'Been a member for over a year now. The equipment is top-notch, facilities are always clean, and the staff genuinely cares about your fitness journey.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'T',
-  },
-  {
-    id: 'testimonial-9',
-    name: 'Jennifer M.',
-    timeAgo: '5 days ago',
-    quote: 'Incredible transformation in my strength and confidence! The trainers create personalized programs that actually work. Best investment I\'ve made.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'J',
-  },
-  {
-    id: 'testimonial-10',
-    name: 'Alex P.',
-    timeAgo: '3 weeks ago',
-    quote: 'The nutrition guidance combined with the training has been life-changing. Lost 25 pounds and gained so much muscle definition!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'A',
-  },
-  {
-    id: 'testimonial-11',
-    name: 'Katie B.',
-    timeAgo: '1 month ago',
-    quote: 'Love the variety of classes offered! From HIIT to yoga, there\'s something for every fitness level. The instructors are all amazing.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'K',
-  },
-  {
-    id: 'testimonial-12',
-    name: 'Mark D.',
-    timeAgo: '2 days ago',
-    quote: 'Fantastic studio with a real community feel. Everyone supports each other and the trainers know everyone by name. Feels like family!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'M',
-  },
-  {
-    id: 'testimonial-13',
-    name: 'Sophie L.',
-    timeAgo: '1 week ago',
-    quote: 'The flexibility in scheduling and variety of training options makes it so easy to stay consistent. I\'ve never stuck to a fitness routine this long!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'S',
-  },
-  {
-    id: 'testimonial-14',
-    name: 'Ryan C.',
-    timeAgo: '4 days ago',
-    quote: 'Excellent value for money. The quality of training and facilities far exceeds what you\'d pay elsewhere. Highly recommend to anyone serious about fitness.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'R',
-  },
-  {
-    id: 'testimonial-15',
-    name: 'Amanda G.',
-    timeAgo: '2 weeks ago',
-    quote: 'The trainers here really know their stuff! They\'ve helped me overcome plateau after plateau. My form has improved dramatically.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'A',
-  },
-  {
-    id: 'testimonial-16',
-    name: 'Ben K.',
-    timeAgo: '5 days ago',
-    quote: 'Great atmosphere and motivation. I\'ve tried many gyms but this is the first place where I actually look forward to my workouts!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'B',
-  },
-  {
-    id: 'testimonial-17',
-    name: 'Nicole R.',
-    timeAgo: '1 month ago',
-    quote: 'The recovery and mobility work they incorporate is incredible. I feel better at 35 than I did at 25! No more aches and pains.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'N',
-  },
-  {
-    id: 'testimonial-18',
-    name: 'Chris J.',
-    timeAgo: '3 days ago',
-    quote: 'Phenomenal results in a short time. The combination of strength training and cardio programs has completely transformed my physique.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'C',
-  },
-  {
-    id: 'testimonial-19',
-    name: 'Megan F.',
-    timeAgo: '2 weeks ago',
-    quote: 'The mental health benefits have been just as important as the physical ones. Exercise is now my therapy and the community here is so supportive.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'M',
-  },
-  {
-    id: 'testimonial-20',
-    name: 'Jake T.',
-    timeAgo: '1 week ago',
-    quote: 'Impressed by the attention to detail and safety protocols. The trainers always ensure proper form before adding weight. Professional and caring.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'J',
-  },
-  {
-    id: 'testimonial-21',
-    name: 'Laura V.',
-    timeAgo: '4 days ago',
-    quote: 'Best decision I made was joining TP Health & Fitness. The trainers pushed me beyond my comfort zone and helped me achieve goals I never thought possible.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'L',
-  },
-  {
-    id: 'testimonial-22',
-    name: 'Sam N.',
-    timeAgo: '2 months ago',
-    quote: 'The progressive approach to training keeps things interesting and challenging. Every session is different but purposeful. Love the variety!',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'S',
-  },
-  {
-    id: 'testimonial-23',
-    name: 'Hannah W.',
-    timeAgo: '3 weeks ago',
-    quote: 'Amazing support system here! The other members and trainers create such a positive environment. I\'ve made lifelong friends.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'H',
-  },
-  {
-    id: 'testimonial-24',
-    name: 'Carlos M.',
-    timeAgo: '1 week ago',
-    quote: 'The knowledge and expertise of the trainers is unmatched. They explain the \'why\' behind every exercise which helps me stay motivated and engaged.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'C',
-  },
-  {
-    id: 'testimonial-25',
-    name: 'Rebecca H.',
-    timeAgo: '5 days ago',
-    quote: 'Fantastic facilities and equipment! Everything is well-maintained and the studio has a really motivating atmosphere. Clean and professional.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'R',
-  },
-  {
-    id: 'testimonial-26',
-    name: 'Jordan L.',
-    timeAgo: '2 weeks ago',
-    quote: 'The holistic approach to fitness including nutrition coaching has been a game-changer. Finally understanding how to fuel my body properly.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'J',
-  },
-  {
-    id: 'testimonial-27',
-    name: 'Olivia K.',
-    timeAgo: '1 month ago',
-    quote: 'Excellent customer service and flexibility with scheduling. The staff goes above and beyond to accommodate your needs and goals.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'O',
-  },
-  {
-    id: 'testimonial-28',
-    name: 'Daniel S.',
-    timeAgo: '3 days ago',
-    quote: 'The results speak for themselves! I\'ve gained strength, lost fat, and improved my overall health. The trainers make fitness fun and achievable.',
-    rating: 5,
-    source: 'Google',
-    profileInitial: 'D',
-  },
-  {
-    id: 'testimonial-29',
-    name: 'Grace P.',
-    timeAgo: '1 week ago',
-    quote: 'Outstanding group training sessions! The energy is infectious and the trainers know how to motivate everyone regardless of fitness level.',
+    quote: 'Excellent experience with my personal trainer Ben at TP Health. Exceptionally kind, polite, and professional. Demonstrates high expertise, understands my specific goals, and tailors sessions accordingly.',
     rating: 5,
     source: 'Google',
     profileInitial: 'G',
   },
   {
-    id: 'testimonial-30',
-    name: 'Tyler B.',
+    id: 'review-3',
+    name: 'Nichola Johnson-Marshall',
+    timeAgo: '1 week ago',
+    quote: 'Been training with TP Fitness since summer 2025. Started with 1:1 PT sessions with Will Mitchell, then moved to small group sessions. Will is encouraging and supportive, always pushing you safely.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'N',
+  },
+  {
+    id: 'review-4',
+    name: 'Sophie Birkett',
+    timeAgo: '2 weeks ago',
+    quote: 'Ben is an excellent trainer who truly cares about clients. Compassionate, interested, and passionate about developing people. Couldn\'t ask for anyone better.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'S',
+  },
+  {
+    id: 'review-5',
+    name: 'Lanying Burley',
+    timeAgo: '1 week ago',
+    quote: 'Highly recommend Ben. He is supportive and motivating. I started at TP to recover from a knee injury and enjoyed it so much I\'ve continued for over a year.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'L',
+  },
+  {
+    id: 'review-6',
+    name: 'Paul de Kort',
+    timeAgo: '1 week ago',
+    quote: 'Attending TP Fitness for over two years, twice a week. My strength and fitness have greatly improved. Sessions with Will, Sarah, Ben, Seb, and Teighlor are enjoyable and challenging.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'P',
+  },
+  {
+    id: 'review-7',
+    name: 'Jess Grimmel',
+    timeAgo: '2 weeks ago',
+    quote: 'Could not recommend TP Health and Fitness more! Coach Will is friendly, supportive, and knowledgeable. Helped us build strength and confidence for our wedding day.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'J',
+  },
+  {
+    id: 'review-8',
+    name: 'Kathryn Robbins',
     timeAgo: '6 days ago',
-    quote: 'This place has changed my life! From beginner to confident athlete, the journey has been incredible. The support system here is unbeatable.',
+    quote: 'Training for over a year with Teighlor, Seb, Will, Ben, and Sarah. Sessions are always challenging, varied, and fun.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'K',
+  },
+  {
+    id: 'review-9',
+    name: 'Eisha Pengelley',
+    timeAgo: '2 weeks ago',
+    quote: 'Before TP I kept quitting exercise. Thanks to the encouraging team, I\'ve stuck to my goals and feel fitter, healthier, and stronger. Group sessions are fun and full of laughs.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'E',
+  },
+  {
+    id: 'review-10',
+    name: 'K Barter',
+    timeAgo: '2 months ago',
+    quote: 'Joined TP through their 8-week programme. Teighlor was accommodating and welcoming. So glad I took that first step—life-changing.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'K',
+  },
+  {
+    id: 'review-11',
+    name: 'Philippa Ellis',
+    timeAgo: '2 weeks ago',
+    quote: 'My husband and I train with Will in paired sessions. He challenges us weekly while managing injuries. We\'re stronger, more flexible, and actually enjoy our workouts!',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'P',
+  },
+  {
+    id: 'review-12',
+    name: 'Francesca Mottram',
+    timeAgo: '4 months ago',
+    quote: 'Can\'t recommend this gym enough. Friendly, supportive trainers who make it a safe space. I always leave feeling stronger, confident, and uplifted.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'F',
+  },
+  {
+    id: 'review-13',
+    name: 'Thomas Cooney',
+    timeAgo: '2 weeks ago',
+    quote: 'TP Fitness boosted my confidence and communication. Will Mitchell has especially helped with nutrition and building a strong workout routine.',
     rating: 5,
     source: 'Google',
     profileInitial: 'T',
-  }
+  },
+  {
+    id: 'review-14',
+    name: 'Hannah Boyd',
+    timeAgo: '1 week ago',
+    quote: 'Fantastic gym offering bespoke sessions. Have been training with Will for 6 months—highly recommend!',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'H',
+  },
+  {
+    id: 'review-15',
+    name: 'Iván Rodríguez',
+    timeAgo: '10 months ago',
+    quote: 'Teighlor and the team are amazing. Workouts are always adapted to needs. My wife and I feel motivated and stronger than ever.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'I',
+  },
+  {
+    id: 'review-16',
+    name: 'John Hall',
+    timeAgo: '10 months ago',
+    quote: 'As a busy 40-something, I was out of shape. TP helped me regain fitness and confidence. The team is supportive and motivating.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'J',
+  },
+  {
+    id: 'review-17',
+    name: 'Melissa de Lusignan',
+    timeAgo: '2 years ago',
+    quote: 'Teighlor and team are fantastic. My husband and I went from never going to a gym to training twice weekly for 9 months. Big progress and love every session!',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'M',
+  },
+  {
+    id: 'review-18',
+    name: 'Sanjay Patel',
+    timeAgo: '2 years ago',
+    quote: 'Life-changing experience. Teighlor\'s warm personality and Alfie\'s personal training have transformed my fitness and mindset.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'S',
+  },
+  {
+    id: 'review-19',
+    name: 'Lorraine Howell',
+    timeAgo: '8 months ago',
+    quote: 'Small PT sessions pushed me through my winter slump. Feeling stronger, more balanced, and motivated again.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'L',
+  },
+  {
+    id: 'review-20',
+    name: 'Rita Dollar',
+    timeAgo: '1 year ago',
+    quote: 'Pleasure to train with Teighlor and her team. Great exercises, supportive environment, and excellent results.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'R',
+  },
+  {
+    id: 'review-21',
+    name: 'Ian Poree',
+    timeAgo: '2 years ago',
+    quote: 'Was nervous joining a gym for the first time, but Teighlor was warm and reassuring. Loved the 8-week programme and feel so much fitter.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'I',
+  },
+  {
+    id: 'review-22',
+    name: 'Kam Bains',
+    timeAgo: '2 years ago',
+    quote: 'Joined TP 6 weeks ago and already seeing definition and tone. Love the bespoke service and friendly vibe.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'K',
+  },
+  {
+    id: 'review-23',
+    name: 'Nigel Taunt',
+    timeAgo: '1 year ago',
+    quote: 'Private gym with personal trainers offering great small classes. The Kick-start programme really built my confidence and strength.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'N',
+  },
+  {
+    id: 'review-24',
+    name: 'Jane Watson',
+    timeAgo: '3 years ago',
+    quote: 'Highly recommend Teighlor. Fun and challenging sessions, always positive and motivating. Great range of equipment.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'J',
+  },
+  {
+    id: 'review-25',
+    name: 'Lisa Le Grice',
+    timeAgo: '2 years ago',
+    quote: 'Joined TP after years of procrastination. Now 9 months in, I\'m stronger, fitter, and over a stone lighter. Love the supportive environment.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'L',
+  },
+  {
+    id: 'review-26',
+    name: 'Sandra Bradley',
+    timeAgo: '1 year ago',
+    quote: 'Highly recommend the TP Kickstart programme. Knowledgeable, caring staff who helped me regain strength after an injury.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'S',
+  },
+  {
+    id: 'review-27',
+    name: 'Abigail Ansell',
+    timeAgo: '3 months ago',
+    quote: 'Teighlor is professional and knowledgeable. 10/10 would recommend.',
+    rating: 5,
+    source: 'Google',
+    profileInitial: 'A',
+  },
 ];
 
 const Testimonials = () => {
@@ -342,62 +315,12 @@ const Testimonials = () => {
     }
   };
 
-  const quoteAnimation = {
-    initial: { opacity: 0, y: 20 },
-    animate: (custom: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { 
-        duration: 0.5, 
-        delay: 0.2 + custom * 0.1,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    })
-  };
 
   return (
     <section className="section-padding bg-gradient-to-br from-[#56b5bd] via-[#4a9ba8] to-[#3e8a93] text-white overflow-hidden relative">
-      {/* Enhanced decorative elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay opacity-10"
-        animate={{
-          scale: [1, 1.1, 1],
-          x: [0, 10, 0],
-          y: [0, -10, 0]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full mix-blend-overlay opacity-10"
-        animate={{
-          scale: [1, 0.9, 1],
-          x: [0, -15, 0],
-          y: [0, 15, 0]
-        }}
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl"
-        animate={{
-          scale: [0.8, 1.2, 0.8],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
+      {/* Subtle decorative elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay opacity-5" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full mix-blend-overlay opacity-5" />
 
       <div className="container-custom">
         <motion.div
@@ -439,15 +362,7 @@ const Testimonials = () => {
           >
             <div className="flex items-center gap-2">
               {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.3 }}
-                >
-                  <FaStar className="text-yellow-300 w-6 h-6 drop-shadow-sm" />
-                </motion.div>
+                <FaStar key={i} className="text-yellow-300 w-6 h-6 drop-shadow-sm" />
               ))}
             </div>
             <div className="flex items-center gap-3">
@@ -455,7 +370,7 @@ const Testimonials = () => {
               <span className="text-white/80 font-medium">rating</span>
             </div>
             <div className="hidden sm:block w-px h-8 bg-white/20"></div>
-            <span className="text-white/80 font-medium">{reviews.length} reviews</span>
+            <span className="text-white/80 font-medium">42 reviews</span>
           </motion.div>
 
           {/* Write a Review Button */}
@@ -515,12 +430,12 @@ const Testimonials = () => {
                   whileHover={{ y: -6, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3)" }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {/* Enhanced Google branding */}
+                  {/* Google branding */}
                   <motion.div
                     className="absolute -top-8 left-1/2 transform -translate-x-1/2"
-                    initial={{ y: -30, opacity: 0, scale: 0.8 }}
-                    animate={{ y: 0, opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6, type: "spring" }}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
                   >
                     <div className="bg-gradient-to-r from-white to-gray-50 p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-gray-100">
                       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -533,12 +448,12 @@ const Testimonials = () => {
                     </div>
                   </motion.div>
 
-                  {/* Enhanced profile section */}
+                  {/* Profile section */}
                   <motion.div
                     className="flex flex-col items-center mb-6"
-                    initial={{ scale: 0, rotate: -20 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6, type: 'spring' }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
                   >
                     <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-3 border-white/30 flex items-center justify-center bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] shadow-lg">
                       <span className="text-white text-3xl font-bold">
@@ -546,57 +461,34 @@ const Testimonials = () => {
                       </span>
                     </div>
 
-                    {/* Star rating with enhanced animation */}
-                    <motion.div
-                      className="flex justify-center gap-2 mb-2"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5, duration: 0.6 }}
-                    >
+                    {/* Star rating */}
+                    <div className="flex justify-center gap-2 mb-2">
                       {[...Array(reviews[current]?.rating || 5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, y: 15, rotate: -10 }}
-                          animate={{ opacity: 1, y: 0, rotate: 0 }}
-                          transition={{ delay: 0.5 + i * 0.15, duration: 0.4, type: "spring" }}
-                        >
-                          <FaStar className="text-yellow-300 w-5 h-5 drop-shadow-sm" />
-                        </motion.div>
+                        <FaStar key={i} className="text-yellow-300 w-5 h-5 drop-shadow-sm" />
                       ))}
-                    </motion.div>
+                    </div>
                   </motion.div>
 
-                  {/* Quote text with enhanced typography */}
+                  {/* Quote text */}
                   <motion.div
                     className="relative mb-6"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
                   >
                     <FaQuoteLeft className="absolute -top-4 -left-4 text-white/30 text-2xl" />
                     <p className="text-lg md:text-xl lg:text-2xl italic text-white leading-relaxed font-medium px-6">
-                      {(reviews[current]?.quote || '').split(' ').map((word: string, i: number) => (
-                        <motion.span
-                          key={i}
-                          custom={i}
-                          variants={quoteAnimation}
-                          initial="initial"
-                          animate="animate"
-                          className="inline-block mx-[3px]"
-                        >
-                          {word}{' '}
-                        </motion.span>
-                      ))}
+                      {reviews[current]?.quote}
                     </p>
                     <FaQuoteLeft className="absolute -bottom-4 -right-4 text-white/30 text-2xl rotate-180" />
                   </motion.div>
 
-                  {/* Name and time with enhanced styling */}
+                  {/* Name and time */}
                   <motion.div
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
                   >
                     <h4 className="font-bold text-xl text-white mb-1">{reviews[current]?.name}</h4>
                     <p className="text-white/80 font-medium">{reviews[current]?.timeAgo}</p>
@@ -640,42 +532,28 @@ const Testimonials = () => {
             </motion.div>
           )}
 
-          {/* Enhanced navigation arrows */}
+          {/* Navigation arrows */}
           {!loading && reviews.length > 0 && (
           <div className="hidden md:block">
             <motion.button
-              className="absolute top-1/2 -left-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg group"
+              className="absolute top-1/2 -left-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg"
               onClick={() => setCurrent(prevIndex)}
-              whileHover={{
-                scale: 1.1,
-                x: -8,
-                backgroundColor: "rgba(255, 255, 255, 0.25)"
-              }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, x: 30, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 1, duration: 0.4, type: "spring" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Previous</span>
-              <svg className="w-7 h-7 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
             </motion.button>
             <motion.button
-              className="absolute top-1/2 -right-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg group"
+              className="absolute top-1/2 -right-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg"
               onClick={() => setCurrent(nextIndex)}
-              whileHover={{
-                scale: 1.1,
-                x: 8,
-                backgroundColor: "rgba(255, 255, 255, 0.25)"
-              }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, x: -30, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 1, duration: 0.4, type: "spring" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Next</span>
-              <svg className="w-7 h-7 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
               </svg>
             </motion.button>

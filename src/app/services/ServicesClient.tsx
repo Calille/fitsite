@@ -25,7 +25,7 @@ const services = [
       'Nutritional guidance and accountability'
     ],
     image: '/img/personal-training.jpg',
-    pricing: '£816 for 8 weeks'
+    pricing: '£880 for 8 weeks'
   },
   {
     id: 'group-pt',
@@ -40,7 +40,7 @@ const services = [
       'Varied and challenging workouts'
     ],
     image: '/group-fitness.jpg',
-    pricing: '£33 per session'
+    pricing: '£36 per session'
   },
   {
     id: 'kickstart-group',
@@ -55,7 +55,7 @@ const services = [
       'Results-focused approach'
     ],
     image: '/kickstart-group.jpg',
-    pricing: '£600 for 8 weeks'
+    pricing: '£629 for 8 weeks'
   },
   {
     id: 'fat-loss-programme',

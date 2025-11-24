@@ -4,9 +4,9 @@ import { FaInstagram, FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-800 pt-16 pb-8">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <footer className="bg-white text-gray-800 pt-12 pb-6 sm:pt-16 sm:pb-8">
+      <div className="container-custom px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo and About */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center">
@@ -22,7 +22,7 @@ const Footer = () => {
                 <span className="text-[#56b5bd]">TP</span> Health & Fitness
               </span>
             </Link>
-            <p className="text-gray-600 mt-4">
+            <p className="text-sm sm:text-base text-gray-600 mt-4">
               Elevate your fitness journey with our community-focused studio. 
               We specialise in strength, endurance, and functional training.
             </p>
@@ -44,8 +44,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Quick Links</h3>
+            <ul className="space-y-2 sm:space-y-3">
               <li><Link href="/services" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Services</Link></li>
               <li><Link href="/#schedule" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Class Schedule</Link></li>
               <li><Link href="/blog" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Blog</Link></li>
@@ -56,8 +56,8 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Our Services</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Our Services</h3>
+            <ul className="space-y-2 sm:space-y-3">
               <li><Link href="/services" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Personal Training</Link></li>
               <li><Link href="/services" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Group Classes</Link></li>
               <li><Link href="/services" className="text-gray-600 hover:text-[#56b5bd] transition-colors">Strength Training</Link></li>
@@ -68,8 +68,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
-            <ul className="space-y-3 text-gray-600">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Contact Us</h3>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-600">
               <li>Harpenden, Hertfordshire</li>
               <li>AL5 3BL, England, UK</li>
               <li>Email: info@tphealthfitness.com</li>

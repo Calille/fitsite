@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
@@ -9,6 +9,10 @@ import { FaDumbbell, FaUsers, FaRunning, FaFire, FaChalkboardTeacher, FaHeartbea
 import { motion } from 'framer-motion';
 import FadeInWrapper from '@/components/FadeInWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
 // Extended service information
 const services = [
@@ -123,35 +127,6 @@ const heroImages = [
 ];
 
 export default function ServicesClient() {
-  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
-
-  // Preload all images on component mount
-  useEffect(() => {
-    let loadedCount = 0;
-    const totalImages = heroImages.length;
-
-    const preloadImages = () => {
-      heroImages.forEach((src) => {
-        const img = document.createElement('img');
-        img.onload = () => {
-          loadedCount++;
-          if (loadedCount === totalImages) {
-            setAllImagesLoaded(true);
-          }
-        };
-        img.onerror = () => {
-          loadedCount++;
-          if (loadedCount === totalImages) {
-            setAllImagesLoaded(true);
-          }
-        };
-        img.src = src;
-      });
-    };
-
-    preloadImages();
-  }, []);
-
   // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -168,57 +143,59 @@ export default function ServicesClient() {
     <FadeInWrapper>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative h-[300px] md:h-[400px] flex items-center bg-gray-900 text-white overflow-hidden">
-          {/* Loading state */}
-          {!allImagesLoaded && (
-            <div className="absolute inset-0 z-0 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 animate-pulse">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/30 to-transparent animate-pulse"></div>
-            </div>
-          )}
-          
-          {/* Continuous Scrolling Images */}
-          {allImagesLoaded && (
-            <div className="absolute inset-0 z-0">
-              {/* First set of images */}
-              <div className="absolute inset-0 flex animate-scroll-left">
-                {heroImages.map((imageSrc, index) => (
-                  <div key={`first-${index}`} className="relative flex-shrink-0 w-1/3 h-full">
-                    <Image
+        {/* Hero Section with Swiper Slider */}
+        <section className="relative h-[250px] sm:h-[300px] md:h-[400px] flex items-center bg-gray-900 text-white overflow-hidden">
+          {/* Modern Swiper Image Slider - Fixed to prevent black screen on scroll */}
+          <div className="absolute inset-0 z-0 min-h-[250px] sm:min-h-[300px] md:min-h-[400px]">
+            <Swiper
+              modules={[Autoplay]}
+              loop={true}
+              autoplay={{ 
+                delay: 0, 
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+                waitForTransition: true
+              }}
+              speed={4000}
+              slidesPerView={1}
+              spaceBetween={0}
+              grabCursor={true}
+              allowTouchMove={true}
+              observer={true}
+              observeParents={true}
+              observeSlideChildren={true}
+              watchSlidesProgress={true}
+              watchOverflow={true}
+              breakpoints={{
+                320: { slidesPerView: 1, spaceBetween: 0 },
+                640: { slidesPerView: 2, spaceBetween: 0 },
+                768: { slidesPerView: 3, spaceBetween: 0 },
+                1024: { slidesPerView: 4, spaceBetween: 0 },
+                1280: { slidesPerView: 5, spaceBetween: 0 },
+              }}
+              className="h-full w-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px]"
+            >
+              {heroImages.map((imageSrc, index) => (
+                <SwiperSlide key={index} className="h-full">
+                  <div className="relative w-full h-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px]">
+                    <img
                       src={imageSrc}
-                      alt={`TP Health & Fitness Services ${index + 1}`}
-                      fill
-                      priority={index < 3}
-                      className="object-cover"
-                      sizes="33vw"
+                      alt={`Hero ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      loading="eager"
                     />
                   </div>
-                ))}
-              </div>
-
-              {/* Second set of images for seamless loop */}
-              <div className="absolute inset-0 flex animate-scroll-left-delayed">
-                {heroImages.map((imageSrc, index) => (
-                  <div key={`second-${index}`} className="relative flex-shrink-0 w-1/3 h-full">
-                    <Image
-                      src={imageSrc}
-                      alt={`TP Health & Fitness Services ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="33vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
           
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 z-5 bg-black/40"></div>
           
-          <div className="container-custom relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">Our Services</h1>
-            <p className="text-xl text-white max-w-2xl drop-shadow-md">
+          <div className="container-custom relative z-10 px-4 sm:px-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 text-white drop-shadow-lg">Our Services</h1>
+            <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl drop-shadow-md">
               Comprehensive fitness solutions tailored to your goals and needs.
             </p>
           </div>
@@ -226,18 +203,18 @@ export default function ServicesClient() {
 
         {/* Services Introduction */}
         <AnimatedSection className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <div className="container-custom px-4 sm:px-6">
+            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4">
                 Transform Your Fitness Journey With Us
               </h2>
-              <p className="text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 px-4">
                 At TP Health & Fitness, we believe in a holistic approach to fitness that addresses your unique needs, goals, and lifestyle. Our comprehensive services are designed to support you at every step of your journey, from personalised training to specialised programmes and recovery strategies.
               </p>
             </div>
 
             {/* Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {services.map((service, index) => (
                 <AnimatedSection
                   key={service.id}
@@ -245,23 +222,23 @@ export default function ServicesClient() {
                   direction="up"
                   className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-white transform hover:-translate-y-3 hover:scale-105"
                 >
-                  <div className="p-8 text-center h-full flex flex-col justify-between">
+                  <div className="p-6 sm:p-8 text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="mb-6 flex justify-center text-6xl transform transition-transform duration-300 hover:scale-110">
+                      <div className="mb-4 sm:mb-6 flex justify-center text-4xl sm:text-5xl md:text-6xl transform transition-transform duration-300 hover:scale-110">
                         {service.icon}
                       </div>
-                      <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                      <p className="text-white mb-6 opacity-90 leading-relaxed">
+                      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{service.title}</h3>
+                      <p className="text-sm sm:text-base text-white mb-4 sm:mb-6 opacity-90 leading-relaxed">
                         {service.description.split('.')[0] + '.'}
                       </p>
                     </div>
                     <div className="mt-auto">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 mb-6">
-                        <p className="font-semibold text-white">{service.pricing}</p>
+                      <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3 mb-4 sm:mb-6">
+                        <p className="font-semibold text-white text-sm sm:text-base">{service.pricing}</p>
                       </div>
                       <button 
                         onClick={() => scrollToSection(service.id)}
-                        className="bg-white text-[#56b5bd] font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center w-full group"
+                        className="bg-white text-[#56b5bd] font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center w-full group min-h-[44px] touch-manipulation text-sm sm:text-base"
                       >
                         View Details 
                         <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -281,35 +258,35 @@ export default function ServicesClient() {
             id={service.id}
             delay={0.2}
             direction={index % 2 === 0 ? 'left' : 'right'}
-            className={`py-20 ${index % 2 === 0 ? 'bg-[#56b5bd]' : 'bg-[#45a4ac]'} text-white`}
+            className={`py-12 sm:py-16 md:py-20 ${index % 2 === 0 ? 'bg-[#56b5bd]' : 'bg-[#45a4ac]'} text-white`}
           >
-            <div className="container-custom">
+            <div className="container-custom px-4 sm:px-6">
               <div className="max-w-4xl mx-auto text-center">
-                <div className="mb-6 flex justify-center transform transition-transform duration-300 hover:scale-110">{service.icon}</div>
-                <h2 className="text-3xl font-bold mb-6">{service.title}</h2>
-                <p className="text-white opacity-90 mb-8 max-w-3xl mx-auto">
+                <div className="mb-4 sm:mb-6 flex justify-center transform transition-transform duration-300 hover:scale-110 text-4xl sm:text-5xl md:text-6xl">{service.icon}</div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{service.title}</h2>
+                <p className="text-sm sm:text-base text-white opacity-90 mb-6 sm:mb-8 max-w-3xl mx-auto px-4">
                   {service.description}
                 </p>
                 
-                <div className="mb-8">
-                  <h3 className="text-xl font-semibold mb-6">Key Features:</h3>
-                  <ul className="space-y-3 max-w-2xl mx-auto">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Key Features:</h3>
+                  <ul className="space-y-2 sm:space-y-3 max-w-2xl mx-auto px-4">
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start justify-center text-center transform hover:translate-x-2 transition-transform duration-300">
-                        <span className="text-white mr-3">✓</span>
-                        <span className="text-white">{feature}</span>
+                        <span className="text-white mr-2 sm:mr-3">✓</span>
+                        <span className="text-sm sm:text-base text-white">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 
-                <div className="bg-[#56b5bd] p-4 rounded-lg mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md mx-auto">
-                  <p className="font-semibold text-white">Pricing: <span className="text-white">{service.pricing}</span></p>
+                <div className="bg-[#56b5bd] p-3 sm:p-4 rounded-lg mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md mx-auto">
+                  <p className="font-semibold text-white text-sm sm:text-base">Pricing: <span className="text-white">{service.pricing}</span></p>
                 </div>
                 
                 <Link 
                   href="/book"
-                  className="inline-block bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+                  className="inline-block bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
                 >
                   Book Now <span className="ml-1">→</span>
                 </Link>
@@ -320,14 +297,14 @@ export default function ServicesClient() {
 
         {/* Call to Action */}
         <AnimatedSection className="section-padding bg-[#56b5bd] text-white" delay={0.3}>
-          <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Fitness Journey?</h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
+          <div className="container-custom text-center px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Ready to Start Your Fitness Journey?</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto">
               Our expert trainers are ready to help you achieve your fitness goals. Contact us today to schedule a consultation.
             </p>
             <Link 
               href="/contact" 
-              className="relative overflow-hidden group bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-8 rounded-md transition-all inline-block transform hover:scale-105 duration-300"
+              className="relative overflow-hidden group bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-6 sm:px-8 rounded-md transition-all inline-block transform hover:scale-105 duration-300 min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
             >
               <span className="relative z-10">Get Started Today</span>
               <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#56b5bd] group-hover:w-full transition-all duration-300"></span>

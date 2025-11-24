@@ -42,6 +42,8 @@ html {
   background-color: #ffffff !important;
   background: #ffffff !important;
   overflow-x: hidden; /* Prevent horizontal scroll at html level too */
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -50,6 +52,20 @@ body {
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Prevent horizontal scrolling on all containers */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Force white background on all containers */

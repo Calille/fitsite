@@ -248,7 +248,7 @@ export default function ShopPage() {
                   className="bg-[#45a4ac] text-white hover:bg-[#3a8c93] font-bold py-3 px-8 rounded-md transition-all inline-block"
                   onClick={() => trackInteraction('gift_card_services_click')}
                 >
-                  View Our Services
+                  View Personal Training
                 </Link>
               </div>
             </motion.div>

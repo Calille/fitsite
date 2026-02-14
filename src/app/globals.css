@@ -42,8 +42,6 @@ html {
   background-color: #ffffff !important;
   background: #ffffff !important;
   overflow-x: hidden; /* Prevent horizontal scroll at html level too */
-  width: 100%;
-  max-width: 100%;
 }
 
 body {
@@ -52,20 +50,6 @@ body {
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scroll */
-  width: 100%;
-  max-width: 100%;
-  position: relative;
-}
-
-/* Prevent horizontal scrolling on all containers */
-* {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-img, video, iframe {
-  max-width: 100%;
-  height: auto;
 }
 
 /* Force white background on all containers */
@@ -138,22 +122,4 @@ img {
     opacity: 1 !important;
   }
   
-  /* Continuous scrolling animations */
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .animate-scroll-left {
-    animation: scroll-left 50s linear infinite;
-  }
-
-  .animate-scroll-left-delayed {
-    animation: scroll-left 50s linear infinite;
-    transform: translateX(100%);
-  }
 }

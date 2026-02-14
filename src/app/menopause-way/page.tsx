@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaCheck, FaChevronDown } from 'react-icons/fa';
-import ProgramTimeline from '@/components/ProgramTimeline';
 import Image from 'next/image';
 import QuizPopup from '@/components/QuizPopup';
 
@@ -125,7 +124,7 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 1: HERO (Above the Fold)
           ============================================ */}
-      <section className="min-h-screen bg-[#56b5bd] px-4 sm:px-6 relative overflow-hidden">
+      <section className="min-h-screen bg-[#56b5bd] px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Hero Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#56b5bd] via-[#4a9ba8] to-[#3e8a93]"></div>
 
@@ -160,19 +159,19 @@ export default function MenopauseWayPage() {
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen py-8 px-4">
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen py-8 sm:py-12 px-4">
           {/* Main Content */}
         <motion.div 
-            className="max-w-4xl mx-auto text-center mb-8 md:mb-12"
+            className="max-w-4xl mx-auto text-center mb-6 sm:mb-8 md:mb-12"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 md:mb-6 px-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4 md:mb-6 px-2">
             Finally, Fat Loss Results You Didn't Think Were Possible, Made Easier Than You Ever Imagined.
           </h1>
           
-            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mt-4 md:mt-6 leading-relaxed mb-6 md:mb-8 px-2">
+            <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 mt-3 sm:mt-4 md:mt-6 leading-relaxed mb-4 sm:mb-6 md:mb-8 px-2">
             The 8-Week Coaching Programme for Women 40+ to Lose Stubborn Menopausal Weight, Reclaim Your Energy, and Feel in Control—Without Restrictive Diets or Giving Up Your Social Life.
           </h2>
           
@@ -188,12 +187,12 @@ export default function MenopauseWayPage() {
 
           {/* Video Player */}
           <motion.div
-            className="max-w-4xl mx-auto w-full px-4"
+            className="max-w-4xl mx-auto w-full px-2 sm:px-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative w-full rounded-xl shadow-2xl overflow-hidden border border-white/20 bg-black">
+            <div className="relative w-full rounded-lg sm:rounded-xl shadow-2xl overflow-hidden border border-white/20 bg-black">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <video
                   className="absolute top-0 left-0 w-full h-full object-cover"
@@ -233,8 +232,7 @@ export default function MenopauseWayPage() {
             
             <p className="text-base md:text-lg text-white/90 leading-relaxed text-center space-y-4">
               <span className="block">I want you to feel completely confident when you join. That's why I offer a straightforward 14-day, no-questions-asked refund guarantee.</span>
-              <span className="block">Join today and get instant access to your Welcome Pack and first module. Complete the lessons, try the Plate Method, and submit your first check-in.</span>
-              <span className="block">If you don't feel this is the most practical and supportive programme you've ever tried — or it simply isn't the right fit — just email me within 14 days for a full refund.</span>
+              <span className="block">If you don't feel this is the most practical and supportive programme you've ever tried or it simply isn't the right fit, just email me within 14 days for a full refund.</span>
               <span className="block font-semibold">No hassle. No hard feelings. The risk is all mine.</span>
             </p>
           </div>
@@ -246,7 +244,7 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 3: CASE STUDY (Nicola's Story)
           ============================================ */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white relative overflow-hidden">
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 opacity-10">
           <Image
@@ -262,7 +260,7 @@ export default function MenopauseWayPage() {
           className="max-w-6xl mx-auto relative"
           {...scaleIn}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
             {/* Left Side - Image */}
             <motion.div
               className="relative order-2 lg:order-1"
@@ -272,7 +270,7 @@ export default function MenopauseWayPage() {
               viewport={{ once: true }}
             >
               <div className="relative w-full max-w-lg mx-auto">
-                <div className="aspect-[4/5] relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
+                <div className="aspect-[4/5] relative rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="/nicimage.webp"
                     alt="Nicola's Transformation"
@@ -289,7 +287,7 @@ export default function MenopauseWayPage() {
 
             {/* Right Side - Content */}
             <motion.div
-              className="bg-white/95 backdrop-blur-sm p-6 md:p-8 lg:p-12 rounded-xl md:rounded-2xl shadow-xl border border-white/20 order-1 lg:order-2"
+              className="bg-white/95 backdrop-blur-sm p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg sm:rounded-xl md:rounded-2xl shadow-xl border border-white/20 order-1 lg:order-2"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -299,11 +297,11 @@ export default function MenopauseWayPage() {
               Success Story
             </div>
             
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 md:mb-8 leading-tight">
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 leading-tight">
               "My chiropractor asked me if I was on Ozempic!"
             </h3>
             
-            <div className="space-y-4 md:space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
+            <div className="space-y-3 sm:space-y-4 md:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
               <p>
                   When Nicola joined, she was a busy mum who felt stuck. She was weighing herself every day, frustrated by the lack of progress, and anxious about an upcoming holiday to Italy. She felt that every time she made progress, a social event would set her back.
               </p>
@@ -321,13 +319,13 @@ export default function MenopauseWayPage() {
               </p>
             </div>
             
-              <blockquote className="border-l-4 border-[#56b5bd] pl-4 md:pl-6 my-6 md:my-8 bg-gray-50/50 p-4 md:p-6 rounded-r-lg">
-              <p className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 italic leading-relaxed">
+              <blockquote className="border-l-4 border-[#56b5bd] pl-3 sm:pl-4 md:pl-6 my-4 sm:my-6 md:my-8 bg-gray-50/50 p-3 sm:p-4 md:p-6 rounded-r-lg">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 italic leading-relaxed">
                 "It really has given me results I just didn't think could happen for me and in the easiest way I've ever found."
               </p>
             </blockquote>
             
-            <p className="text-base md:text-lg text-gray-700">
+            <p className="text-sm sm:text-base md:text-lg text-gray-700">
                 Nicola's story isn't an exception. It's what happens when you use the right system.
             </p>
             </motion.div>
@@ -338,12 +336,164 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 4: 8-WEEK PROGRAM TIMELINE
           ============================================ */}
-      <ProgramTimeline />
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-12 md:mb-16"
+            {...fadeInUp}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Your 8-Week Transformation Journey
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              Here's exactly what to expect week by week
+            </p>
+          </motion.div>
+
+          <div className="space-y-8 md:space-y-12">
+            {/* Week 1-2 */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+              {...fadeInUp}
+            >
+              <div className="md:col-span-3">
+                <div className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl p-6 text-center text-white">
+                  <div className="text-4xl md:text-5xl font-bold mb-2">1-2</div>
+                  <div className="text-lg font-semibold">Weeks</div>
+                </div>
+              </div>
+              <div className="md:col-span-9 bg-gray-50 rounded-xl p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">The Foundation — Awareness & Daily Movement</h3>
+                <ul className="space-y-2 text-base md:text-lg text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Build awareness of your current habits</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Learn how menopause affects metabolism</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Introduce gentle daily movement</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Understand non-exercise activity benefits</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Week 3-4 */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+              {...fadeInUp}
+            >
+              <div className="md:col-span-3 md:order-2">
+                <div className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl p-6 text-center text-white">
+                  <div className="text-4xl md:text-5xl font-bold mb-2">3-4</div>
+                  <div className="text-lg font-semibold">Weeks</div>
+                </div>
+              </div>
+              <div className="md:col-span-9 md:order-1 bg-gray-50 rounded-xl p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">The Effortless Deficit — Eating for Fat Loss</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Learn the Menopause Plate Method</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Create gentle calorie deficit naturally</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Eat with family without restriction</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Drop the dieting mindset for good</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Week 5-6 */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+              {...fadeInUp}
+            >
+              <div className="md:col-span-3">
+                <div className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl p-6 text-center text-white">
+                  <div className="text-4xl md:text-5xl font-bold mb-2">5-6</div>
+                  <div className="text-lg font-semibold">Weeks</div>
+                </div>
+              </div>
+              <div className="md:col-span-9 bg-gray-50 rounded-xl p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Mastering Your Inner World — Mindset & Wellbeing</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Understand emotional hunger patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Build tools for stress management</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Manage hormonal shifts with confidence</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Achieve peace of mind with progress</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Week 7-8 */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+              {...fadeInUp}
+            >
+              <div className="md:col-span-3 md:order-2">
+                <div className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl p-6 text-center text-white">
+                  <div className="text-4xl md:text-5xl font-bold mb-2">7-8</div>
+                  <div className="text-lg font-semibold">Weeks</div>
+                </div>
+              </div>
+              <div className="md:col-span-9 md:order-1 bg-gray-50 rounded-xl p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Future-Proofing Your Health — Graduation & Beyond</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Create your personal Owner's Manual</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Set non-negotiable health habits</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Learn effortless maintenance strategies</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                    <span>Support long-term bone and muscle health</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* ============================================
           SECTION 5: LIMITED SPOTS NOTICE
           ============================================ */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white">
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center"
@@ -354,15 +504,15 @@ export default function MenopauseWayPage() {
               <div className="absolute -inset-1 md:-inset-2 bg-gradient-to-r from-[#56b5bd] to-[#45a4ac] rounded-xl blur-sm opacity-50"></div>
               
               {/* Main content container */}
-              <div className="relative bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] p-5 md:p-6 lg:p-8 xl:p-12 rounded-xl shadow-xl border border-white/20">
+              <div className="relative bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 rounded-lg sm:rounded-xl shadow-xl border border-white/20">
                 {/* Professional inner border */}
-                <div className="absolute inset-1 md:inset-2 border border-white/30 rounded-lg"></div>
+                <div className="absolute inset-1 md:inset-2 border border-white/30 rounded-md sm:rounded-lg"></div>
                 
                 {/* Urgency indicator */}
-                <div className="flex items-center justify-center mb-4 md:mb-6">
-                  <div className="flex items-center space-x-2 bg-red-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold">
+                <div className="flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                  <div className="flex items-center space-x-1.5 sm:space-x-2 bg-red-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-semibold">
                     <motion.div
-                      className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"
+                      className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 bg-white rounded-full"
                       animate={{ opacity: [1, 0, 1] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     />
@@ -372,12 +522,15 @@ export default function MenopauseWayPage() {
                 
                 {/* Main text content */}
                 <div className="relative z-10">
-                  <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white leading-tight px-2">
-                    Spots are strictly limited to{" "}
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white leading-tight px-1 sm:px-2 mb-2 sm:mb-3 md:mb-4">
+                    Only{" "}
                     <span className="text-yellow-300 font-black">
-                      {PLACEHOLDERS.CAPACITY} clients
+                      8 places
                     </span>{" "}
-                    to keep the coaching standard as high as possible.
+                    will be priced at £149
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 px-1 sm:px-2">
+                    Then the price goes back up to £349
                   </p>
                 </div>
               </div>
@@ -389,17 +542,17 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 6: PRICING TABLE
           ============================================ */}
-      <section id="pricing" className="py-12 md:py-20 px-4 sm:px-6 scroll-mt-20 bg-white">
+      <section id="pricing" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.h3
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12 lg:mb-16 text-center text-gray-900 px-4"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 lg:mb-16 text-center text-gray-900 px-2 sm:px-4"
             {...fadeInUp}
           >
             Choose Your Path
           </motion.h3>
           
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start"
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
@@ -408,17 +561,17 @@ export default function MenopauseWayPage() {
             
             {/* TIER 1: Self-Paced Course */}
             <motion.div
-              className="bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
+              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Self-Paced Course</h4>
-              <div className="text-4xl md:text-5xl font-bold text-[#56b5bd] mb-4 md:mb-6">£297</div>
+              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2">Self-Paced Course</h4>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-3 sm:mb-4 md:mb-6">£300</div>
 
-              <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 flex-grow">
+              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
                 {[
                   "8 Comprehensive Modules"
                 ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm md:text-base">
+                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm sm:text-base md:text-lg">
                     <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
                     <span>{feature}</span>
                   </li>
@@ -427,7 +580,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER1_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
+                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
               >
                 Enrol Now
               </a>
@@ -435,37 +588,40 @@ export default function MenopauseWayPage() {
 
             {/* TIER 2: Coaching Programme (MOST POPULAR) */}
             <motion.div
-              className="bg-gray-50 p-6 md:p-8 rounded-xl border-2 border-[#56b5bd] relative md:scale-105 hover:border-[#45a4ac] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
+              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border-2 border-[#56b5bd] relative md:scale-105 hover:border-[#45a4ac] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <div className="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2 bg-[#56b5bd] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold uppercase">
+              <div className="absolute -top-2 sm:-top-3 md:-top-4 left-1/2 transform -translate-x-1/2 bg-[#56b5bd] text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase">
                 Most Popular
               </div>
 
-              <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 mt-2 md:mt-0">Coaching Programme (Most Popular)</h4>
-              <div className="text-4xl md:text-5xl font-bold text-[#56b5bd] mb-4 md:mb-6">£497</div>
+              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 mt-3 sm:mt-2 md:mt-0">Coaching Programme (Most Popular)</h4>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-2">£149</div>
+              <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6">
+                <span className="line-through">£349</span> - Limited time offer
+              </p>
 
-              <p className="text-gray-600 text-xs md:text-sm mb-4 leading-relaxed">
+              <p className="text-gray-600 text-xs md:text-sm mb-3 sm:mb-4 leading-relaxed">
                 The structured, science-based coaching system designed for real results.
               </p>
               
-              <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 flex-grow">
+              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
                 {[
                   "Everything in Self-Paced",
                   "Weekly Coaching Check-ins with your Nutrition Coach",
                   "Personalised Feedback & Plan Adjustments",
                   "Access to the Coaching Community for Accountability & Support",
-                  "FREE Personalised Hand-Portion Calculator (PN-based)",
-                  "FREE PN Educational Resource Bank — science-backed infographics, guides, and cheat sheets"
+                  "FREE Personalised Nutrition PDF",
+                  "FREE Educational Resource Bank — science-backed infographics, guides, and cheat sheets"
                 ].map((feature, index) => {
                   const isBottomTwo = index >= 4; // Last two items (FREE bonuses)
 
                   return (
                     <motion.li
                       key={index}
-                      className={`flex items-start gap-2 md:gap-3 text-gray-700 text-sm md:text-base ${
+                      className={`flex items-start gap-2 md:gap-3 text-gray-700 text-xs sm:text-sm md:text-base ${
                         isBottomTwo
-                          ? 'relative bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 rounded-lg p-2 md:p-3 -mx-2 md:-mx-3'
+                          ? 'relative bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-3 -mx-1.5 sm:-mx-2 md:-mx-3'
                           : ''
                       }`}
                       whileHover={{
@@ -478,11 +634,11 @@ export default function MenopauseWayPage() {
                       viewport={{ once: true }}
                     >
                       {isBottomTwo && (
-                        <div className="absolute -top-1.5 md:-top-2 -left-1.5 md:-left-2 bg-amber-400 text-white text-[10px] md:text-xs font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full uppercase tracking-wide">
+                        <div className="absolute -top-1 sm:-top-1.5 md:-top-2 -left-1 sm:-left-1.5 md:-left-2 bg-amber-400 text-white text-[9px] sm:text-[10px] md:text-xs font-bold px-1 sm:px-1.5 md:px-2 py-0.5 md:py-1 rounded-full uppercase tracking-wide">
                           FREE BONUS
                         </div>
                       )}
-                      <FaCheck className={`flex-shrink-0 mt-1 ${isBottomTwo ? 'text-amber-500' : 'text-[#56b5bd]'}`} />
+                      <FaCheck className={`flex-shrink-0 mt-0.5 sm:mt-1 text-xs sm:text-sm ${isBottomTwo ? 'text-amber-500' : 'text-[#56b5bd]'}`} />
                       <span className={isBottomTwo ? 'font-semibold text-gray-800' : ''}>{feature}</span>
                     </motion.li>
                   );
@@ -491,7 +647,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER2_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#56b5bd] text-gray-900 text-center rounded-lg font-semibold text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
+                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#56b5bd] text-gray-900 text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
               >
                 Enrol Now
               </a>
@@ -499,17 +655,17 @@ export default function MenopauseWayPage() {
 
             {/* TIER 3: VIP Accelerator */}
             <motion.div
-              className="bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
+              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
               variants={fadeInUp}
             >
-              <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">VIP Accelerator</h4>
-              <div className="text-4xl md:text-5xl font-bold text-[#56b5bd] mb-4 md:mb-6">£1,497</div>
+              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2">VIP Accelerator</h4>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-3 sm:mb-4 md:mb-6">£1,000</div>
 
-              <p className="text-gray-600 text-xs md:text-sm mb-4 leading-relaxed">
+              <p className="text-gray-600 text-xs md:text-sm mb-3 sm:mb-4 leading-relaxed">
                 A private, high-touch coaching experience for women who want every detail managed.
               </p>
 
-              <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 flex-grow">
+              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
                 {[
                   "Everything in the Coaching Programme",
                   "Comprehensive Lifestyle Assessment (Onboarding Call)",
@@ -518,7 +674,7 @@ export default function MenopauseWayPage() {
                   "Priority Messaging Access",
                   "Exclusive VIP Community with Direct Access"
                 ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm md:text-base">
+                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm sm:text-base md:text-lg">
                     <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
                     <span>{feature}</span>
                   </li>
@@ -527,7 +683,7 @@ export default function MenopauseWayPage() {
               
               <a
                 href={PLACEHOLDERS.TIER3_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
+                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
               >
                 Enrol Now
               </a>
@@ -539,24 +695,24 @@ export default function MenopauseWayPage() {
       {/* ============================================
           SECTION 7: FAQ
           ============================================ */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white relative overflow-hidden">
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(86,181,189,0.05),transparent_50%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(86,181,189,0.05),transparent_50%)] pointer-events-none"></div>
 
         <div className="max-w-5xl mx-auto relative">
           <motion.div
-            className="text-center mb-8 md:mb-12 lg:mb-16"
+            className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16"
             {...fadeInUp}
           >
-            <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-full mb-4 md:mb-6 shadow-lg">
-              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-full mb-3 sm:mb-4 md:mb-6 shadow-lg">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
 
             <motion.h3
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gray-900 px-2"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 text-gray-900 px-2"
               {...fadeInUp}
             >
               Your Questions,{' '}
@@ -566,7 +722,7 @@ export default function MenopauseWayPage() {
           </motion.h3>
 
             <motion.p
-              className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2"
               {...fadeInUp}
             >
               It's completely normal to have questions. In fact, it's a good sign—it shows you're serious about making a change. Below, I've answered the most common questions I receive from women just like you.
@@ -574,7 +730,7 @@ export default function MenopauseWayPage() {
           </motion.div>
           
           <motion.div 
-            className="grid gap-4 md:gap-6"
+            className="grid gap-3 sm:gap-4 md:gap-6"
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
@@ -588,27 +744,27 @@ export default function MenopauseWayPage() {
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <button
                   onClick={() => toggleFaq(index)}
-                    className="w-full flex items-start justify-between p-4 md:p-6 lg:p-8 text-left hover:bg-gradient-to-r hover:from-[#56b5bd]/5 hover:to-transparent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] focus:ring-opacity-50 rounded-t-xl md:rounded-t-2xl min-h-[44px] touch-manipulation"
+                    className="w-full flex items-start justify-between p-3 sm:p-4 md:p-6 lg:p-8 text-left hover:bg-gradient-to-r hover:from-[#56b5bd]/5 hover:to-transparent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] focus:ring-opacity-50 rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl min-h-[44px] touch-manipulation"
                   >
-                    <div className="flex items-start gap-3 md:gap-4 flex-1 pr-2">
-                      <div className={`flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all duration-300 ${
+                    <div className="flex items-start gap-2 sm:gap-3 md:gap-4 flex-1 pr-2">
+                      <div className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-bold transition-all duration-300 ${
                         openFaqIndex === index
                           ? 'bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] text-white shadow-lg'
                           : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-600 group-hover:from-[#56b5bd]/20 group-hover:to-[#56b5bd]/10'
                       }`}>
                         {index + 1}
                       </div>
-                      <span className={`text-base md:text-lg lg:text-xl font-semibold text-gray-900 leading-tight transition-colors duration-300 ${
+                      <span className={`text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 leading-tight transition-colors duration-300 ${
                         openFaqIndex === index ? 'text-[#56b5bd]' : 'group-hover:text-[#56b5bd]'
                       }`}>
                     {faq.question}
                   </span>
                     </div>
                   <FaChevronDown 
-                      className={`text-[#56b5bd] flex-shrink-0 transition-all duration-300 text-lg md:text-xl mt-1 ${
+                      className={`text-[#56b5bd] flex-shrink-0 transition-all duration-300 text-base sm:text-lg md:text-xl mt-0.5 sm:mt-1 ${
                         openFaqIndex === index ? 'rotate-180' : 'group-hover:translate-y-1'
                     }`}
                   />
@@ -623,9 +779,9 @@ export default function MenopauseWayPage() {
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                    <div className="p-4 md:p-6 lg:p-8 pt-0 bg-gradient-to-r from-gray-50/50 to-white/50 border-t border-gray-100">
+                    <div className="p-3 sm:p-4 md:p-6 lg:p-8 pt-0 bg-gradient-to-r from-gray-50/50 to-white/50 border-t border-gray-100">
                       <div className="prose prose-sm md:prose-base lg:prose-lg prose-gray max-w-none">
-                        <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-relaxed mb-0">
+                        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 leading-relaxed mb-0">
                     {faq.answer}
                         </p>
                       </div>

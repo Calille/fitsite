@@ -57,7 +57,7 @@ const staticTestimonials = [
     id: 'review-6',
     name: 'Paul de Kort',
     timeAgo: '1 week ago',
-    quote: 'Attending TP Fitness for over two years, twice a week. My strength and fitness have greatly improved. Sessions with Will, Sarah, Ben, Seb, and Teighlor are enjoyable and challenging.',
+    quote: 'Attending TP Fitness for over two years, twice a week. My strength and fitness have greatly improved. Sessions with Will, Sarah, Ben, and Teighlor are enjoyable and challenging.',
     rating: 5,
     source: 'Google',
     profileInitial: 'P',
@@ -75,7 +75,7 @@ const staticTestimonials = [
     id: 'review-8',
     name: 'Kathryn Robbins',
     timeAgo: '6 days ago',
-    quote: 'Training for over a year with Teighlor, Seb, Will, Ben, and Sarah. Sessions are always challenging, varied, and fun.',
+    quote: 'Training for over a year with Teighlor, Will, Ben, and Sarah. Sessions are always challenging, varied, and fun.',
     rating: 5,
     source: 'Google',
     profileInitial: 'K',
@@ -341,78 +341,51 @@ const Testimonials = () => {
             <FaQuoteLeft className="text-white text-3xl" />
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 text-white leading-tight px-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white leading-tight">
             What Our{' '}
             <span className="bg-gradient-to-r from-white via-yellow-100 to-white bg-clip-text text-transparent font-extrabold drop-shadow-lg">
               Clients
             </span>{' '}
             Say
           </h2>
-          <p className="text-white/90 text-base sm:text-lg md:text-xl max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed px-4">
+          <p className="text-white/90 text-lg md:text-xl max-w-4xl mx-auto mb-10 leading-relaxed">
             Hear from our community of dedicated members who have transformed their lives with TP Health & Fitness.
           </p>
 
           {/* Enhanced rating display */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 mx-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-2">
               {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className="text-yellow-300 w-5 h-5 sm:w-6 sm:h-6 drop-shadow-sm" />
+                <FaStar key={i} className="text-yellow-300 w-6 h-6 drop-shadow-sm" />
               ))}
             </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-white font-bold text-xl sm:text-2xl">5.0</span>
-              <span className="text-white/80 font-medium text-sm sm:text-base">rating</span>
+            <div className="flex items-center gap-3">
+              <span className="text-white font-bold text-2xl">5.0</span>
+              <span className="text-white/80 font-medium">rating</span>
             </div>
-            <div className="hidden sm:block w-px h-6 sm:h-8 bg-white/20"></div>
-            <span className="text-white/80 font-medium text-sm sm:text-base">42 reviews</span>
-          </motion.div>
-
-          {/* Write a Review Button */}
-          <motion.div
-            className="text-center mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.a
-              href="https://g.page/r/Ccotkqk7ORnPEAE/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 sm:gap-3 bg-white/90 backdrop-blur-sm text-[#56b5bd] hover:bg-white hover:text-[#45a4ac] px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-2xl border border-white/20 min-h-[44px] touch-manipulation text-sm sm:text-base"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => trackInteraction('write_review_click', { source: 'testimonials' })}
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              Write a Review
-            </motion.a>
+            <div className="hidden sm:block w-px h-8 bg-white/20"></div>
+            <span className="text-white/80 font-medium">42 reviews</span>
           </motion.div>
         </motion.div>
 
         {/* Enhanced testimonial carousel */}
-        <div className="max-w-5xl mx-auto pb-8 sm:pb-12 md:pb-16 relative px-4">
-          <div className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px]">
+        <div className="max-w-5xl mx-auto mt-12 pb-8 relative">
+          <div className="relative min-h-[400px]">
             {loading ? (
-              <div className="flex items-center justify-center h-[300px] sm:h-[350px] md:h-[400px]">
+              <div className="flex items-center justify-center h-[400px]">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="flex flex-col items-center"
                 >
-                  <FaSpinner className="animate-spin text-white text-4xl sm:text-5xl mb-4 sm:mb-6" />
-                  <p className="text-white text-base sm:text-lg">Loading testimonials...</p>
+                  <FaSpinner className="animate-spin text-white text-5xl mb-6" />
+                  <p className="text-white text-lg">Loading testimonials...</p>
                 </motion.div>
               </div>
             ) : (
@@ -426,72 +399,54 @@ const Testimonials = () => {
                 className="w-full"
               >
                 <motion.div
-                  className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-xl mx-auto relative z-10 border border-white/20"
+                  className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-10 text-center shadow-xl mx-auto relative z-10 border border-white/20"
                   whileHover={{ y: -6, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3)" }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {/* Google branding */}
-                  <motion.div
-                    className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.3 }}
-                  >
-                    <div className="bg-gradient-to-r from-white to-gray-50 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex items-center gap-2 sm:gap-3 border border-gray-100">
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                      </svg>
-                      <span className="text-xs sm:text-sm text-gray-700 font-semibold">Google Review</span>
-                    </div>
-                  </motion.div>
-
                   {/* Profile section */}
                   <motion.div
-                    className="flex flex-col items-center mb-4 sm:mb-6 mt-4 sm:mt-0"
+                    className="flex flex-col items-center mb-6"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.4 }}
                   >
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-3 border-3 border-white/30 flex items-center justify-center bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] shadow-lg">
-                      <span className="text-white text-2xl sm:text-3xl font-bold">
+                    <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-3 border-white/30 flex items-center justify-center bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] shadow-lg">
+                      <span className="text-white text-3xl font-bold">
                         {reviews[current]?.profileInitial || reviews[current]?.name.charAt(0) || '?'}
                       </span>
                     </div>
 
                     {/* Star rating */}
-                    <div className="flex justify-center gap-1 sm:gap-2 mb-2">
+                    <div className="flex justify-center gap-2 mb-2">
                       {[...Array(reviews[current]?.rating || 5)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-300 w-4 h-4 sm:w-5 sm:h-5 drop-shadow-sm" />
+                        <FaStar key={i} className="text-yellow-300 w-5 h-5 drop-shadow-sm" />
                       ))}
                     </div>
                   </motion.div>
 
                   {/* Quote text */}
                   <motion.div
-                    className="relative mb-4 sm:mb-6"
+                    className="relative mb-6"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    <FaQuoteLeft className="absolute -top-2 sm:-top-4 -left-2 sm:-left-4 text-white/30 text-xl sm:text-2xl" />
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl italic text-white leading-relaxed font-medium px-2 sm:px-4 md:px-6">
+                    <FaQuoteLeft className="absolute -top-4 -left-4 text-white/30 text-2xl" />
+                    <p className="text-lg md:text-xl lg:text-2xl italic text-white leading-relaxed font-medium px-6">
                       {reviews[current]?.quote}
                     </p>
-                    <FaQuoteLeft className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 text-white/30 text-xl sm:text-2xl rotate-180" />
+                    <FaQuoteLeft className="absolute -bottom-4 -right-4 text-white/30 text-2xl rotate-180" />
                   </motion.div>
 
                   {/* Name and time */}
                   <motion.div
-                    className="bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-white/20"
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.4 }}
                   >
-                    <h4 className="font-bold text-lg sm:text-xl text-white mb-1">{reviews[current]?.name}</h4>
-                    <p className="text-white/80 font-medium text-sm sm:text-base">{reviews[current]?.timeAgo}</p>
+                    <h4 className="font-bold text-xl text-white mb-1">{reviews[current]?.name}</h4>
+                    <p className="text-white/80 font-medium">{reviews[current]?.timeAgo}</p>
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -502,7 +457,7 @@ const Testimonials = () => {
           {/* Enhanced dots navigation */}
           {!loading && reviews.length > 0 && (
             <motion.div
-              className="flex justify-center mt-6 sm:mt-8 md:mt-12 space-x-2 sm:space-x-3 md:space-x-4 overflow-x-auto pb-2"
+              className="flex justify-center mt-12 space-x-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.5 }}
@@ -511,10 +466,10 @@ const Testimonials = () => {
                 <motion.button
                   key={index}
                   onClick={() => handleDotClick(index)}
-                  className={`rounded-full transition-all duration-500 relative overflow-hidden min-w-[16px] min-h-[16px] touch-manipulation ${
+                  className={`rounded-full transition-all duration-500 relative overflow-hidden ${
                     current === index
-                      ? 'bg-white w-10 sm:w-12 h-3 sm:h-4 shadow-lg'
-                      : 'bg-white/30 hover:bg-white/50 w-3 sm:w-4 h-3 sm:h-4 hover:scale-110'
+                      ? 'bg-white w-12 h-4 shadow-lg'
+                      : 'bg-white/30 hover:bg-white/50 w-4 h-4 hover:scale-110'
                   }`}
                   whileHover={{ scale: current === index ? 1.05 : 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -536,30 +491,57 @@ const Testimonials = () => {
           {!loading && reviews.length > 0 && (
           <div className="hidden md:block">
             <motion.button
-              className="absolute top-1/2 -left-12 lg:-left-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg min-h-[44px] min-w-[44px] touch-manipulation"
+              className="absolute top-1/2 -left-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg"
               onClick={() => setCurrent(prevIndex)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Previous</span>
-              <svg className="w-5 h-5 lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
             </motion.button>
             <motion.button
-              className="absolute top-1/2 -right-12 lg:-right-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg min-h-[44px] min-w-[44px] touch-manipulation"
+              className="absolute top-1/2 -right-20 transform -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg"
               onClick={() => setCurrent(nextIndex)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Next</span>
-              <svg className="w-5 h-5 lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
               </svg>
             </motion.button>
           </div>
           )}
         </div>
+
+        {/* Write a Review CTA - Bottom of section */}
+        <motion.div
+          className="text-center mt-16 pt-8 border-t border-white/20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <motion.a
+            href="https://g.page/r/Ccotkqk7ORnPEAE/review"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 px-6 py-3 rounded-lg text-sm font-medium transition-all border border-white/30 hover:border-white/40"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => trackInteraction('write_review_click', { source: 'testimonials' })}
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Leave a Google Review
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

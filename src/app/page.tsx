@@ -1,3 +1,5 @@
+'use client';
+
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ServicesFeature from '@/components/ServicesFeature';
@@ -30,8 +32,6 @@ export default function Home() {
         <AnimatedSection delay={0.3}>
           <Testimonials />
         </AnimatedSection>
-        
-
       </main>
       <Footer />
     </FadeInWrapper>

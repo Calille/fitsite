@@ -122,7 +122,7 @@ const Hero = () => {
           <div className="max-w-4xl text-center">
             {/* Animated Headline */}
             <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 text-center px-4"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -137,13 +137,13 @@ const Hero = () => {
                 <span className="text-[#56b5bd] drop-shadow-lg">Life</span>
                 <span className="text-white drop-shadow-lg">.</span>
               </div>
-              <div className="text-base sm:text-lg md:text-xl mt-3 sm:mt-4 font-normal text-[#56b5bd]">
+              <div className="text-lg md:text-xl mt-4 font-normal text-[#56b5bd]">
                 TP Health & Fitness
               </div>
             </motion.h1>
             
             <motion.p 
-              className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 drop-shadow-md max-w-3xl mx-auto px-4"
+              className="text-lg md:text-xl text-white/90 mb-8 drop-shadow-md max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -152,14 +152,14 @@ const Hero = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <Link 
                 href="/book"
-                className="relative overflow-hidden group bg-[#56b5bd] text-white hover:bg-[#45a4ac] font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all text-center shadow-lg hover:shadow-xl cursor-pointer min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
+                className="relative overflow-hidden group bg-[#56b5bd] text-white hover:bg-[#45a4ac] font-bold py-4 px-8 rounded-lg transition-all text-center shadow-lg hover:shadow-xl cursor-pointer"
                 onClick={() => handleCTAClick('Book Now')}
               >
                 <span className="relative z-10">Book Now</span>
@@ -172,10 +172,10 @@ const Hero = () => {
               </Link>
               <Link 
                 href="/services" 
-                className="relative overflow-hidden group bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all text-center shadow-lg hover:shadow-xl min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
-                onClick={() => handleCTAClick('Our Services')}
+                className="relative overflow-hidden group bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold py-4 px-8 rounded-lg transition-all text-center shadow-lg hover:shadow-xl"
+                onClick={() => handleCTAClick('Personal Training')}
               >
-                <span className="relative z-10 group-hover:text-[#56b5bd] transition-colors duration-300">Our Services</span>
+                <span className="relative z-10 group-hover:text-[#56b5bd] transition-colors duration-300">Personal Training</span>
                 <motion.span 
                   className="absolute inset-0 bg-white z-0"
                   initial={{ scale: 0, opacity: 0 }}
@@ -189,7 +189,7 @@ const Hero = () => {
         
         {/* Enhanced Stats with better contrast */}
         <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-12 sm:mt-16 text-center px-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center"
           style={{ opacity: 1 }}
         >
           {[
@@ -200,11 +200,11 @@ const Hero = () => {
           ].map((stat, index) => (
             <div 
               key={index} 
-              className="bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-2xl px-3 sm:px-4 py-4 sm:py-6 rounded-lg sm:rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/15"
+              className="bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-2xl px-4 py-6 rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/15"
               style={{ opacity: 1 }}
             >
-              <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#56b5bd] drop-shadow-lg">{stat.number}</p>
-              <p className="text-xs sm:text-sm md:text-base text-white/90 drop-shadow-md mt-1">{stat.label}</p>
+              <p className="text-3xl font-bold text-[#56b5bd] drop-shadow-lg">{stat.number}</p>
+              <p className="text-white/90 drop-shadow-md">{stat.label}</p>
             </div>
           ))}
         </div>

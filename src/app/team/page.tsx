@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     name: 'Will',
-    role: 'Personal Trainer',
+    role: 'Team Leader',
     specialties: ['Nutrition', 'Fat Loss', 'Running'],
     bio: 'Will is a Personal Trainer and Fat Loss Lead at TP, where he helps clients achieve meaningful, lasting results through evidence-based nutrition coaching and structured training. His qualifications (PNL1, PFCA FFC1) underpin a clear, practical style of coaching, where he explains not just what to do, but why it works. Having lost over 30kg himself, Will understands the challenges his clients face and brings both empathy and accountability to every session. His achievements in endurance sport — from completing a marathon to finishing a half Ironman and currently training for a full Ironman — reinforce his commitment to resilience and performance. Born and raised in Harpenden, Will is proud to work in his hometown gym and support the local community. When he\'s not coaching or training, he enjoys running, cycling, and time outdoors.',
     image: '/team/will.webp'
@@ -34,25 +34,24 @@ const teamMembers = [
   },
   {
     name: 'Ben',
-    role: 'Personal Trainer',
+    role: 'Team Mentor',
     specialties: ['Rugby Training', 'Strength Building', 'Multi-generational Coaching'],
     bio: 'Our newest trainer Ben, joined TP in January 2024. He is a first team rugby player at Old Albanians and has a strong passion for health fitness and wellbeing. Having trained himself since his early teens, Ben is a physically strong and dedicated athlete. He has a calm, humble manor and is very patient as a coach. At 19, Ben is very mature and is a natural coach! Ben works with clients in their 80s to those in their teenage years and is very adaptable and knowledgable for such a short time in the industry. He rides his bike in his spare time and likes to travel!',
     image: '/team/ben.webp'
   },
- 
   {
-    name: 'Seb',
-    role: 'Personal Trainer',
-    specialties: ['Rugby Training', 'Strength & Conditioning', 'Wellness Coaching'],
-    bio: 'Seb grew up in Fareham on the South Coast and went to Hartpury University to play professional rugby, where he fell in love with fitness and training! He moved up to St Albans in September 2022 where he completed his PT course and then joined TP in Summer 2023. Seb is dedicated to helping others and follows his Mum who was an Osteopath, he has a strong passion to impact people\'s lives through health, well-being and fitness.',
-    image: '/team/seb.webp'
+    name: 'Ritchie',
+    role: 'Personal Trainer, Boxing & Pilates Coach',
+    specialties: ['Boxing', 'Pilates', 'Personal Training'],
+    bio: 'Bio coming soon.',
+    image: '/team/ritchie.webp'
   },
   {
-    name: 'Bella',
-    role: 'Personal Trainer',
-    specialties: ['Sport Science', 'Movement & Mobility', 'Beginner-Friendly Training'],
-    bio: 'Bella joined TP in summer 2024 while completing her degree in Sport Science and Coaching at Nottingham Trent University, where she also qualified as a personal trainer. She grew up in Harpenden and went to St George\'s School. Bella has a strong passion for helping others through movement, fitness and sport. She is naturally caring, approachable and supportive, making her a great coach for clients of all abilities. In her spare time, Bella loves running, gym training, and walking her dogs.',
-    image: '/team/bella.webp'
+    name: 'Ed Clement',
+    role: 'Junior Trainer',
+    specialties: ['Personal Training'],
+    bio: 'Bio coming soon.',
+    image: '/team/ed.webp'
   }
 ];
 
@@ -105,9 +104,9 @@ export default function TeamPage() {
               <Link 
                 href="/services" 
                 className="border-2 border-[#56b5bd] text-[#56b5bd] hover:bg-[#f0f9fa] px-6 py-3 rounded-md font-medium transition-all"
-                onClick={() => handleCTAClick('Explore Services', 'hero')}
+                onClick={() => handleCTAClick('Explore Personal Training', 'hero')}
               >
-                Explore Services
+                Explore Personal Training
               </Link>
             </div>
           </div>
@@ -198,9 +197,9 @@ export default function TeamPage() {
               <Link 
                 href="/services" 
                 className="bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-8 rounded-md transition-all inline-block"
-                onClick={() => handleCTAClick('View Our Services', 'footer')}
+                onClick={() => handleCTAClick('View Personal Training', 'footer')}
               >
-                View Our Services
+                View Personal Training
               </Link>
               <Link 
                 href="/contact" 
@@ -216,4 +215,4 @@ export default function TeamPage() {
       <Footer />
     </>
   );
-} 
+}

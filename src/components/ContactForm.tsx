@@ -50,48 +50,48 @@ const ContactForm = () => {
 
   return (
     <section className="section-padding bg-white text-gray-800">
-      <div className="container-custom px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Get In Touch</h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
+            <p className="text-gray-600 mb-8">
               Have questions about our services, memberships, or want to schedule a visit? 
               Fill out the form and our team will get back to you as soon as possible.
             </p>
             
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-6">
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-2 sm:p-3 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                  <FiPhone className="text-white text-lg sm:text-xl" />
+                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-3">
+                  <FiPhone className="text-white" />
                 </div>
-                <div className="ml-3 sm:ml-4">
-                  <h3 className="text-base sm:text-lg font-semibold">Phone</h3>
-                  <p className="text-sm sm:text-base text-gray-600">+44 7123 456789</p>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold">Phone</h3>
+                  <p className="text-gray-600">+44 7123 456789</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-2 sm:p-3 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                  <FiMail className="text-white text-lg sm:text-xl" />
+                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-3">
+                  <FiMail className="text-white" />
                 </div>
-                <div className="ml-3 sm:ml-4">
-                  <h3 className="text-base sm:text-lg font-semibold">Email</h3>
-                  <p className="text-sm sm:text-base text-gray-600 break-words">info@tphealthfitness.com</p>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold">Email</h3>
+                  <p className="text-gray-600">info@tphealthfitness.com</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-2 sm:p-3 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                  <FiMapPin className="text-white text-lg sm:text-xl" />
+                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-3">
+                  <FiMapPin className="text-white" />
                 </div>
-                <div className="ml-3 sm:ml-4">
-                  <h3 className="text-base sm:text-lg font-semibold">Location</h3>
-                  <p className="text-sm sm:text-base text-gray-600">
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold">Location</h3>
+                  <p className="text-gray-600">
                     Harpenden, Hertfordshire<br />
                     AL5 3BL, England<br />
                     United Kingdom
@@ -100,12 +100,12 @@ const ContactForm = () => {
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-2 sm:p-3 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                  <FiClock className="text-white text-lg sm:text-xl" />
+                <div className="flex-shrink-0 bg-[#56b5bd] rounded-full p-3">
+                  <FiClock className="text-white" />
                 </div>
-                <div className="ml-3 sm:ml-4">
-                  <h3 className="text-base sm:text-lg font-semibold">Hours</h3>
-                  <p className="text-sm sm:text-base text-gray-600">
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold">Hours</h3>
+                  <p className="text-gray-600">
                     Mon  06:00 – 21:00<br />
                     Tue  06:00 – 21:00<br />
                     Wed  06:00 – 21:00<br />
@@ -125,22 +125,22 @@ const ContactForm = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
+            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-8">
               {submitSuccess ? (
-                <div className="text-center py-6 sm:py-8">
+                <div className="text-center py-8">
                   <div className="bg-green-50 text-green-700 p-4 rounded-lg mb-6">
-                    <h3 className="text-lg sm:text-xl font-bold mb-2">Message Sent!</h3>
-                    <p className="text-sm sm:text-base">Thank you for reaching out. We'll be in touch with you shortly.</p>
+                    <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                    <p>Thank you for reaching out. We'll be in touch with you shortly.</p>
                   </div>
                   <button
                     onClick={() => setSubmitSuccess(false)}
-                    className="btn-primary min-h-[44px] touch-manipulation"
+                    className="btn-primary"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Full Name *
@@ -152,12 +152,12 @@ const ContactForm = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd] min-h-[44px]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
                       placeholder="John Doe"
                     />
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium mb-2">
                         Email Address *
@@ -169,7 +169,7 @@ const ContactForm = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd] min-h-[44px]"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -184,7 +184,7 @@ const ContactForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd] min-h-[44px]"
+                        className="w-full p-2 border border-gray-300 rounded text-sm text-gray-800"
                         placeholder="+44 7123 456789"
                       />
                     </div>
@@ -200,7 +200,7 @@ const ContactForm = () => {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd] min-h-[44px]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
                     >
                       <option value="General Inquiry">General Inquiry</option>
                       <option value="Membership">Membership Information</option>
@@ -221,13 +221,13 @@ const ContactForm = () => {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd] resize-y"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#56b5bd]"
                       placeholder="How can we help you?"
                     ></textarea>
                   </div>
                   
                   {submitError && (
-                    <div className="bg-red-50 text-red-700 p-4 rounded-lg text-sm sm:text-base">
+                    <div className="bg-red-50 text-red-700 p-4 rounded-lg">
                       {submitError}
                     </div>
                   )}
@@ -235,7 +235,7 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`btn-primary w-full min-h-[44px] touch-manipulation text-base ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
+                    className={`btn-primary w-full ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>

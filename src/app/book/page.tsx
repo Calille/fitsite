@@ -67,6 +67,51 @@ export default function BookingPage() {
     };
   }, [trackInteraction]);
 
+  // Separate useEffect for Momence Schedule Plugin to ensure it loads after DOM is ready
+  useEffect(() => {
+    const loadScheduleScript = () => {
+      // Wait for the ribbon-schedule div to be available
+      const checkDiv = setInterval(() => {
+        const ribbonDiv = document.getElementById('ribbon-schedule');
+        if (ribbonDiv) {
+          clearInterval(checkDiv);
+          
+          const existingScript = document.getElementById('momence-schedule-script');
+          if (!existingScript) {
+            const script = document.createElement('script');
+            script.id = 'momence-schedule-script';
+            script.async = true;
+            script.type = 'module';
+            script.setAttribute('host_id', '55732');
+            script.setAttribute('teacher_ids', '[278523]');
+            script.setAttribute('location_ids', '[]');
+            script.setAttribute('tag_ids', '[]');
+            script.setAttribute('default_filter', 'show-all');
+            script.setAttribute('locale', 'en');
+            script.src = 'https://momence.com/plugin/host-schedule/host-schedule.js';
+            
+            // Append to the ribbon-schedule div's parent
+            ribbonDiv.parentElement?.appendChild(script);
+            console.log('Momence Schedule script loaded');
+          }
+        }
+      }, 100);
+
+      // Cleanup after 5 seconds if div not found
+      setTimeout(() => clearInterval(checkDiv), 5000);
+    };
+
+    loadScheduleScript();
+
+    return () => {
+      // Clean up the script when component unmounts
+      const script = document.getElementById('momence-schedule-script');
+      if (script) {
+        script.remove();
+      }
+    };
+  }, []);
+
   return (
     <FadeInWrapper>
       <Header />
@@ -166,6 +211,22 @@ export default function BookingPage() {
                     </a>
                   </div>
                 </div>
+              </div>
+            </motion.div>
+
+            {/* Momence Schedule Plugin */}
+            <motion.div
+              className="max-w-5xl mx-auto mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800">
+                Class <span className="text-[#56b5bd]">Schedule</span>
+              </h3>
+              <div className="bg-gray-50 p-6 rounded-2xl shadow-lg min-h-[400px]">
+                <div id="ribbon-schedule"></div>
               </div>
             </motion.div>
           </div>

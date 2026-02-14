@@ -3,314 +3,533 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
 import Link from 'next/link';
-import { FaDumbbell, FaUsers, FaRunning, FaFire, FaChalkboardTeacher, FaHeartbeat } from 'react-icons/fa';
+import { FaPhone, FaClipboardCheck, FaDumbbell, FaArrowRight, FaCheck, FaCalendarAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FadeInWrapper from '@/components/FadeInWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/autoplay';
+import HeroSlider from '@/components/HeroSlider';
 
-// Extended service information
-const services = [
+const journeySteps = [
   {
-    id: 'one-to-one-pt',
-    title: '1-1 PT – 8 Week Kickstart Programme',
-    icon: <FaDumbbell className="text-4xl text-[#56b5bd]" />,
-    description: "Our 8 Week Kickstart Programme provides personalised one-to-one training sessions tailored specifically to your goals, fitness level, and preferences. Work directly with an experienced trainer who will guide and motivate you through every step of your transformation journey.",
-    features: [
-      'Comprehensive fitness assessment',
-      'Customised workout programmes',
-      'Form correction and technique guidance',
-      'Progress tracking and adjustments',
-      'Nutritional guidance and accountability'
-    ],
-    image: '/img/personal-training.jpg',
-    pricing: '£880 for 8 weeks'
+    step: 1,
+    icon: <FaPhone className="text-2xl" />,
+    title: 'Book Your Discovery Call',
+    description: 'Start with a free introductory call with Teighlor to discuss your goals.',
+    cta: {
+      label: 'Book Free Call',
+      href: 'https://calendly.com/tphealthandfitnesscoaching/tpintroductory-call',
+      external: true,
+    },
   },
   {
-    id: 'group-pt',
-    title: 'Group PT',
-    icon: <FaUsers className="text-4xl text-[#56b5bd]" />,
-    description: "Experience the energy and motivation that comes from working out in a small group. Our group personal training sessions offer personalised attention in a supportive community setting, helping you stay motivated while achieving impressive results.",
-    features: [
-      'Small group sizes for personalised attention',
-      'Cost-effective alternative to 1-1 training',
-      'High-energy, motivating atmosphere',
-      'Community support and accountability',
-      'Varied and challenging workouts'
-    ],
-    image: '/group-fitness.jpg',
-    pricing: '£36 per session'
+    step: 2,
+    icon: <FaClipboardCheck className="text-2xl" />,
+    title: 'Consultation, InBody Scan & Screening',
+    description: 'A comprehensive assessment to understand your starting point.',
+    price: '£50',
   },
   {
-    id: 'kickstart-group',
-    title: '8 Week Kickstart Group Programme',
-    icon: <FaRunning className="text-4xl text-[#56b5bd]" />,
-    description: "Jump-start your fitness journey with our 8 Week Kickstart Group Programme. This structured group training experience combines effective workouts, supportive coaching, and the motivation of a like-minded community to help you establish sustainable healthy habits.",
-    features: [
-      'Progressive training plan over 8 weeks',
-      'Supportive group environment',
-      'Weekly progress check-ins',
-      'Beginner-friendly modifications',
-      'Results-focused approach'
-    ],
-    image: '/kickstart-group.jpg',
-    pricing: '£629 for 8 weeks'
+    step: 3,
+    icon: <FaDumbbell className="text-2xl" />,
+    title: 'Book Your Trial',
+    description: 'Experience our training with a Kickstart Package trial.',
   },
   {
-    id: 'fat-loss-programme',
-    title: '8 Week Fat Loss Programme',
-    icon: <FaFire className="text-4xl text-[#56b5bd]" />,
-    description: "Transform your body with our comprehensive 8 Week Fat Loss Programme. Combining targeted training, nutrition guidance, and accountability, this specialised programme is designed to help you achieve sustainable fat loss results and develop healthy habits for life.",
-    features: [
-      'Customised fat loss training plan',
-      'Nutritional guidance and meal planning',
-      'Regular body composition assessments',
-      'Support from experienced coaches',
-      'Sustainable approach to weight management'
-    ],
-    image: '/fat-loss.jpg',
-    pricing: '£399 for 8 weeks'
+    step: 4,
+    icon: <FaArrowRight className="text-2xl" />,
+    title: 'Find Your Fit',
+    description: 'Transition into Small Group PT or continue with private 1-1 training.',
   },
-  {
-    id: 'specialty-workshops',
-    title: 'Specialty Workshops',
-    icon: <FaChalkboardTeacher className="text-4xl text-[#56b5bd]" />,
-    description: "Deepen your knowledge and skills with our specialty workshops covering various aspects of fitness, nutrition, and wellness. These focused sessions provide in-depth learning opportunities led by expert coaches and guest specialists.",
-    features: [
-      'Technique-focused sessions',
-      'Educational components',
-      'Hands-on practice and feedback',
-      'Take-home resources and plans',
-      'Community learning environment'
-    ],
-    image: '/workshops.jpg',
-    pricing: 'Tailored to each individual'
-  },
-  {
-    id: 'recovery-wellness',
-    title: 'Recovery & Wellness',
-    icon: <FaHeartbeat className="text-4xl text-[#56b5bd]" />,
-    description: "Recovery is just as important as training. Our recovery and wellness services include Pilates and mobility classes to help optimise your body's ability to recuperate, improve flexibility, reduce injury risk, and enhance overall wellbeing.",
-    features: [
-      'Pilates classes for core strength',
-      'Mobility sessions for improved range of motion',
-      'Guided relaxation techniques',
-      'Injury prevention strategies',
-      'Complement to your training routine'
-    ],
-    image: '/recovery.jpg',
-    pricing: 'Tailored to each individual'
-  }
 ];
 
-// Array of rotating hero images (14 total images)
-const heroImages = [
-  '/hero1.webp',
-  '/hero2.webp',
-  '/hero3.webp',
-  '/hero4.webp',
-  '/hero5.webp',
-  '/hero6.webp',
-  '/hero7.webp',
-  '/hero8.webp',
-  '/hero9.webp',
-  '/hero10.webp',
-  '/hero11.webp',
-  '/hero12.webp',
-  '/hero13.webp',
-  '/hero14.webp'
+const oneToOnePackages = [
+  {
+    title: '16 Sessions Only',
+    price: '£960',
+    features: ['16 x 45 min 1-1 sessions', 'Personalised programming', 'Progress tracking'],
+  },
+  {
+    title: '16 Sessions + 8 Elevate Classes',
+    price: '£1,100',
+    features: ['16 x 45 min 1-1 sessions', '8 Elevate group classes', 'Personalised programming', 'Progress tracking'],
+    popular: true,
+  },
+  {
+    title: '16 Sessions, 8 Classes + Fat Loss',
+    price: '£1,250',
+    features: ['16 x 45 min 1-1 sessions', '8 Elevate group classes', 'Fat loss programme', 'Nutrition guidance', 'Progress tracking'],
+  },
+];
+
+const smallGroupPackages = [
+  {
+    title: '16 Sessions Only',
+    price: '£575',
+    features: ['16 x 45 min group sessions', 'Small group environment', 'Expert coaching'],
+  },
+  {
+    title: '16 Sessions + 16 Elevate Classes',
+    price: '£720',
+    features: ['16 x 45 min group sessions', '16 Elevate group classes', 'Small group environment', 'Expert coaching'],
+    popular: true,
+  },
+  {
+    title: 'Fat Loss Course',
+    price: '£845',
+    features: ['16 x 45 min group sessions', '16 Elevate group classes', 'Fat loss programme', 'Nutrition guidance'],
+  },
+];
+
+const dualFitPackages = [
+  {
+    title: '16 Sessions Only',
+    price: '£1,280',
+    features: ['16 x 45 min sessions', '2 clients to 1 trainer', 'Personalised programming'],
+  },
+  {
+    title: '16 Sessions + 16 Elevate Classes',
+    price: '£1,520',
+    features: ['16 x 45 min sessions', '16 Elevate group classes', '2 clients to 1 trainer', 'Personalised programming'],
+    popular: true,
+  },
+  {
+    title: 'Fat Loss Course',
+    price: '£149',
+    priceNote: 'each',
+    features: ['Fat loss programme', 'Nutrition guidance', '2 clients to 1 trainer', 'Progress tracking'],
+  },
 ];
 
 export default function ServicesClient() {
-  // Smooth scroll function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
-  };
-
   return (
     <FadeInWrapper>
       <Header />
       <main>
-        {/* Hero Section with Swiper Slider */}
-        <section className="relative h-[250px] sm:h-[300px] md:h-[400px] flex items-center bg-gray-900 text-white overflow-hidden">
-          {/* Modern Swiper Image Slider - Fixed to prevent black screen on scroll */}
-          <div className="absolute inset-0 z-0 min-h-[250px] sm:min-h-[300px] md:min-h-[400px]">
-            <Swiper
-              modules={[Autoplay]}
-              loop={true}
-              autoplay={{ 
-                delay: 0, 
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-                waitForTransition: true
-              }}
-              speed={4000}
-              slidesPerView={1}
-              spaceBetween={0}
-              grabCursor={true}
-              allowTouchMove={true}
-              observer={true}
-              observeParents={true}
-              observeSlideChildren={true}
-              watchSlidesProgress={true}
-              watchOverflow={true}
-              breakpoints={{
-                320: { slidesPerView: 1, spaceBetween: 0 },
-                640: { slidesPerView: 2, spaceBetween: 0 },
-                768: { slidesPerView: 3, spaceBetween: 0 },
-                1024: { slidesPerView: 4, spaceBetween: 0 },
-                1280: { slidesPerView: 5, spaceBetween: 0 },
-              }}
-              className="h-full w-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px]"
-            >
-              {heroImages.map((imageSrc, index) => (
-                <SwiperSlide key={index} className="h-full">
-                  <div className="relative w-full h-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px]">
-                    <img
-                      src={imageSrc}
-                      alt={`Hero ${index + 1}`}
-                      className="w-full h-full object-cover"
-                      loading="eager"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-          
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 z-5 bg-black/40"></div>
-          
-          <div className="container-custom relative z-10 px-4 sm:px-6">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 text-white drop-shadow-lg">Our Services</h1>
-            <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl drop-shadow-md">
-              Comprehensive fitness solutions tailored to your goals and needs.
-            </p>
-          </div>
-        </section>
+        <HeroSlider
+          title="Personal Training"
+          subtitle="Your journey to a stronger, healthier you starts here."
+        />
 
-        {/* Services Introduction */}
-        <AnimatedSection className="section-padding bg-white">
-          <div className="container-custom px-4 sm:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4">
-                Transform Your Fitness Journey With Us
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 px-4">
-                At TP Health & Fitness, we believe in a holistic approach to fitness that addresses your unique needs, goals, and lifestyle. Our comprehensive services are designed to support you at every step of your journey, from personalised training to specialised programmes and recovery strategies.
+        {/* Client Journey */}
+        <AnimatedSection className="py-20 md:py-28 bg-white">
+          <div className="container-custom mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your Journey</h2>
+              <p className="text-gray-500 max-w-xl mx-auto text-lg">
+                From first call to finding your perfect training fit — here&apos;s how it works.
               </p>
             </div>
 
-            {/* Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-              {services.map((service, index) => (
-                <AnimatedSection
-                  key={service.id}
-                  delay={0.1 * index}
-                  direction="up"
-                  className="bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-white transform hover:-translate-y-3 hover:scale-105"
+            {/* Desktop: horizontal, Mobile: vertical */}
+            <div className="hidden md:grid md:grid-cols-4 gap-0 relative">
+              {/* Connecting line */}
+              <div className="absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-[#56b5bd]/30 via-[#56b5bd] to-[#56b5bd]/30 z-0" />
+
+              {journeySteps.map((step, index) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.12 }}
+                  className="relative flex flex-col items-center text-center px-4"
                 >
-                  <div className="p-6 sm:p-8 text-center h-full flex flex-col justify-between">
-                    <div>
-                      <div className="mb-4 sm:mb-6 flex justify-center text-4xl sm:text-5xl md:text-6xl transform transition-transform duration-300 hover:scale-110">
-                        {service.icon}
-                      </div>
-                      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{service.title}</h3>
-                      <p className="text-sm sm:text-base text-white mb-4 sm:mb-6 opacity-90 leading-relaxed">
-                        {service.description.split('.')[0] + '.'}
-                      </p>
-                    </div>
-                    <div className="mt-auto">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3 mb-4 sm:mb-6">
-                        <p className="font-semibold text-white text-sm sm:text-base">{service.pricing}</p>
-                      </div>
-                      <button 
-                        onClick={() => scrollToSection(service.id)}
-                        className="bg-white text-[#56b5bd] font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center w-full group min-h-[44px] touch-manipulation text-sm sm:text-base"
-                      >
-                        View Details 
-                        <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </button>
+                  {/* Step circle */}
+                  <div className="w-24 h-24 rounded-full bg-white border-2 border-[#56b5bd] flex items-center justify-center text-[#56b5bd] relative z-10 shadow-md mb-6">
+                    <div className="flex flex-col items-center">
+                      {step.icon}
+                      <span className="text-[10px] font-bold mt-1 text-[#56b5bd]/70 uppercase tracking-wider">Step {step.step}</span>
                     </div>
                   </div>
-                </AnimatedSection>
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{step.description}</p>
+
+                  {step.price && (
+                    <span className="inline-block bg-[#56b5bd]/10 text-[#56b5bd] font-bold text-sm px-3 py-1 rounded-full mb-3">
+                      {step.price}
+                    </span>
+                  )}
+
+                  {step.cta && (
+                    <a
+                      href={step.cta.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-[#56b5bd] hover:text-[#45a4ac] transition-colors"
+                    >
+                      {step.cta.label}
+                      <FaArrowRight className="text-xs" />
+                    </a>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Mobile: vertical timeline */}
+            <div className="md:hidden space-y-0 relative">
+              {/* Vertical connecting line */}
+              <div className="absolute left-6 top-12 bottom-12 w-[2px] bg-gradient-to-b from-[#56b5bd] to-[#56b5bd]/30 z-0" />
+
+              {journeySteps.map((step, index) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="relative flex items-start gap-5 py-6"
+                >
+                  {/* Step circle */}
+                  <div className="w-12 h-12 rounded-full bg-white border-2 border-[#56b5bd] flex-shrink-0 flex items-center justify-center text-[#56b5bd] relative z-10 shadow-md">
+                    <span className="text-sm font-bold">{step.step}</span>
+                  </div>
+
+                  <div className="flex-1 pt-1">
+                    <h3 className="text-base font-bold text-gray-900 mb-1">{step.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-2">{step.description}</p>
+
+                    {step.price && (
+                      <span className="inline-block bg-[#56b5bd]/10 text-[#56b5bd] font-bold text-sm px-3 py-1 rounded-full mb-2">
+                        {step.price}
+                      </span>
+                    )}
+
+                    {step.cta && (
+                      <a
+                        href={step.cta.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#56b5bd] hover:text-[#45a4ac] transition-colors"
+                      >
+                        {step.cta.label}
+                        <FaArrowRight className="text-xs" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </AnimatedSection>
 
-        {/* Detailed Service Sections */}
-        {services.map((service, index) => (
-          <AnimatedSection
-            key={service.id}
-            id={service.id}
-            delay={0.2}
-            direction={index % 2 === 0 ? 'left' : 'right'}
-            className={`py-12 sm:py-16 md:py-20 ${index % 2 === 0 ? 'bg-[#56b5bd]' : 'bg-[#45a4ac]'} text-white`}
-          >
-            <div className="container-custom px-4 sm:px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <div className="mb-4 sm:mb-6 flex justify-center transform transition-transform duration-300 hover:scale-110 text-4xl sm:text-5xl md:text-6xl">{service.icon}</div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{service.title}</h2>
-                <p className="text-sm sm:text-base text-white opacity-90 mb-6 sm:mb-8 max-w-3xl mx-auto px-4">
-                  {service.description}
-                </p>
-                
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Key Features:</h3>
-                  <ul className="space-y-2 sm:space-y-3 max-w-2xl mx-auto px-4">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start justify-center text-center transform hover:translate-x-2 transition-transform duration-300">
-                        <span className="text-white mr-2 sm:mr-3">✓</span>
-                        <span className="text-sm sm:text-base text-white">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="bg-[#56b5bd] p-3 sm:p-4 rounded-lg mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md mx-auto">
-                  <p className="font-semibold text-white text-sm sm:text-base">Pricing: <span className="text-white">{service.pricing}</span></p>
-                </div>
-                
-                <Link 
-                  href="/book"
-                  className="inline-block bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
+        {/* Divider accent */}
+        <div className="h-1 bg-gradient-to-r from-transparent via-[#56b5bd]/40 to-transparent" />
+
+        {/* Pricing & Packages */}
+        <AnimatedSection className="py-20 md:py-28 bg-gray-50">
+          <div className="container-custom mx-auto px-4">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pricing & Packages</h2>
+              <p className="text-gray-500 max-w-xl mx-auto text-lg">
+                Transparent pricing with no hidden fees. Find the package that fits your goals.
+              </p>
+            </div>
+
+            {/* Getting Started */}
+            <div className="mb-20">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Getting Started</h3>
+                <p className="text-gray-500">Your first steps into TP training.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {/* Consultation */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
                 >
-                  Book Now <span className="ml-1">→</span>
-                </Link>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#56b5bd]/10 flex items-center justify-center">
+                      <FaClipboardCheck className="text-[#56b5bd]" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">One to One Consultation</h4>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">£50</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      InBody composition scan
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      Health screening
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      1 hour session
+                    </li>
+                  </ul>
+                </motion.div>
+
+                {/* 2 Week Trial */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#56b5bd]/10 flex items-center justify-center">
+                      <FaDumbbell className="text-[#56b5bd]" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">One to One 2 Week Trial</h4>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">£220</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      Kickstart Pack included
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      45 min sessions
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 text-xs" />
+                      Personalised programming
+                    </li>
+                  </ul>
+                </motion.div>
               </div>
             </div>
-          </AnimatedSection>
-        ))}
 
-        {/* Call to Action */}
-        <AnimatedSection className="section-padding bg-[#56b5bd] text-white" delay={0.3}>
-          <div className="container-custom text-center px-4 sm:px-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Ready to Start Your Fitness Journey?</h2>
-            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto">
-              Our expert trainers are ready to help you achieve your fitness goals. Contact us today to schedule a consultation.
+            {/* One to One Packages */}
+            <div className="mb-20">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">One to One</h3>
+                <p className="text-gray-400 text-sm font-medium">(45 min sessions)</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {oneToOnePackages.map((pkg, index) => (
+                  <motion.div
+                    key={pkg.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${
+                      pkg.popular
+                        ? 'border-2 border-[#56b5bd] ring-1 ring-[#56b5bd]/20'
+                        : 'border border-gray-200'
+                    }`}
+                  >
+                    {pkg.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="bg-[#56b5bd] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+
+                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
+                      {pkg.title}
+                    </h4>
+
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                          <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-0.5 text-xs" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      href="/book"
+                      className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                        pkg.popular
+                          ? 'bg-[#56b5bd] text-white hover:bg-[#45a4ac] shadow-md hover:shadow-lg'
+                          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      }`}
+                    >
+                      Get Started
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Small Group PT */}
+            <div className="mb-20">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Small Group PT</h3>
+                <p className="text-gray-400 text-sm font-medium">(45 min classes)</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {smallGroupPackages.map((pkg, index) => (
+                  <motion.div
+                    key={pkg.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${
+                      pkg.popular
+                        ? 'border-2 border-[#56b5bd] ring-1 ring-[#56b5bd]/20'
+                        : 'border border-gray-200'
+                    }`}
+                  >
+                    {pkg.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="bg-[#56b5bd] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+
+                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
+                      {pkg.title}
+                    </h4>
+
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                          <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-0.5 text-xs" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      href="/book"
+                      className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                        pkg.popular
+                          ? 'bg-[#56b5bd] text-white hover:bg-[#45a4ac] shadow-md hover:shadow-lg'
+                          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      }`}
+                    >
+                      Get Started
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Dual Fit */}
+            <div className="mb-8">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Dual Fit</h3>
+                <p className="text-gray-400 text-sm font-medium">(2 clients to one trainer)</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {dualFitPackages.map((pkg, index) => (
+                  <motion.div
+                    key={pkg.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${
+                      pkg.popular
+                        ? 'border-2 border-[#56b5bd] ring-1 ring-[#56b5bd]/20'
+                        : 'border border-gray-200'
+                    }`}
+                  >
+                    {pkg.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="bg-[#56b5bd] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+
+                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
+                      {pkg.title}
+                    </h4>
+
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
+                      {pkg.priceNote && (
+                        <span className="text-sm text-gray-400 font-medium ml-2">{pkg.priceNote}</span>
+                      )}
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                          <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-0.5 text-xs" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      href="/book"
+                      className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                        pkg.popular
+                          ? 'bg-[#56b5bd] text-white hover:bg-[#45a4ac] shadow-md hover:shadow-lg'
+                          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      }`}
+                    >
+                      Get Started
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* VAT Note */}
+            <p className="text-center text-gray-400 text-sm mt-12">
+              All prices include VAT
             </p>
-            <Link 
-              href="/contact" 
-              className="relative overflow-hidden group bg-white text-[#56b5bd] hover:bg-gray-100 font-bold py-3 px-6 sm:px-8 rounded-md transition-all inline-block transform hover:scale-105 duration-300 min-h-[44px] flex items-center justify-center touch-manipulation text-sm sm:text-base"
-            >
-              <span className="relative z-10">Get Started Today</span>
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#56b5bd] group-hover:w-full transition-all duration-300"></span>
-            </Link>
           </div>
         </AnimatedSection>
+
+        {/* Divider accent */}
+        <div className="h-1 bg-gradient-to-r from-transparent via-[#56b5bd]/40 to-transparent" />
+
+        {/* CTA Section */}
+        <section className="py-20 md:py-28 bg-white">
+          <div className="container-custom mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl mx-auto"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#56b5bd]/10 flex items-center justify-center mx-auto mb-6">
+                <FaCalendarAlt className="text-[#56b5bd] text-2xl" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Ready to Get Started?
+              </h2>
+              <p className="text-gray-500 text-lg mb-8 leading-relaxed">
+                Book a free discovery call with Teighlor to chat about your goals and find the right package for you. No pressure, no commitment.
+              </p>
+              <a
+                href="https://calendly.com/tphealthandfitnesscoaching/tpintroductory-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#56b5bd] text-white font-bold py-4 px-10 rounded-xl hover:bg-[#45a4ac] transition-all duration-300 shadow-md hover:shadow-xl text-lg"
+              >
+                <FaPhone />
+                Book Your Free Discovery Call
+              </a>
+            </motion.div>
+          </div>
+        </section>
       </main>
       <Footer />
     </FadeInWrapper>

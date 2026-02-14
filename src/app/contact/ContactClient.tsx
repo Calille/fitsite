@@ -1,119 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-
-// Array of rotating hero images (14 total images - shuffled for contact page)
-const heroImages = [
-  '/hero12.webp',
-  '/hero4.webp',
-  '/hero9.webp',
-  '/hero1.webp',
-  '/hero13.webp',
-  '/hero6.webp',
-  '/hero2.webp',
-  '/hero10.webp',
-  '/hero7.webp',
-  '/hero14.webp',
-  '/hero3.webp',
-  '/hero8.webp',
-  '/hero11.webp',
-  '/hero5.webp'
-];
+import HeroSlider from '@/components/HeroSlider';
 
 export default function ContactClient() {
-  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
-
-  // Preload all images on component mount
-  useEffect(() => {
-    let loadedCount = 0;
-    const totalImages = heroImages.length;
-
-    const preloadImages = () => {
-      heroImages.forEach((src) => {
-        const img = document.createElement('img');
-        img.onload = () => {
-          loadedCount++;
-          if (loadedCount === totalImages) {
-            setAllImagesLoaded(true);
-          }
-        };
-        img.onerror = () => {
-          loadedCount++;
-          if (loadedCount === totalImages) {
-            setAllImagesLoaded(true);
-          }
-        };
-        img.src = src;
-      });
-    };
-
-    preloadImages();
-
-  }, []);
-
   return (
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative h-[300px] md:h-[400px] flex items-center bg-gray-900 text-white overflow-hidden">
-          {/* Loading state */}
-          {!allImagesLoaded && (
-            <div className="absolute inset-0 z-0 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 animate-pulse">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/30 to-transparent animate-pulse"></div>
-            </div>
-          )}
-          
-          {/* Continuous Scrolling Images */}
-          {allImagesLoaded && (
-            <div className="absolute inset-0 z-0">
-              {/* First set of images */}
-              <div className="absolute inset-0 flex animate-scroll-left">
-                {heroImages.map((imageSrc, index) => (
-                  <div key={`first-${index}`} className="relative flex-shrink-0 w-1/3 h-full">
-                    <Image
-                      src={imageSrc}
-                      alt={`TP Health & Fitness Contact ${index + 1}`}
-                      fill
-                      priority={index < 3}
-                      className="object-cover"
-                      sizes="33vw"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Second set of images for seamless loop */}
-              <div className="absolute inset-0 flex animate-scroll-left-delayed">
-                {heroImages.map((imageSrc, index) => (
-                  <div key={`second-${index}`} className="relative flex-shrink-0 w-1/3 h-full">
-                    <Image
-                      src={imageSrc}
-                      alt={`TP Health & Fitness Contact ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="33vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 z-5 bg-black/40"></div>
-          
-          <div className="container-custom relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">Contact Us</h1>
-            <p className="text-xl text-white max-w-2xl drop-shadow-md">
-              We're here to help you on your fitness journey. Let us know how we can assist you.
-            </p>
-          </div>
-        </section>
+        <HeroSlider
+          title="Contact Us"
+          subtitle="We're here to help you on your fitness journey. Let us know how we can assist you."
+        />
 
         {/* Map Section */}
         <section className="py-16 bg-white">
@@ -131,7 +30,6 @@ export default function ContactClient() {
               {/* Map */}
               <div className="lg:col-span-2">
                 <div className="h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-lg">
-                  {/* Google Maps Embed - Replace with your actual location */}
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.0154087481437!2d-0.3682770230018566!3d51.824148987514235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487647d5dd8d8ec9%3A0xcf19393ba9922dca!2sTP%20Health%20%26%20Fitness%20Ltd!5e0!3m2!1sen!2suk!4v1755027004805!5m2!1sen!2suk"
                     width="100%"

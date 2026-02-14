@@ -12,7 +12,6 @@ interface NavLink {
   label: string;
   hasDropdown?: boolean;
   dropdownItems?: DropdownItem[];
-  isButton?: boolean;
 }
 
 interface DropdownItem {
@@ -25,7 +24,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [programmesDropdownOpen, setProgrammesDropdownOpen] = useState(false);
-  const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
+  const [dropdownCloseTimeout, setDropdownCloseTimeout] = useState<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -44,6 +43,15 @@ const Header = () => {
     };
   }, []);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownCloseTimeout) {
+        clearTimeout(dropdownCloseTimeout);
+      }
+    };
+  }, [dropdownCloseTimeout]);
+
   const leftNavLinks: NavLink[] = [
     { href: '/', label: 'Home' },
     { 
@@ -51,55 +59,58 @@ const Header = () => {
       label: 'Programmes', 
       hasDropdown: true,
       dropdownItems: [
-        { href: '/menopause-way', label: 'Menopause Way' },
-        { href: '/elevate-programme', label: 'Elevate Programme' }
+        { 
+          href: '/menopause-way', 
+          label: 'Menopause Way'
+        }
       ]
     },
-    { href: '/services', label: 'Services' },
+    { href: '/services', label: 'Personal Training' },
   ];
 
   const rightNavLinks: NavLink[] = [
-    { 
-      href: '#', 
-      label: 'Resources', 
-      hasDropdown: true,
-      dropdownItems: [
-        { href: '/blog', label: 'Blog' },
-        { href: 'https://shop.tphealthfitness.com/', label: 'Shop' }
-      ]
-    },
     { href: '/team', label: 'Our Team' },
     { href: '/contact', label: 'Contact' },
-    { href: '/book', label: 'Book Now', isButton: true },
   ];
 
 
   return (
     <header className={`sticky top-0 z-50 w-full bg-white ${scrolled ? 'shadow-md' : ''}`}>
-      <div className="container-custom mx-auto px-4 sm:px-6 py-4 md:py-6">
+      <div className="container-custom mx-auto px-4 py-6">
         <div className="flex items-center justify-between md:grid md:grid-cols-3 md:gap-4">
           {/* Left Side Navigation */}
-          <nav className="hidden md:flex items-center justify-start gap-x-8">
+          <nav className="hidden md:flex items-center justify-start gap-1">
             {leftNavLinks.map((link) => (
-              <div key={link.href} className="relative">
+              <div key={link.href} className="relative px-2">
                 {link.hasDropdown ? (
                   <div 
                     className="relative"
-                    onMouseEnter={() => setProgrammesDropdownOpen(true)}
-                    onMouseLeave={() => setProgrammesDropdownOpen(false)}
+                    onMouseEnter={() => {
+                      // Clear any pending close timeout
+                      if (dropdownCloseTimeout) {
+                        clearTimeout(dropdownCloseTimeout);
+                        setDropdownCloseTimeout(null);
+                      }
+                      setProgrammesDropdownOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      // Add delay before closing
+                      const timeout = setTimeout(() => {
+                        setProgrammesDropdownOpen(false);
+                      }, 200); // 200ms delay
+                      setDropdownCloseTimeout(timeout);
+                    }}
                   >
                     <button
                       className={`font-medium transition-colors flex items-center gap-1 whitespace-nowrap ${
-                        link.dropdownItems?.some(item => item.href === pathname)
-                          ? 'text-[#56b5bd] font-semibold' 
+                        pathname === '/menopause-way'
+                          ? 'text-[#56b5bd] font-semibold border-b-2 border-[#56b5bd]' 
                           : 'text-gray-800 hover:text-[#56b5bd]'
                       }`}
                     >
                       {link.label}
-                      {link.label === 'Programmes' && (
-                        <span className="ml-1 px-2 py-0.5 rounded-full bg-[#56b5bd] text-white text-xs font-semibold">NEW</span>
-                      )}
-                      <FiChevronDown className="ml-0.5 h-4 w-4" />
+                      <span className="bg-[#56b5bd] text-white text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded ml-1">New</span>
+                      <FiChevronDown className="ml-1 h-4 w-4" />
                     </button>
                     
                     {programmesDropdownOpen && (
@@ -108,28 +119,41 @@ const Header = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+                        className="absolute left-0 top-full pt-1 w-64 bg-transparent z-50"
+                        onMouseEnter={() => {
+                          // Clear any pending close timeout when hovering over dropdown
+                          if (dropdownCloseTimeout) {
+                            clearTimeout(dropdownCloseTimeout);
+                            setDropdownCloseTimeout(null);
+                          }
+                          setProgrammesDropdownOpen(true);
+                        }}
+                        onMouseLeave={() => {
+                          // Add delay before closing
+                          const timeout = setTimeout(() => {
+                            setProgrammesDropdownOpen(false);
+                          }, 200);
+                          setDropdownCloseTimeout(timeout);
+                        }}
                       >
-                        {link.dropdownItems?.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`block px-4 py-2 text-sm transition-colors ${
-                              item.href === pathname 
-                                ? 'text-[#56b5bd] font-semibold bg-[#56b5bd]/5' 
-                                : 'text-gray-700 hover:bg-gray-50 hover:text-[#56b5bd]'
-                            }`}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                        <div className="bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                          {link.dropdownItems?.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#56b5bd] transition-colors"
+                            >
+                              <div className="font-medium">{item.label}</div>
+                            </Link>
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </div>
                 ) : (
                   <Link 
                     href={link.href}
-                    className={`font-medium transition-colors flex items-center gap-1 whitespace-nowrap ${
+                    className={`font-medium transition-colors px-2 flex items-center gap-1 whitespace-nowrap ${
                       link.href === pathname 
                         ? 'text-[#56b5bd] font-semibold border-b-2 border-[#56b5bd]' 
                         : 'text-gray-800 hover:text-[#56b5bd]'
@@ -144,7 +168,7 @@ const Header = () => {
 
           {/* Logo (Centered) */}
           <Link href="/" className="flex flex-col items-center justify-self-center">
-            <div className="relative h-16 w-40 sm:h-20 sm:w-52 md:h-24 md:w-64">
+            <div className="relative h-24 w-64">
               <Image
                 src="/img/logo.png"
                 alt="TP Health & Fitness Logo"
@@ -156,77 +180,33 @@ const Header = () => {
           </Link>
 
           {/* Right Side Navigation */}
-          <nav className="hidden md:flex items-center justify-end gap-x-8">
+          <nav className="hidden md:flex items-center justify-end gap-1">
             {rightNavLinks.map((link) => (
-              <div key={link.href} className="relative">
-                {link.hasDropdown ? (
-                  <div 
-                    className="relative"
-                    onMouseEnter={() => setResourcesDropdownOpen(true)}
-                    onMouseLeave={() => setResourcesDropdownOpen(false)}
-                  >
-                    <button
-                      className={`font-medium transition-colors flex items-center gap-1 whitespace-nowrap ${
-                        link.dropdownItems?.some(item => item.href === pathname)
-                          ? 'text-[#56b5bd] font-semibold' 
-                          : 'text-gray-800 hover:text-[#56b5bd]'
-                      }`}
-                    >
-                      {link.label}
-                      <FiChevronDown className="ml-0.5 h-4 w-4" />
-                    </button>
-                    
-                    {resourcesDropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
-                      >
-                        {link.dropdownItems?.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`block px-4 py-2 text-sm transition-colors ${
-                              item.href === pathname 
-                                ? 'text-[#56b5bd] font-semibold bg-[#56b5bd]/5' 
-                                : 'text-gray-700 hover:bg-gray-50 hover:text-[#56b5bd]'
-                            }`}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </div>
-                ) : link.isButton ? (
-                  <Link 
-                    href={link.href}
-                    className="px-4 py-2 bg-[#56b5bd] text-white font-semibold rounded-lg hover:bg-[#45a4ac] transition-colors whitespace-nowrap"
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <Link 
-                    href={link.href}
-                    className={`font-medium transition-colors flex items-center whitespace-nowrap ${
-                      link.href === pathname 
-                        ? 'text-[#56b5bd] font-semibold' 
-                        : 'text-gray-800 hover:text-[#56b5bd]'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </div>
+              <Link 
+                key={link.href}
+                href={link.href}
+                className={`font-medium transition-colors px-2 flex items-center whitespace-nowrap ${
+                  link.href === pathname 
+                    ? 'text-[#56b5bd] font-semibold' 
+                    : 'text-gray-800 hover:text-[#56b5bd]'
+                }`}
+              >
+                {link.label}
+              </Link>
             ))}
+            {/* Book Now Button */}
+            <Link
+              href="/book"
+              className="ml-2 px-4 py-2 bg-[#56b5bd] text-white font-semibold rounded-lg hover:bg-[#4a9ba8] transition-colors whitespace-nowrap"
+            >
+              Book Now
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-800 focus:outline-none p-2 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
+            className="md:hidden text-gray-800 focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? (
@@ -245,26 +225,22 @@ const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 z-50 max-h-[calc(100vh-80px)] overflow-y-auto"
+          className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 z-50"
         >
-          <div className="container-custom flex flex-col space-y-1 px-4">
+          <div className="container-custom flex flex-col space-y-4">
             {leftNavLinks.map((link) => (
               <div key={link.href}>
                 {link.hasDropdown ? (
                   <div>
-                    <div className="font-medium py-3 text-gray-800 border-b border-gray-200 min-h-[44px] flex items-center">
+                    <div className="font-medium py-2 text-gray-800 border-b border-gray-200 flex items-center gap-2">
                       {link.label}
-                      {link.label === 'Programmes' && (
-                        <span className="ml-2 px-2 py-0.5 rounded-full bg-[#56b5bd] text-white text-[10px] font-semibold">NEW</span>
-                      )}
+                      <span className="bg-[#56b5bd] text-white text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded">New</span>
                     </div>
                     {link.dropdownItems?.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={`block py-3 pl-4 text-sm min-h-[44px] flex items-center touch-manipulation ${
-                          item.href === pathname ? 'text-[#56b5bd] font-semibold' : 'text-gray-600 hover:text-[#56b5bd]'
-                        }`}
+                        className="block py-2 pl-4 text-sm text-gray-600 hover:text-[#56b5bd]"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
@@ -274,7 +250,7 @@ const Header = () => {
                 ) : (
                   <Link
                     href={link.href}
-                    className={`font-medium py-3 block min-h-[44px] flex items-center touch-manipulation ${
+                    className={`font-medium py-2 flex items-center gap-2 ${
                       link.href === pathname ? 'text-[#56b5bd]' : 'text-gray-800'
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -285,46 +261,24 @@ const Header = () => {
               </div>
             ))}
             {rightNavLinks.map((link) => (
-              <div key={link.href}>
-                {link.hasDropdown ? (
-                  <div>
-                    <div className="font-medium py-3 text-gray-800 border-b border-gray-200 min-h-[44px] flex items-center">
-                      {link.label}
-                    </div>
-                    {link.dropdownItems?.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className={`block py-3 pl-4 text-sm min-h-[44px] flex items-center touch-manipulation ${
-                          item.href === pathname ? 'text-[#56b5bd] font-semibold' : 'text-gray-600 hover:text-[#56b5bd]'
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : link.isButton ? (
-                  <Link
-                    href={link.href}
-                    className="block px-4 py-3 bg-[#56b5bd] text-white font-semibold rounded-lg hover:bg-[#45a4ac] transition-colors text-center mt-2 min-h-[44px] flex items-center justify-center touch-manipulation"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className={`font-medium py-3 block min-h-[44px] flex items-center touch-manipulation ${
-                      link.href === pathname ? 'text-[#56b5bd]' : 'text-gray-800'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </div>
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-medium py-2 ${
+                  link.href === pathname ? 'text-[#56b5bd]' : 'text-gray-800'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
             ))}
+            <Link
+              href="/book"
+              className="mt-2 px-4 py-2 bg-[#56b5bd] text-white font-semibold rounded-lg hover:bg-[#4a9ba8] transition-colors text-center"
+              onClick={() => setIsOpen(false)}
+            >
+              Book Now
+            </Link>
           </div>
         </motion.div>
       )}

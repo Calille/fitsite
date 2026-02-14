@@ -1148,7 +1148,7 @@ export default function BlogClient() {
                 href="/services" 
                 className="bg-[#45a4ac] text-white hover:bg-[#3a8c93] font-bold py-3 px-8 rounded-md transition-all inline-block"
               >
-                View Our Services
+                View Personal Training
               </Link>
             </div>
           </div>

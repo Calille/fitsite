@@ -47,6 +47,13 @@ const teamMembers = [
     image: '/team/ritchie.webp'
   },
   {
+    name: 'Sophie',
+    role: 'Sports Therapist',
+    specialties: ['Sports Therapy', 'Recovery', 'Movement & Wellbeing'],
+    bio: 'Sophie studied Sports Therapy and Rehabilitation at the University of Kent, graduating with a 2:1 BSc (Hons). A former student at Sir John Lawes, she also holds an ITMMF first aid qualification. Working in and around Harpenden, Sophie has a genuine passion for helping people feel better in their bodies through a variety of therapeutic approaches. She is dedicated to supporting clients through recovery while improving movement and overall wellbeing. Outside of work, Sophie enjoys time with friends and family, going to the gym, trying new restaurants, and making the most of a couple of holidays.',
+    image: '/team/sophie.webp'
+  },
+  {
     name: 'Ed Clement',
     role: 'Junior Trainer',
     specialties: ['Personal Training'],

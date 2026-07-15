@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# build artifacts and deployment archives (some exceed GitHub's 100MB file limit)
+/cpanel-build/
+build-log.txt
+*.zip
+public/_temp_hero10.webp
+# pre-compression backups created by scripts/optimize-hero-images.mjs
+public/hero-originals/TP_*.webp
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

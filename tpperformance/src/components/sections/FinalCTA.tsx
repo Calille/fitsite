@@ -53,7 +53,12 @@ export default function FinalCTA() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.3, delay: 0.6, type: "spring" as const, stiffness: 200, damping: 20 }}
         >
-          <Button variant="inverted" size="large" href="#pricing">
+          <Button
+            variant="inverted"
+            size="large"
+            href="https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/8e5c7729-2f32-4d4d-8bd1-eb2607a3a8b4"
+            external
+          >
             Get Started
           </Button>
           <Button

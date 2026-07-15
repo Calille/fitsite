@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaCheck, FaChevronDown } from 'react-icons/fa';
+import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Image from 'next/image';
 import QuizPopup from '@/components/QuizPopup';
 
@@ -10,10 +10,8 @@ import QuizPopup from '@/components/QuizPopup';
 // PLACEHOLDER DATA
 // ============================================
 const PLACEHOLDERS = {
-  CAPACITY: "12",
-  TIER1_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGJFotRPmSpgB", // £297 Self-Paced Course
-  TIER2_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGJeyZt3y1sL7", // £497 Coaching Programme
-  TIER3_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGE1fYYICI915" // £1,497 VIP Accelerator
+  // £499 8 Week Programme checkout (previously the Coaching Programme product)
+  PROGRAMME_CHECKOUT_URL: "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/prod_SwGJeyZt3y1sL7"
 };
 
 // ============================================
@@ -527,10 +525,10 @@ export default function MenopauseWayPage() {
                     <span className="text-yellow-300 font-black">
                       8 places
                     </span>{" "}
-                    will be priced at £149
+                    available on each programme
                   </p>
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 px-1 sm:px-2">
-                    Then the price goes back up to £349
+                    Secure your spot before they're gone
                   </p>
                 </div>
               </div>
@@ -540,154 +538,54 @@ export default function MenopauseWayPage() {
       </section>
 
       {/* ============================================
-          SECTION 6: PRICING TABLE
+          SECTION 6: PRICING (Single Programme Price)
           ============================================ */}
       <section id="pricing" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <motion.h3
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 lg:mb-16 text-center text-gray-900 px-2 sm:px-4"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-center text-gray-900 px-2 sm:px-4"
             {...fadeInUp}
           >
-            Choose Your Path
+            Join The Menopause Way
           </motion.h3>
-          
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-          >
-            
-            {/* TIER 1: Self-Paced Course */}
-            <motion.div
-              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
-              variants={fadeInUp}
-            >
-              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2">Self-Paced Course</h4>
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-3 sm:mb-4 md:mb-6">£300</div>
 
-              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
-                {[
-                  "8 Comprehensive Modules"
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm sm:text-base md:text-lg">
-                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <a
-                href={PLACEHOLDERS.TIER1_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
-              >
-                Enrol Now
-              </a>
-            </motion.div>
+          <motion.div {...scaleIn}>
+            <div className="relative bg-gradient-to-br from-[#56b5bd] to-[#45a4ac] rounded-2xl md:rounded-3xl p-1.5 md:p-2 shadow-2xl">
+              <div className="bg-white rounded-xl md:rounded-2xl p-6 sm:p-8 md:p-12 text-center">
+                <div className="inline-block bg-[#56b5bd]/10 text-[#56b5bd] text-xs md:text-sm font-bold uppercase tracking-wide px-4 py-1.5 rounded-full mb-5 md:mb-6">
+                  8 Week Programme
+                </div>
 
-            {/* TIER 2: Coaching Programme (MOST POPULAR) */}
-            <motion.div
-              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border-2 border-[#56b5bd] relative md:scale-105 hover:border-[#45a4ac] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
-              variants={fadeInUp}
-            >
-              <div className="absolute -top-2 sm:-top-3 md:-top-4 left-1/2 transform -translate-x-1/2 bg-[#56b5bd] text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase">
-                Most Popular
+                <div className="flex items-baseline justify-center gap-2 mb-2">
+                  <span className="text-5xl sm:text-6xl md:text-7xl font-black text-[#56b5bd] leading-none">£499</span>
+                </div>
+                <p className="text-sm sm:text-base text-gray-500 mb-6 md:mb-8">
+                  One-time payment for the full 8 week programme
+                </p>
+
+                <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10 text-left max-w-md mx-auto">
+                  {[
+                    "8 weeks of structured, science-based coaching",
+                    "Weekly coaching check-ins with your Nutrition Coach",
+                    "Personalised feedback & plan adjustments",
+                    "Access to the coaching community for accountability & support",
+                    "Personalised Nutrition PDF & Educational Resource Bank"
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3 text-gray-700 text-sm sm:text-base md:text-lg">
+                      <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={PLACEHOLDERS.PROGRAMME_CHECKOUT_URL}
+                  className="block w-full py-4 min-h-[52px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-bold text-base sm:text-lg md:text-xl transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] focus:ring-offset-2 touch-manipulation shadow-lg"
+                >
+                  Enrol Now
+                </a>
               </div>
-
-              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 mt-3 sm:mt-2 md:mt-0">Coaching Programme (Most Popular)</h4>
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-2">£149</div>
-              <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6">
-                <span className="line-through">£349</span> - Limited time offer
-              </p>
-
-              <p className="text-gray-600 text-xs md:text-sm mb-3 sm:mb-4 leading-relaxed">
-                The structured, science-based coaching system designed for real results.
-              </p>
-              
-              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
-                {[
-                  "Everything in Self-Paced",
-                  "Weekly Coaching Check-ins with your Nutrition Coach",
-                  "Personalised Feedback & Plan Adjustments",
-                  "Access to the Coaching Community for Accountability & Support",
-                  "FREE Personalised Nutrition PDF",
-                  "FREE Educational Resource Bank — science-backed infographics, guides, and cheat sheets"
-                ].map((feature, index) => {
-                  const isBottomTwo = index >= 4; // Last two items (FREE bonuses)
-
-                  return (
-                    <motion.li
-                      key={index}
-                      className={`flex items-start gap-2 md:gap-3 text-gray-700 text-xs sm:text-sm md:text-base ${
-                        isBottomTwo
-                          ? 'relative bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-3 -mx-1.5 sm:-mx-2 md:-mx-3'
-                          : ''
-                      }`}
-                      whileHover={{
-                        scale: isBottomTwo ? 1.02 : 1,
-                        transition: { duration: 0.2 }
-                      }}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                      viewport={{ once: true }}
-                    >
-                      {isBottomTwo && (
-                        <div className="absolute -top-1 sm:-top-1.5 md:-top-2 -left-1 sm:-left-1.5 md:-left-2 bg-amber-400 text-white text-[9px] sm:text-[10px] md:text-xs font-bold px-1 sm:px-1.5 md:px-2 py-0.5 md:py-1 rounded-full uppercase tracking-wide">
-                          FREE BONUS
-                        </div>
-                      )}
-                      <FaCheck className={`flex-shrink-0 mt-0.5 sm:mt-1 text-xs sm:text-sm ${isBottomTwo ? 'text-amber-500' : 'text-[#56b5bd]'}`} />
-                      <span className={isBottomTwo ? 'font-semibold text-gray-800' : ''}>{feature}</span>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-              
-              <a
-                href={PLACEHOLDERS.TIER2_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#56b5bd] text-gray-900 text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
-              >
-                Enrol Now
-              </a>
-            </motion.div>
-
-            {/* TIER 3: VIP Accelerator */}
-            <motion.div
-              className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl border border-gray-200 hover:border-[#56b5bd] hover:bg-gray-100 transition-all duration-300 h-full flex flex-col"
-              variants={fadeInUp}
-            >
-              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2">VIP Accelerator</h4>
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#56b5bd] mb-3 sm:mb-4 md:mb-6">£1,000</div>
-
-              <p className="text-gray-600 text-xs md:text-sm mb-3 sm:mb-4 leading-relaxed">
-                A private, high-touch coaching experience for women who want every detail managed.
-              </p>
-
-              <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 flex-grow">
-                {[
-                  "Everything in the Coaching Programme",
-                  "Comprehensive Lifestyle Assessment (Onboarding Call)",
-                  "Weekly 1-to-1 Strategy Calls (or Video Feedback)",
-                  "Menu & Holiday Reviews",
-                  "Priority Messaging Access",
-                  "Exclusive VIP Community with Direct Access"
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm sm:text-base md:text-lg">
-                    <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <a
-                href={PLACEHOLDERS.TIER3_CHECKOUT_URL}
-                className="block w-full py-3 md:py-4 min-h-[44px] flex items-center justify-center bg-[#56b5bd] hover:bg-[#45a4ac] text-white text-center rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#56b5bd] touch-manipulation"
-              >
-                Enrol Now
-              </a>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>

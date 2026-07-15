@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import PitchMarkings from "../decorative/PitchMarkings";
@@ -77,7 +78,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 1.2, type: "spring" as const, stiffness: 200, damping: 20 }}
           >
-            <Button variant="primary" size="large" href="#pricing">
+            <Button
+              variant="primary"
+              size="large"
+              href="https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/8e5c7729-2f32-4d4d-8bd1-eb2607a3a8b4"
+              external
+            >
               Get Started
             </Button>
           </motion.div>
@@ -104,39 +110,15 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div
-            className="relative rounded-[24px] overflow-hidden border border-[var(--border-accent)]"
-            style={{
-              aspectRatio: "4/5",
-              backgroundColor: "var(--bg-accent-section)",
-              backgroundImage: "linear-gradient(135deg, rgba(86,181,189,0.06) 0%, var(--bg-accent-section) 40%, rgba(86,181,189,0.03) 100%)",
-            }}
-          >
-            {/* TP initials */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span
-                className="font-[family-name:var(--font-syne)] font-extrabold text-[10rem] text-accent-primary leading-none select-none"
-                style={{ opacity: 0.06 }}
-              >
-                TP
-              </span>
-            </div>
-
-            {/* Placeholder text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <svg className="w-12 h-12 text-accent-primary/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
-              </svg>
-              <span className="font-[family-name:var(--font-jetbrains-mono)] text-[0.8rem] text-text-muted">
-                Hero image coming soon
-              </span>
-            </div>
-
-            {/* Decorative pitch marking */}
-            <svg className="absolute -bottom-10 -right-10 w-40 h-40 opacity-[0.03]" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="40" stroke="var(--accent-pitch)" strokeWidth="1" />
-            </svg>
+          <div className="relative rounded-[24px] overflow-hidden border border-[var(--border-accent)] aspect-[4/5]">
+            <Image
+              src="/teighlor.jpeg"
+              alt="Teighlor — TP Performance Coach"
+              fill
+              className="object-cover object-top"
+              priority
+              sizes="(max-width: 768px) 100vw, 500px"
+            />
           </div>
         </motion.div>
       </div>

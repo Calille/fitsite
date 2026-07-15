@@ -32,12 +32,16 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "build-output/types/**/*.ts",
     "dist/types/**/*.ts",
     "next-env.d.ts",
+    "out-deploy/types/**/*.ts",
+    "out-new/types/**/*.ts",
     "out/types/**/*.ts",
-    "out-new/types/**/*.ts"
+    "cpanel-build/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "tpperformance"
   ]
 }

@@ -52,17 +52,6 @@ const Hero = () => {
     trackInteraction('cta_button_click', { button: buttonType, location: 'hero' });
   };
 
-  const scrollToSchedule = () => {
-    handleCTAClick('View Our Schedule');
-    const scheduleSection = document.getElementById('schedule');
-    if (scheduleSection) {
-      scheduleSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start' 
-      });
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-black hero-section">
       {/* Hero Background */}

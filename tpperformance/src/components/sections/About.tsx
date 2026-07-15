@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const credentials = [
   "Loughborough University — Sports Science",
@@ -107,42 +108,14 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div
-              className="relative rounded-[20px] overflow-hidden border border-[var(--border)]"
-              style={{
-                aspectRatio: "3/4",
-                backgroundColor: "var(--bg-accent-section)",
-                backgroundImage: "linear-gradient(180deg, transparent 60%, rgba(86,181,189,0.06) 100%)",
-              }}
-            >
-              {/* TP initials */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-[family-name:var(--font-syne)] font-extrabold text-[8rem] text-accent-primary leading-none select-none" style={{ opacity: 0.08 }}>
-                  TP
-                </span>
-              </div>
-
-              {/* Photo coming soon text */}
-              <div className="absolute bottom-6 left-0 right-0 text-center">
-                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[0.75rem] text-text-muted">
-                  Photo coming soon
-                </span>
-              </div>
-
-              {/* Decorative pitch marking */}
-              <svg
-                className="absolute -bottom-10 -right-10 w-32 h-32 opacity-[0.03]"
-                viewBox="0 0 100 100"
-                fill="none"
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  stroke="var(--accent-pitch)"
-                  strokeWidth="1"
-                />
-              </svg>
+            <div className="relative rounded-[20px] overflow-hidden border border-[var(--border)] aspect-[3/4]">
+              <Image
+                src="/teighlor2.jpeg"
+                alt="Teighlor — TP Performance"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 440px"
+              />
             </div>
           </motion.div>
         </div>

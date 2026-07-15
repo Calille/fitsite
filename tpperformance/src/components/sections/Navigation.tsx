@@ -84,7 +84,11 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Button variant="primary" href="#pricing">
+            <Button
+              variant="primary"
+              href="https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/8e5c7729-2f32-4d4d-8bd1-eb2607a3a8b4"
+              external
+            >
               Get Started
             </Button>
           </motion.div>
@@ -144,7 +148,12 @@ export default function Navigation() {
               exit={{ opacity: 0 }}
               transition={{ delay: 0.35, duration: 0.3 }}
             >
-              <Button variant="primary" href="#pricing" onClick={() => setMobileOpen(false)}>
+              <Button
+                variant="primary"
+                href="https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/8e5c7729-2f32-4d4d-8bd1-eb2607a3a8b4"
+                external
+                onClick={() => setMobileOpen(false)}
+              >
                 Get Started
               </Button>
             </motion.div>

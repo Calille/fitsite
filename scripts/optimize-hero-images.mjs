@@ -28,7 +28,7 @@ async function writeWithRetry(filePath, buffer, retries = 3) {
 }
 
 async function optimizeImages() {
-  const files = fs.readdirSync(INPUT_DIR).filter(f => /^hero\d+\.webp$/i.test(f));
+  const files = fs.readdirSync(INPUT_DIR).filter(f => /^(hero\d+|TP_\d+)\.webp$/i.test(f));
 
   console.log(`Found ${files.length} hero images to process...\n`);
 

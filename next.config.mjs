@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  distDir: 'out',
+  distDir: 'cpanel-build',
   images: {
     unoptimized: true,
     loader: 'custom',

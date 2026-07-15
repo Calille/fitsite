@@ -48,7 +48,9 @@ body {
   background-color: #ffffff !important;
   background: #ffffff !important;
   color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+  /* Use the Geist font actually loaded via next/font in layout.tsx
+     (Inter was referenced here but never loaded). */
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
@@ -70,12 +72,11 @@ body {
   background: #ffffff !important;
 }
 
-/* Performance optimizations for team page */
-* {
-  /* Hardware acceleration for smooth scrolling */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
+/* NOTE: A universal `* { transform: translateZ(0) }` rule used to live here.
+   It was removed because applying a transform to every element makes each one
+   a containing block for `position: fixed` descendants, which broke fixed
+   positioning site-wide (popups/banners anchored to the page instead of the
+   viewport). It was also a performance anti-pattern (a GPU layer per node). */
 
 /* Optimize image loading */
 img {

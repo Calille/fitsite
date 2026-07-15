@@ -26,27 +26,6 @@ const teamMembers = [
     image: '/team/will.webp'
   },
   {
-    name: 'Sarah',
-    role: 'Personal Trainer',
-    specialties: ['Sports Science', 'Injury Rehabilitation', 'Endurance Training'],
-    bio: 'Sarah is a level 3 personal trainer and qualified as a coach 6 years ago. Sarah studied sports science and music at Birmingham University. Previously an English Universities hockey player, she is now a keen skier, sailor, golfer, cyclist and trail runner. Having suffered from several chronic injuries in recent years, Sarah understands the physical restrictions and mental frustration of not being able to participate fully in sport and exercise. Her spare time is spent drinking flat whites and relaxing with her dogs!',
-    image: '/team/sarah.webp'
-  },
-  {
-    name: 'Ben',
-    role: 'Team Mentor',
-    specialties: ['Rugby Training', 'Strength Building', 'Multi-generational Coaching'],
-    bio: 'Our newest trainer Ben, joined TP in January 2024. He is a first team rugby player at Old Albanians and has a strong passion for health fitness and wellbeing. Having trained himself since his early teens, Ben is a physically strong and dedicated athlete. He has a calm, humble manor and is very patient as a coach. At 19, Ben is very mature and is a natural coach! Ben works with clients in their 80s to those in their teenage years and is very adaptable and knowledgable for such a short time in the industry. He rides his bike in his spare time and likes to travel!',
-    image: '/team/ben.webp'
-  },
-  {
-    name: 'Ritchie',
-    role: 'Personal Trainer, Boxing & Pilates Coach',
-    specialties: ['Boxing', 'Pilates', 'Personal Training'],
-    bio: 'Bio coming soon.',
-    image: '/team/ritchie.webp'
-  },
-  {
     name: 'Sophie',
     role: 'Sports Therapist',
     specialties: ['Sports Therapy', 'Recovery', 'Movement & Wellbeing'],
@@ -54,11 +33,32 @@ const teamMembers = [
     image: '/team/sophie.webp'
   },
   {
-    name: 'Ed Clement',
+    name: 'Ed',
     role: 'Junior Trainer',
     specialties: ['Personal Training'],
-    bio: 'Bio coming soon.',
+    bio: 'I am a Footballer for Harpenden Town first team and have a strong passion for health and fitness. I was a student at Roundwood Park school and have my FA level 1 football coaching badge and introduction to first aid. I have competed in many sports across the years, my main two being football and athletics where I competed at a national level at distances of 800m up to 5k. This experience in demanding sporting environments has given me an understanding of the discipline and consistency needed to stay fit. I enjoy helping people progress with their fitness and helping them see improvement. In my spare time I like to travel and run.',
     image: '/team/ed.webp'
+  },
+  {
+    name: 'Jo',
+    role: 'Personal Trainer',
+    specialties: ['Personal Training'],
+    bio: 'Bio coming soon.',
+    image: '/team/jo.webp'
+  },
+  {
+    name: 'Ben Webster',
+    role: 'Personal Trainer',
+    specialties: ['Personal Training'],
+    bio: 'Bio coming soon.',
+    image: '/team/ben-webster.webp'
+  },
+  {
+    name: 'Kayleigh',
+    role: 'Personal Trainer',
+    specialties: ['Personal Training'],
+    bio: 'Bio coming soon.',
+    image: '/team/kayleigh.webp'
   }
 ];
 
@@ -102,15 +102,8 @@ export default function TeamPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link 
-                href="/#schedule" 
-                className="bg-[#56b5bd] text-white hover:bg-[#45a4ac] px-6 py-3 rounded-md font-medium transition-all"
-                onClick={() => handleCTAClick('View Our Schedule', 'hero')}
-              >
-                View Our Schedule
-              </Link>
-              <Link 
                 href="/services" 
-                className="border-2 border-[#56b5bd] text-[#56b5bd] hover:bg-[#f0f9fa] px-6 py-3 rounded-md font-medium transition-all"
+                className="bg-[#56b5bd] text-white hover:bg-[#45a4ac] px-6 py-3 rounded-md font-medium transition-all"
                 onClick={() => handleCTAClick('Explore Personal Training', 'hero')}
               >
                 Explore Personal Training
@@ -133,7 +126,7 @@ export default function TeamPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 team-grid">
-              {teamMembers.map((member, index) => (
+              {teamMembers.map((member) => (
                 <TeamMemberCard 
                   key={member.name}
                   name={member.name}

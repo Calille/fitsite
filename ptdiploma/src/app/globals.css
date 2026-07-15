@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-white text-ink font-body antialiased;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-orange px-7 py-3.5 font-semibold text-white transition-colors duration-200 hover:bg-orange-dark;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy/25 px-6 py-3 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5;
+  }
+}

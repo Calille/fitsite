@@ -70,8 +70,8 @@ export default function TeamMemberCard({ name, role, specialties, bio, image }: 
             height={320}
             className="object-cover hover:scale-105 transition-transform duration-300 w-full h-full"
             onError={handleImageError}
-            loading="eager"
-            priority
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 320))}`}
           />

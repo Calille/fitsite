@@ -1,14 +1,19 @@
 'use client';
 
-import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { FaPhone, FaClipboardCheck, FaDumbbell, FaArrowRight, FaCheck, FaCalendarAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FadeInWrapper from '@/components/FadeInWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 import HeroSlider from '@/components/HeroSlider';
+
+// One-time prompts are client-only and below-the-fold; load them lazily so
+// they never block the initial paint of the page.
+const ConsultationPopup = dynamic(() => import('@/components/ConsultationPopup'), { ssr: false });
+const CoachOfferBanner = dynamic(() => import('@/components/CoachOfferBanner'), { ssr: false });
 
 const journeySteps = [
   {
@@ -43,62 +48,33 @@ const journeySteps = [
   },
 ];
 
-const oneToOnePackages = [
+const kickstartPackages = [
   {
-    title: '16 Sessions Only',
+    title: '1-1',
+    sessions: '16 Sessions',
     price: '£960',
-    features: ['16 x 45 min 1-1 sessions', 'Personalised programming', 'Progress tracking'],
+    features: ['16 x 45 min private sessions', 'Personalised programming', 'Progress tracking'],
   },
   {
-    title: '16 Sessions + 8 Elevate Classes',
-    price: '£1,100',
-    features: ['16 x 45 min 1-1 sessions', '8 Elevate group classes', 'Personalised programming', 'Progress tracking'],
-    popular: true,
-  },
-  {
-    title: '16 Sessions, 8 Classes + Fat Loss',
-    price: '£1,250',
-    features: ['16 x 45 min 1-1 sessions', '8 Elevate group classes', 'Fat loss programme', 'Nutrition guidance', 'Progress tracking'],
-  },
-];
-
-const smallGroupPackages = [
-  {
-    title: '16 Sessions Only',
+    title: 'Small Group',
+    sessions: '16 Group Sessions',
     price: '£575',
     features: ['16 x 45 min group sessions', 'Small group environment', 'Expert coaching'],
-  },
-  {
-    title: '16 Sessions + 16 Elevate Classes',
-    price: '£720',
-    features: ['16 x 45 min group sessions', '16 Elevate group classes', 'Small group environment', 'Expert coaching'],
     popular: true,
   },
   {
-    title: 'Fat Loss Course',
-    price: '£845',
-    features: ['16 x 45 min group sessions', '16 Elevate group classes', 'Fat loss programme', 'Nutrition guidance'],
+    title: 'Dual Fit',
+    sessions: '16 Paired Sessions',
+    price: '£1,280',
+    features: ['16 x 45 min paired sessions', '2 clients to 1 trainer', 'Personalised programming'],
   },
 ];
 
-const dualFitPackages = [
-  {
-    title: '16 Sessions Only',
-    price: '£1,280',
-    features: ['16 x 45 min sessions', '2 clients to 1 trainer', 'Personalised programming'],
-  },
-  {
-    title: '16 Sessions + 16 Elevate Classes',
-    price: '£1,520',
-    features: ['16 x 45 min sessions', '16 Elevate group classes', '2 clients to 1 trainer', 'Personalised programming'],
-    popular: true,
-  },
-  {
-    title: 'Fat Loss Course',
-    price: '£149',
-    priceNote: 'each',
-    features: ['Fat loss programme', 'Nutrition guidance', '2 clients to 1 trainer', 'Progress tracking'],
-  },
+const fatLossPoints = [
+  '8 Week Nutrition & Lifestyle Online Programme with our in-house coach Will',
+  'Understand the key principles of habit stacking, know what to eat and when, and see real results',
+  'If you are struggling with your weight, how you feel, your confidence, and want to have more energy and feel better within yourself, this programme is for you',
+  'Sustainable weight loss goals',
 ];
 
 export default function ServicesClient() {
@@ -303,137 +279,19 @@ export default function ServicesClient() {
               </div>
             </div>
 
-            {/* One to One Packages */}
-            <div className="mb-20">
-              <div className="text-center mb-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">One to One</h3>
-                <p className="text-gray-400 text-sm font-medium">(45 min sessions)</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {oneToOnePackages.map((pkg, index) => (
-                  <motion.div
-                    key={pkg.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                      pkg.popular
-                        ? 'border-2 border-[#56b5bd] ring-1 ring-[#56b5bd]/20'
-                        : 'border border-gray-200'
-                    }`}
-                  >
-                    {pkg.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="bg-[#56b5bd] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
-                          Popular
-                        </span>
-                      </div>
-                    )}
-
-                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
-                      {pkg.title}
-                    </h4>
-
-                    <div className="mb-6">
-                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
-                    </div>
-
-                    <ul className="space-y-3 mb-8">
-                      {pkg.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                          <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-0.5 text-xs" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      href="/book"
-                      className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                        pkg.popular
-                          ? 'bg-[#56b5bd] text-white hover:bg-[#45a4ac] shadow-md hover:shadow-lg'
-                          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                      }`}
-                    >
-                      Get Started
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Small Group PT */}
-            <div className="mb-20">
-              <div className="text-center mb-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Small Group PT</h3>
-                <p className="text-gray-400 text-sm font-medium">(45 min classes)</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {smallGroupPackages.map((pkg, index) => (
-                  <motion.div
-                    key={pkg.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                      pkg.popular
-                        ? 'border-2 border-[#56b5bd] ring-1 ring-[#56b5bd]/20'
-                        : 'border border-gray-200'
-                    }`}
-                  >
-                    {pkg.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="bg-[#56b5bd] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
-                          Popular
-                        </span>
-                      </div>
-                    )}
-
-                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
-                      {pkg.title}
-                    </h4>
-
-                    <div className="mb-6">
-                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
-                    </div>
-
-                    <ul className="space-y-3 mb-8">
-                      {pkg.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                          <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-0.5 text-xs" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      href="/book"
-                      className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                        pkg.popular
-                          ? 'bg-[#56b5bd] text-white hover:bg-[#45a4ac] shadow-md hover:shadow-lg'
-                          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                      }`}
-                    >
-                      Get Started
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Dual Fit */}
+            {/* 8 Week Kickstart Programmes */}
             <div className="mb-8">
-              <div className="text-center mb-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Dual Fit</h3>
-                <p className="text-gray-400 text-sm font-medium">(2 clients to one trainer)</p>
+              <div className="text-center mb-10 max-w-2xl mx-auto">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  8 Week Kickstart Programmes — 1-1 or Small Group
+                </h3>
+                <p className="text-gray-500">
+                  Your 8 week kickstart to build momentum and lasting results. Choose the training style that suits you best.
+                </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {dualFitPackages.map((pkg, index) => (
+                {kickstartPackages.map((pkg, index) => (
                   <motion.div
                     key={pkg.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -454,15 +312,11 @@ export default function ServicesClient() {
                       </div>
                     )}
 
-                    <h4 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[56px] flex items-center">
-                      {pkg.title}
-                    </h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-1">{pkg.title}</h4>
+                    <p className="text-[#56b5bd] text-sm font-semibold mb-4">{pkg.sessions}</p>
 
                     <div className="mb-6">
                       <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
-                      {pkg.priceNote && (
-                        <span className="text-sm text-gray-400 font-medium ml-2">{pkg.priceNote}</span>
-                      )}
                     </div>
 
                     <ul className="space-y-3 mb-8">
@@ -493,6 +347,66 @@ export default function ServicesClient() {
             <p className="text-center text-gray-400 text-sm mt-12">
               All prices include VAT
             </p>
+          </div>
+        </AnimatedSection>
+
+        {/* Divider accent */}
+        <div className="h-1 bg-gradient-to-r from-transparent via-[#56b5bd]/40 to-transparent" />
+
+        {/* 8 Week Fat Loss Course — Standout Feature Section */}
+        <AnimatedSection className="py-20 md:py-28 bg-white">
+          <div className="container-custom mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative max-w-5xl mx-auto"
+            >
+              <div className="relative rounded-3xl bg-gradient-to-br from-[#56b5bd] to-[#3e8a93] p-1.5 shadow-2xl">
+                <div className="rounded-[1.35rem] bg-white overflow-hidden">
+                  <div className="grid md:grid-cols-5">
+                    {/* Left: Price / hero */}
+                    <div className="md:col-span-2 bg-gradient-to-br from-[#56b5bd] to-[#3e8a93] text-white p-8 md:p-10 flex flex-col justify-center text-center md:text-left">
+                      <span className="inline-block self-center md:self-start bg-white/20 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-5">
+                        Hero Offer
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                        8 Week Fat Loss Course
+                      </h3>
+                      <p className="text-white/90 font-medium mb-6">
+                        Get guaranteed weight loss results
+                      </p>
+                      <div className="flex items-baseline justify-center md:justify-start gap-2">
+                        <span className="text-5xl md:text-6xl font-black leading-none">£399</span>
+                      </div>
+                    </div>
+
+                    {/* Right: Details */}
+                    <div className="md:col-span-3 p-8 md:p-10">
+                      <ul className="space-y-4 mb-8">
+                        {fatLossPoints.map((point, i) => (
+                          <li key={i} className="flex items-start gap-3 text-gray-700">
+                            <FaCheck className="text-[#56b5bd] flex-shrink-0 mt-1" />
+                            <span className="leading-relaxed">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href="https://calendly.com/tphealthandfitnesscoaching/tpintroductory-call"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 bg-[#56b5bd] text-white font-bold py-4 px-8 rounded-xl hover:bg-[#45a4ac] transition-all duration-300 shadow-md hover:shadow-xl text-lg"
+                      >
+                        <FaPhone />
+                        Book Your Discovery Call
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </AnimatedSection>
 
@@ -532,6 +446,10 @@ export default function ServicesClient() {
         </section>
       </main>
       <Footer />
+
+      {/* One-time visitor prompts (coordinated so they don't stack) */}
+      <ConsultationPopup />
+      <CoachOfferBanner />
     </FadeInWrapper>
   );
 }

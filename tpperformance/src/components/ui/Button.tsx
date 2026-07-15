@@ -7,8 +7,11 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "inverted";
   size?: "default" | "large";
   href?: string;
+  external?: boolean;
   onClick?: () => void;
   className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -16,8 +19,11 @@ export default function Button({
   variant = "primary",
   size = "default",
   href,
+  external = false,
   onClick,
   className = "",
+  type = "button",
+  disabled = false,
 }: ButtonProps) {
   const baseStyles =
     "inline-flex items-center justify-center font-[family-name:var(--font-outfit)] font-semibold transition-all duration-250 cursor-pointer rounded-[10px]";
@@ -47,10 +53,14 @@ export default function Button({
   };
 
   if (href) {
+    const externalProps = external
+      ? { target: "_blank", rel: "noopener noreferrer" }
+      : {};
     return (
       <motion.a
         href={href}
         className={combinedClassName}
+        {...externalProps}
         {...motionProps}
       >
         {children}
@@ -60,8 +70,10 @@ export default function Button({
 
   return (
     <motion.button
+      type={type}
       onClick={onClick}
-      className={combinedClassName}
+      disabled={disabled}
+      className={`${combinedClassName} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       {...motionProps}
     >
       {children}

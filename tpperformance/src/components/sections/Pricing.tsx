@@ -4,6 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Button from "../ui/Button";
 
+const NEXT_STEPS_URL =
+  "https://app.coachcatalyst.com/shared_stripe_product/organization/18632/products/8e5c7729-2f32-4d4d-8bd1-eb2607a3a8b4";
+
 interface PlanCardProps {
   name: string;
   price: string;
@@ -112,6 +115,8 @@ function PlanCard({
       <Button
         variant={featured ? "primary" : "outline"}
         className="w-full"
+        href={NEXT_STEPS_URL}
+        external
       >
         {cta}
       </Button>
@@ -198,7 +203,12 @@ function ProCard({ plan }: { plan: PlanCardProps }) {
           <p className="font-[family-name:var(--font-dm-sans)] text-text-secondary text-[0.9rem] leading-relaxed mb-6">
             1-to-1 elite coaching with Teighlor. The highest level of support and personalisation.
           </p>
-          <Button variant="primary" className="w-full md:w-auto">
+          <Button
+            variant="primary"
+            className="w-full md:w-auto"
+            href={NEXT_STEPS_URL}
+            external
+          >
             {plan.cta}
           </Button>
         </div>
@@ -295,7 +305,9 @@ export default function Pricing() {
           <p className="font-[family-name:var(--font-dm-sans)] text-text-secondary text-[0.9rem] leading-relaxed mb-6">
             1-to-1 sessions with Teighlor, once or twice a week at TP HQ.
           </p>
-          <Button variant="outline">Book a Session</Button>
+          <Button variant="outline" href={NEXT_STEPS_URL} external>
+            Book a Session
+          </Button>
         </motion.div>
 
         {/* Below cards */}

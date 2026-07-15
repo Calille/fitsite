@@ -42,6 +42,14 @@
   ],
   "exclude": [
     "node_modules",
-    "tpperformance"
+    "tpperformance",
+    "ptdiploma",
+    "teighlorpt",
+    "out",
+    "out-deploy",
+    "out-new",
+    "cpanel-build",
+    "build-output",
+    "dist"
   ]
 }

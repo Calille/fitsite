@@ -43,7 +43,8 @@ export default function PrivacyPolicyPage() {
                   <p className="text-gray-600 leading-relaxed">
                     TP Health & Fitness Coaching ("we", "our", or "us") is committed to protecting your privacy. 
                     This Privacy Policy explains how we collect, use, disclose, and safeguard your information when 
-                    you visit our website <strong>tphealthfitness.com</strong> and use our services.
+                    you visit our website <strong>tphealthfitness.com</strong> (including its subdomains, such as 
+                    our coaching guide and course pages) and use our services.
                   </p>
                 </div>
 
@@ -73,24 +74,40 @@ export default function PrivacyPolicyPage() {
 
                   <h3 className="text-xl font-semibold text-gray-700 mb-3">2.2 Automatically Collected Information</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    When you visit our website, we automatically collect certain information about your device and browsing behaviour:
+                    On some of our pages, including our coaching guide and course landing pages, we use 
+                    Google Analytics 4 (GA4) to understand how visitors use the site. GA4 only loads 
+                    after you actively accept analytics cookies in our consent banner (see Section 8). 
+                    If you reject analytics cookies, no Google Analytics scripts are loaded and no 
+                    analytics data is sent to Google.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Where you have consented, GA4 may collect:
                   </p>
                   <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-6">
                     <li><strong>Usage Data:</strong> Pages visited, time spent on pages, referring websites</li>
                     <li><strong>Device Information:</strong> Browser type, device type, operating system</li>
-                    <li><strong>Technical Data:</strong> IP address, user agent, page load times</li>
-                    <li><strong>Interaction Data:</strong> Button clicks, form interactions, scrolling behaviour</li>
+                    <li><strong>Technical Data:</strong> Approximate location (city level), page load times and Core Web Vitals performance metrics</li>
+                    <li><strong>Interaction Data:</strong> Clicks on key buttons (such as checkout links), scrolling behaviour and general site engagement</li>
                   </ul>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    We use Google Consent Mode so that analytics storage remains denied until you accept. 
+                    You can change your choice at any time using the cookie settings link in the footer 
+                    of pages where the consent banner is shown.
+                  </p>
 
                   <h3 className="text-xl font-semibold text-gray-700 mb-3">2.3 Local Storage</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    We use browser local storage to enhance your experience by:
+                    We use browser local storage for limited purposes:
                   </p>
                   <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-6">
-                    <li>Storing website analytics data for performance improvement</li>
-                    <li>Remembering your preferences and settings</li>
-                    <li>Tracking user interactions to improve site functionality</li>
+                    <li><strong>Cookie consent:</strong> Remembering whether you accepted or rejected analytics cookies, so your choice is respected on future visits</li>
+                    <li><strong>Site functionality:</strong> Remembering preferences and settings needed for the site to work as expected</li>
                   </ul>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Consent preferences are stored locally in your browser and are not shared with third 
+                    parties. You can clear this data at any time through your browser settings, which will 
+                    reset your cookie choice and show the consent banner again on your next visit.
+                  </p>
                 </div>
 
                 {/* How We Use Information */}
@@ -103,10 +120,14 @@ export default function PrivacyPolicyPage() {
                     <li><strong>Service Delivery:</strong> To provide fitness coaching and training services</li>
                     <li><strong>Communication:</strong> To respond to inquiries and provide customer support</li>
                     <li><strong>Personalisation:</strong> To tailor our services to your fitness goals and preferences</li>
-                    <li><strong>Website Improvement:</strong> To analyse usage patterns and improve functionality</li>
+                    <li><strong>Website Improvement:</strong> To analyse usage patterns and improve functionality (with your consent for analytics cookies)</li>
                     <li><strong>Marketing:</strong> To send relevant information about our services (with your consent)</li>
                     <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
                   </ul>
+                  <p className="text-gray-600 leading-relaxed">
+                    Our legal basis for using Google Analytics is your consent. You can withdraw consent at 
+                    any time by rejecting analytics cookies or using the cookie settings option on relevant pages.
+                  </p>
                 </div>
 
                 {/* Third-Party Services */}
@@ -116,15 +137,43 @@ export default function PrivacyPolicyPage() {
                     Our website uses the following third-party services:
                   </p>
                   
-                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.1 Momence Webchat</h3>
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.1 Google Analytics</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    We use Momence webchat functionality to provide customer support. When you use the chat feature, 
-                    your messages and contact information may be processed by Momence. Please refer to 
-                    <a href="https://momence.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#56b5bd] hover:underline">Momence's Privacy Policy</a> 
+                    We use Google Analytics 4 on selected pages (including our coaching guide landing pages) 
+                    to understand how visitors use those pages. Google processes this data on our behalf as 
+                    a data processor. Analytics only runs if you accept analytics cookies. Google may process 
+                    data on servers outside the UK; where this occurs, appropriate safeguards apply under 
+                    Google&apos;s data processing terms. For more information, see{' '}
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#56b5bd] hover:underline">Google&apos;s Privacy Policy</a>.
+                  </p>
+
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.2 Momence</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    We use Momence for booking, class schedules, lead forms and webchat. When you use these 
+                    features, your messages, booking details and contact information may be processed by 
+                    Momence. Please refer to{' '}
+                    <a href="https://momence.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#56b5bd] hover:underline">Momence&apos;s Privacy Policy</a>{' '}
                     for more information.
                   </p>
 
-                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.2 Social Media</h3>
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.3 Mailchimp</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    When you subscribe to our newsletter or submit certain forms on our website, your details 
+                    may be processed by Mailchimp (The Rocket Science Group LLC). Please refer to{' '}
+                    <a href="https://www.intuit.com/privacy/statement/" target="_blank" rel="noopener noreferrer" className="text-[#56b5bd] hover:underline">Mailchimp&apos;s Privacy Policy</a>{' '}
+                    for more information.
+                  </p>
+
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.4 Stripe</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Some of our pages link to Stripe for secure payment processing when you purchase digital 
+                    products or services. Payment details are handled directly by Stripe and are not stored 
+                    on our website. Please refer to{' '}
+                    <a href="https://stripe.com/gb/privacy" target="_blank" rel="noopener noreferrer" className="text-[#56b5bd] hover:underline">Stripe&apos;s Privacy Policy</a>{' '}
+                    for more information.
+                  </p>
+
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">4.5 Social Media</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
                     Our website contains links to social media platforms including Instagram. When you interact with these links, 
                     you may be subject to the privacy policies of those platforms.
@@ -154,7 +203,7 @@ export default function PrivacyPolicyPage() {
                   <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-6">
                     <li><strong>Contact inquiries:</strong> Up to 2 years for follow-up and service improvement</li>
                     <li><strong>Client information:</strong> Duration of our business relationship plus 1 year</li>
-                    <li><strong>Website analytics:</strong> Anonymised data may be retained indefinitely</li>
+                    <li><strong>Website analytics (GA4):</strong> Retained by Google according to its default retention settings (typically up to 14 months), or as configured in our analytics account</li>
                     <li><strong>Marketing data:</strong> Until you unsubscribe or request deletion</li>
                   </ul>
                 </div>
@@ -171,6 +220,7 @@ export default function PrivacyPolicyPage() {
                     <li><strong>Right to Erasure:</strong> Request deletion of your personal information</li>
                     <li><strong>Right to Restrict Processing:</strong> Request limitation on how we use your data</li>
                     <li><strong>Right to Object:</strong> Object to processing for direct marketing purposes</li>
+                    <li><strong>Right to Withdraw Consent:</strong> Withdraw consent for analytics cookies at any time (this does not affect the lawfulness of processing before withdrawal)</li>
                     <li><strong>Right to Data Portability:</strong> Request transfer of your data in a usable format</li>
                   </ul>
                   <p className="text-gray-600 leading-relaxed">
@@ -182,15 +232,31 @@ export default function PrivacyPolicyPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">8. Cookies and Local Storage</h2>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Our website uses local storage (similar to cookies) to improve your browsing experience:
+                    We use cookies and similar technologies (including browser local storage) in two broad categories:
                   </p>
                   <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-6">
-                    <li><strong>Essential Storage:</strong> Required for basic website functionality</li>
-                    <li><strong>Analytics Storage:</strong> Helps us understand how you use our website</li>
-                    <li><strong>Preference Storage:</strong> Remembers your settings and preferences</li>
+                    <li><strong>Essential:</strong> Required for basic website functionality, such as remembering your cookie consent choice</li>
+                    <li><strong>Analytics (optional):</strong> Used to understand how visitors use selected pages via Google Analytics 4. These are only activated if you click Accept on our cookie banner</li>
                   </ul>
+
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">8.1 Cookie Consent</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    On pages where analytics is used, you will see a cookie consent banner when you first visit. 
+                    You can choose to Accept or Reject analytics cookies. Reject means Google Analytics is not 
+                    loaded, no analytics cookies are set, and no usage data is sent to Google. Your choice is 
+                    saved in your browser so the banner does not reappear on every visit.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    You can change your mind at any time using the &quot;Cookie settings&quot; link in the footer 
+                    of pages that show the consent banner. This clears your saved choice and lets you accept 
+                    or reject again.
+                  </p>
+
+                  <h3 className="text-xl font-semibold text-gray-700 mb-3">8.2 Managing Cookies in Your Browser</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    You can clear this stored data through your browser settings at any time.
+                    You can also block or delete cookies and local storage through your browser settings at 
+                    any time. Note that blocking essential storage may affect how the consent banner behaves 
+                    on return visits.
                   </p>
                 </div>
 
@@ -213,7 +279,7 @@ export default function PrivacyPolicyPage() {
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <p className="text-gray-600 mb-2"><strong>TP Health & Fitness Coaching</strong></p>
                     <p className="text-gray-600 mb-2">Email: <a href="mailto:info@tphealthfitness.com" className="text-[#56b5bd] hover:underline">info@tphealthfitness.com</a></p>
-                    <p className="text-gray-600 mb-2">Phone: +44 7123 456789</p>
+                    <p className="text-gray-600 mb-2">Phone: 07447 333743</p>
                     <p className="text-gray-600 mb-2">Address: Harpenden, Hertfordshire, AL5 3BL, England, UK</p>
                     <p className="text-gray-600">
                       Contact Form: <Link href="/contact" className="text-[#56b5bd] hover:underline">www.tphealthfitness.com/contact</Link>

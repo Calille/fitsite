@@ -50,7 +50,7 @@ const teamMembers = [
     name: 'Ben Webster',
     role: 'Personal Trainer',
     specialties: ['Personal Training'],
-    bio: 'Bio coming soon.',
+    bio: 'I\'m passionate about fitness and sport, with a background in rugby, tennis, and cricket. I\'ve always enjoyed training to improve my performance and push myself, and my own fitness journey has shown me the positive impact exercise can have both physically and mentally. This inspired me to pursue a career in coaching, and I recently achieved my Level 3 Personal Training qualification. I enjoy helping others make progress, achieve their goals, and build confidence through training. Outside of the gym, I enjoy spending time with family and friends and staying active through sport and training.',
     image: '/team/ben-webster.webp'
   },
   {

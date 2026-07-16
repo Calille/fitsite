@@ -68,7 +68,7 @@ export default function TeamMemberCard({ name, role, specialties, bio, image }: 
             alt={`${name} - ${role} at TP Health & Fitness`}
             width={400}
             height={320}
-            className="object-cover hover:scale-105 transition-transform duration-300 w-full h-full"
+            className="object-cover object-top hover:scale-105 transition-transform duration-300 w-full h-full"
             onError={handleImageError}
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

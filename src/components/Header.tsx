@@ -35,7 +35,6 @@ const Header = () => {
 
   const leftNavLinks: NavLink[] = [
     { href: '/', label: 'Home' },
-    { href: '/menopause-way', label: 'The Menopause Way' },
     { href: '/services', label: 'Personal Training' },
   ];
 

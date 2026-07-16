@@ -1,6 +1,6 @@
 import BuyButton from './BuyButton';
+import CoachPhoto from './CoachPhoto';
 import FadeUp from './FadeUp';
-import GuideMockup from './GuideMockup';
 import { PRICE } from '@/content/site';
 
 export default function Hero() {
@@ -40,8 +40,8 @@ export default function Hero() {
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.15} className="hidden justify-center lg:flex">
-          <GuideMockup />
+        <FadeUp delay={0.15} className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+          <CoachPhoto />
         </FadeUp>
       </div>
     </section>

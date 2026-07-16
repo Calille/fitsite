@@ -31,7 +31,7 @@ export function CookieConsentBanner() {
           <button
             type="button"
             onClick={() => setConsent('granted')}
-            className="rounded-sm bg-sand px-5 py-2.5 font-display text-[0.85rem] font-semibold text-coal transition-colors duration-200 hover:bg-sand-dark"
+            className="rounded-sm bg-sand px-5 py-2.5 font-display text-[0.85rem] font-semibold text-white transition-colors duration-200 hover:bg-sand-dark"
           >
             Accept
           </button>

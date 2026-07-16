@@ -6,7 +6,7 @@ export default function GuideMockup() {
   return (
     <div className="relative mx-auto h-[380px] w-[280px] sm:h-[430px] sm:w-[320px]" aria-hidden="true">
       {/* back sheet */}
-      <div className="absolute inset-0 translate-x-6 translate-y-3 rotate-6 rounded-sm bg-[#2a2a2a] shadow-2xl" />
+      <div className="absolute inset-0 translate-x-6 translate-y-3 rotate-6 rounded-sm bg-coal-card shadow-2xl" />
 
       {/* middle sheet, a peek of the inside pages */}
       <div className="absolute inset-0 -translate-x-6 -rotate-6 rounded-sm bg-cream p-6 shadow-2xl">

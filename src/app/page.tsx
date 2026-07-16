@@ -2,8 +2,9 @@
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import WelcomeTeighlor from '@/components/WelcomeTeighlor';
 import ServicesFeature from '@/components/ServicesFeature';
-import PremiumStudio from '@/components/PremiumStudio';
+import InstagramFeed from '@/components/InstagramFeed';
 import MomenceForm from '@/components/MomenceForm';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
@@ -16,20 +17,24 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        
+
         <AnimatedSection>
+          <WelcomeTeighlor />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.1}>
           <ServicesFeature />
         </AnimatedSection>
-        
-        <AnimatedSection delay={0.1}>
-          <PremiumStudio />
-        </AnimatedSection>
-        
+
         <AnimatedSection delay={0.2}>
+          <InstagramFeed />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.3}>
           <MomenceForm />
         </AnimatedSection>
-        
-        <AnimatedSection delay={0.3}>
+
+        <AnimatedSection delay={0.4}>
           <Testimonials />
         </AnimatedSection>
       </main>

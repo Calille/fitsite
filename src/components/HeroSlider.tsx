@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 
-// Hero carousel images
+// Hero carousel images — only files that exist in /public
 const heroImages = [
   '/TP_132.webp',
   '/TP_133.webp',
@@ -16,13 +16,7 @@ const heroImages = [
   '/TP_139.webp',
   '/TP_140.webp',
   '/TP_141.webp',
-  '/TP_142.webp',
   '/TP_143.webp',
-  '/TP_144.webp',
-  '/TP_145.webp',
-  '/TP_146.webp',
-  '/TP_147.webp',
-  '/TP_148.webp',
   '/TP_149.webp',
   '/TP_150.webp',
   '/TP_151.webp',
@@ -30,13 +24,7 @@ const heroImages = [
   '/TP_153.webp',
   '/TP_154.webp',
   '/TP_155.webp',
-  '/TP_156.webp',
-  '/TP_157.webp',
-  '/TP_158.webp',
-  '/TP_159.webp',
   '/TP_160.webp',
-  '/TP_162.webp',
-  '/TP_163.webp',
   '/TP_170.webp',
   '/TP_171.webp',
   '/TP_172.webp',

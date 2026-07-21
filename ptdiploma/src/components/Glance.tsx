@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import FadeUp from './FadeUp';
-import ImagePlaceholder from './ImagePlaceholder';
 
 export default function Glance() {
   return (
@@ -16,11 +16,15 @@ export default function Glance() {
 
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-12">
           <FadeUp>
-            <ImagePlaceholder
-              label="[TEIGHLOR_PHOTO] Teighlor headshot"
-              aspect="aspect-[3/4]"
-              className="mx-auto max-w-xs"
-            />
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl bg-gray-100">
+              <Image
+                src="/img/teighlor.webp"
+                alt="Teighlor, Course Lead at TP Health and Fitness"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 20rem, 20rem"
+              />
+            </div>
             <p className="mt-4 text-center font-display text-lg font-bold text-navy">Teighlor</p>
             <p className="text-center text-sm text-slate">Course Lead</p>
           </FadeUp>
@@ -44,11 +48,15 @@ export default function Glance() {
           </FadeUp>
 
           <FadeUp delay={0.12}>
-            <ImagePlaceholder
-              label="[SAM_PHOTO] Sam headshot"
-              aspect="aspect-[3/4]"
-              className="mx-auto max-w-xs"
-            />
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl bg-gray-100">
+              <Image
+                src="/img/sam.webp"
+                alt="Sam, Coach and Mentor at TP Health and Fitness"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 20rem, 20rem"
+              />
+            </div>
             <p className="mt-4 text-center font-display text-lg font-bold text-navy">Sam</p>
             <p className="text-center text-sm text-slate">Coach &amp; Mentor</p>
           </FadeUp>

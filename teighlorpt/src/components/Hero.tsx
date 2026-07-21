@@ -36,7 +36,7 @@ export default function Hero() {
           </div>
 
           <p className="mt-4 text-[0.8rem] text-white/45">
-            Secure checkout via Stripe · Delivered straight to your inbox
+            Secure checkout via Stripe · Instant PDF download after payment
           </p>
         </FadeUp>
 

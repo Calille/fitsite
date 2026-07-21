@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import FadeUp from './FadeUp';
-import ImagePlaceholder from './ImagePlaceholder';
+import CourseVideo from './CourseVideo';
 import { CONTACT, ENQUIRY_ENDPOINT, START_DATE } from '@/content/site';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
@@ -72,9 +72,9 @@ export default function EnquiryForm() {
               {START_DATE}.
             </p>
             <div className="mt-8 hidden lg:block">
-              <ImagePlaceholder
-                label="[TRAINING_IMAGE_2] 4:3 shadowing or real client work"
-                aspect="aspect-[4/3]"
+              <CourseVideo
+                src="/video/standout.webm"
+                title="What was the standout for you?"
               />
             </div>
           </FadeUp>

@@ -1,5 +1,5 @@
 import FadeUp from './FadeUp';
-import ImagePlaceholder from './ImagePlaceholder';
+import CourseVideo from './CourseVideo';
 
 const features = [
   {
@@ -49,14 +49,17 @@ export default function Included() {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
           <FadeUp>
-            <ImagePlaceholder label="[STUDIO_IMAGE] 4:3 Harpenden studio interior" aspect="aspect-[4/3]" />
+            <CourseVideo
+              src="/video/practice-with-clients.webm"
+              title="Practice with real clients"
+            />
           </FadeUp>
           <FadeUp delay={0.1}>
-            <ImagePlaceholder
-              label="[TRAINING_IMAGE_1] 4:3 students in a practical session"
-              aspect="aspect-[4/3]"
+            <CourseVideo
+              src="/video/assessment-part-1.webm"
+              title="What is an assessment like?"
             />
           </FadeUp>
         </div>

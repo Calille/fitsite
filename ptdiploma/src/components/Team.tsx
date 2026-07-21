@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import FadeUp from './FadeUp';
-import ImagePlaceholder from './ImagePlaceholder';
 
 export default function Team() {
   return (
@@ -7,25 +7,28 @@ export default function Team() {
       <div className="container-page">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <FadeUp>
-            <ImagePlaceholder
-              label="[TEAM_IMAGE] 3:4 Teighlor and Sam"
-              aspect="aspect-[3/4]"
-              className="mx-auto max-w-md !bg-white/10 !text-white/60"
-            />
+            <div className="relative mx-auto aspect-[3/4] max-w-md overflow-hidden rounded-2xl bg-white/10">
+              <Image
+                src="/img/level3team.webp"
+                alt="Jo and Ben, Level 3 PT Diploma graduates now coaching at TP Health and Fitness"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 28rem"
+              />
+            </div>
           </FadeUp>
           <FadeUp delay={0.1}>
             <h2 id="team-heading" className="font-display text-3xl font-bold sm:text-4xl">
-              Meet Teighlor and Sam
+              Meet Jo and Ben
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-white/85">
-              The course is led by Teighlor and Sam, who between them bring over 10 years of
-              teaching and coaching experience. You learn in a small group with direct access to
-              both of them throughout the 10 weeks, in the same Harpenden studio our clients train
-              in every day.
+              Jo and Ben recently completed the Level 3 PT Diploma with us and now coach on the TP
+              team. They trained in the same Harpenden studio, shadowed real clients from Week 5,
+              and passed first time, just like every student we have taught.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-white/85">
-              Every student we have taught has passed first time, and 2 of our graduates now coach
-              on the TP team.
+              That is the point of this course: leave qualified, confident, and ready to work with
+              real people, not just with a certificate.
             </p>
             <a href="#enquire" className="btn-primary mt-8">
               Speak to Teighlor

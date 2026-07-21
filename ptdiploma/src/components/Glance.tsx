@@ -1,37 +1,58 @@
 import FadeUp from './FadeUp';
-
-const glanceItems = [
-  { label: 'Duration', value: '10-week course' },
-  { label: 'Qualification', value: 'Level 2 & 3 Accredited' },
-  { label: 'Location', value: 'Harpenden Studio, Hertfordshire' },
-  { label: 'Pass rate', value: '100% first-time pass rate' },
-  { label: 'Format', value: 'Hybrid learning (in-person weekends plus online)' },
-  { label: 'Experience', value: '10+ years teaching and coaching' },
-  { label: 'Price', value: '£2,500 inc. VAT' },
-  { label: 'Payments', value: 'Flexible payments available' },
-];
+import ImagePlaceholder from './ImagePlaceholder';
 
 export default function Glance() {
   return (
-    <section className="py-16 sm:py-24" aria-labelledby="glance-heading">
+    <section className="py-16 sm:py-24" aria-labelledby="coaches-heading">
       <div className="container-page">
         <FadeUp>
-          <h2 id="glance-heading" className="font-display text-3xl font-bold text-navy sm:text-4xl">
-            The course at a glance
+          <h2
+            id="coaches-heading"
+            className="text-center font-display text-3xl font-bold text-navy sm:text-4xl"
+          >
+            Meet the Coaches
           </h2>
         </FadeUp>
-        <FadeUp delay={0.1}>
-          <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {glanceItems.map((item) => (
-              <div key={item.label} className="rounded-2xl bg-mist p-6">
-                <dt className="text-sm font-semibold uppercase tracking-wide text-slate">
-                  {item.label}
-                </dt>
-                <dd className="mt-2 font-semibold text-navy">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </FadeUp>
+
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-12">
+          <FadeUp>
+            <ImagePlaceholder
+              label="[TEIGHLOR_PHOTO] Teighlor headshot"
+              aspect="aspect-[3/4]"
+              className="mx-auto max-w-xs"
+            />
+            <p className="mt-4 text-center font-display text-lg font-bold text-navy">Teighlor</p>
+            <p className="text-center text-sm text-slate">Course Lead</p>
+          </FadeUp>
+
+          <FadeUp delay={0.08}>
+            <div className="text-center lg:px-2">
+              <p className="text-lg leading-relaxed text-slate">
+                The course is led by Teighlor and Sam, who between them bring over 10 years of
+                teaching and coaching experience. You learn in a small group with direct access to
+                both of them throughout the 10 weeks, in the same Harpenden studio our clients train
+                in every day.
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-slate">
+                Every student we have taught has passed first time, and graduates like Jo and Ben
+                now coach on the TP team.
+              </p>
+              <a href="#enquire" className="btn-primary mt-8">
+                Speak to Teighlor
+              </a>
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.12}>
+            <ImagePlaceholder
+              label="[SAM_PHOTO] Sam headshot"
+              aspect="aspect-[3/4]"
+              className="mx-auto max-w-xs"
+            />
+            <p className="mt-4 text-center font-display text-lg font-bold text-navy">Sam</p>
+            <p className="text-center text-sm text-slate">Coach &amp; Mentor</p>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );

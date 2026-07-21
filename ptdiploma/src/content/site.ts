@@ -1,7 +1,7 @@
 // Single source of truth for details that may change.
 // When the start date is confirmed, update START_DATE here and it updates everywhere.
 
-export const START_DATE = '[START_DATE]';
+export const START_DATE = '27th September 2026';
 
 export const BOOKING_URL = 'https://ptqualificationdiploma.info/tphealth-pt';
 export const MAIN_SITE_URL = 'https://www.tphealthfitness.com';

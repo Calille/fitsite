@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import ImagePlaceholder from './ImagePlaceholder';
+import CourseVideo from './CourseVideo';
 import { START_DATE } from '@/content/site';
 
 const trustItems = [
@@ -53,12 +53,11 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <motion.div {...entrance(0.25)}>
-            <ImagePlaceholder label="[HERO_IMAGE] 16:9 studio or training action shot" aspect="aspect-video" />
+          <motion.div {...entrance(0.25)} className="text-white [&_figcaption]:text-white/75">
+            <CourseVideo src="/video/why-choose-tp.webm" title="Why choose TP" />
           </motion.div>
         </div>
 
-        {/* Trust strip */}
         <motion.ul
           {...entrance(0.4)}
           className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 sm:mt-14 lg:grid-cols-4"

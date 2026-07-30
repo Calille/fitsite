@@ -36,6 +36,7 @@ const Header = () => {
   const leftNavLinks: NavLink[] = [
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Personal Training' },
+    { href: '/level-3-pt-course', label: 'Level 3 PT Course' },
   ];
 
   const rightNavLinks: NavLink[] = [
@@ -54,7 +55,7 @@ const Header = () => {
                 <Link 
                   href={link.href}
                   className={`font-medium transition-colors px-2 flex items-center gap-1 whitespace-nowrap ${
-                    link.href === pathname 
+                    pathname === link.href || pathname === `${link.href}/`
                       ? 'text-[#56b5bd] font-semibold border-b-2 border-[#56b5bd]' 
                       : 'text-gray-800 hover:text-[#56b5bd]'
                   }`}
@@ -85,7 +86,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 className={`font-medium transition-colors px-2 flex items-center whitespace-nowrap ${
-                  link.href === pathname 
+                  pathname === link.href || pathname === `${link.href}/`
                     ? 'text-[#56b5bd] font-semibold' 
                     : 'text-gray-800 hover:text-[#56b5bd]'
                 }`}
@@ -132,7 +133,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 className={`font-medium py-2 flex items-center gap-2 ${
-                  link.href === pathname ? 'text-[#56b5bd]' : 'text-gray-800'
+                  pathname === link.href || pathname === `${link.href}/` ? 'text-[#56b5bd]' : 'text-gray-800'
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -144,7 +145,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 className={`font-medium py-2 ${
-                  link.href === pathname ? 'text-[#56b5bd]' : 'text-gray-800'
+                  pathname === link.href || pathname === `${link.href}/` ? 'text-[#56b5bd]' : 'text-gray-800'
                 }`}
                 onClick={() => setIsOpen(false)}
               >

@@ -3,44 +3,10 @@
 import { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
+import { getActiveCarouselImages } from '@/data/coachCarousel';
 
-// Hero carousel images — only files that exist in /public
-const heroImages = [
-  '/TP_132.webp',
-  '/TP_133.webp',
-  '/TP_134.webp',
-  '/TP_135.webp',
-  '/TP_136.webp',
-  '/TP_137.webp',
-  '/TP_138.webp',
-  '/TP_139.webp',
-  '/TP_140.webp',
-  '/TP_141.webp',
-  '/TP_143.webp',
-  '/TP_149.webp',
-  '/TP_150.webp',
-  '/TP_151.webp',
-  '/TP_152.webp',
-  '/TP_153.webp',
-  '/TP_154.webp',
-  '/TP_155.webp',
-  '/TP_160.webp',
-  '/TP_170.webp',
-  '/TP_171.webp',
-  '/TP_172.webp',
-  '/TP_175.webp',
-  '/TP_180.webp',
-  '/TP_181.webp',
-  '/TP_182.webp',
-  '/TP_184.webp',
-  '/TP_185.webp',
-  '/TP_186.webp',
-  '/TP_190.webp',
-  '/TP_198.webp',
-  '/TP_199.webp',
-  '/TP_200.webp',
-  '/TP_202.webp',
-];
+// Resolved once at module load so the Embla preload effect stays stable.
+const heroImages = getActiveCarouselImages();
 
 interface HeroSliderProps {
   title: string;
@@ -75,12 +41,12 @@ export default function HeroSlider({ title, subtitle, children }: HeroSliderProp
 
     const preloadImages = async () => {
       const promises = heroImages.map(
-        (src) =>
+        (image) =>
           new Promise<void>((resolve) => {
             const img = new Image();
             img.onload = () => resolve();
             img.onerror = () => resolve();
-            img.src = src;
+            img.src = image.src;
           })
       );
       await Promise.all(promises);
@@ -130,15 +96,15 @@ export default function HeroSlider({ title, subtitle, children }: HeroSliderProp
       <div className="absolute inset-0 z-0">
         <div className="overflow-hidden h-full" ref={emblaRef}>
           <div className="flex h-full">
-            {heroImages.map((src, index) => (
+            {heroImages.map((image, index) => (
               <div
-                key={index}
+                key={`${image.src}-${index}`}
                 className="flex-[0_0_50%] sm:flex-[0_0_33.333%] md:flex-[0_0_25%] lg:flex-[0_0_20%] min-w-0 h-full"
               >
                 <img
-                  src={src}
-                  alt=""
-                  role="presentation"
+                  src={image.src}
+                  alt={image.alt || ''}
+                  role={image.alt ? undefined : 'presentation'}
                   className={`w-full h-full object-cover transition-opacity duration-500 ${
                     imagesLoaded ? 'opacity-100' : 'opacity-0'
                   }`}

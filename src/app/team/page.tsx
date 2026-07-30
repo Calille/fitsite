@@ -9,8 +9,8 @@ import { FaDumbbell, FaRunning, FaAppleAlt, FaUserGraduate, FaHandHoldingHeart }
 import TeamMemberCard from '@/components/TeamMemberCard';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
 
-// Team member data
-const teamMembers = [
+// Coaching team (PTs / therapists). Kayleigh is Studio Manager — listed separately below.
+const coaches = [
   {
     name: 'Teighlor',
     role: 'Founder & Director, Head Coach',
@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     name: 'Will',
-    role: 'Team Leader',
+    role: 'Team Leader & Senior Coach',
     specialties: ['Nutrition', 'Fat Loss', 'Running'],
     bio: 'Will is a Personal Trainer and Fat Loss Lead at TP, where he helps clients achieve meaningful, lasting results through evidence-based nutrition coaching and structured training. His qualifications (PNL1, PFCA FFC1) underpin a clear, practical style of coaching, where he explains not just what to do, but why it works. Having lost over 30kg himself, Will understands the challenges his clients face and brings both empathy and accountability to every session. His achievements in endurance sport — from completing a marathon to finishing a half Ironman and currently training for a full Ironman — reinforce his commitment to resilience and performance. Born and raised in Harpenden, Will is proud to work in his hometown gym and support the local community. When he\'s not coaching or training, he enjoys running, cycling, and time outdoors.',
     image: '/team/will.webp'
@@ -33,33 +33,36 @@ const teamMembers = [
     image: '/team/sophie.webp'
   },
   {
-    name: 'Ed',
-    role: 'Junior Trainer',
-    specialties: ['Personal Training'],
-    bio: 'I am a Footballer for Harpenden Town first team and have a strong passion for health and fitness. I was a student at Roundwood Park school and have my FA level 1 football coaching badge and introduction to first aid. I have competed in many sports across the years, my main two being football and athletics where I competed at a national level at distances of 800m up to 5k. This experience in demanding sporting environments has given me an understanding of the discipline and consistency needed to stay fit. I enjoy helping people progress with their fitness and helping them see improvement. In my spare time I like to travel and run.',
-    image: '/team/ed.webp'
-  },
-  {
     name: 'Jo',
-    role: 'Personal Trainer',
-    specialties: ['Personal Training'],
-    bio: 'Bio coming soon.',
+    role: 'Junior Coach',
+    specialties: ['Personal Training', 'Strength Training', 'Accountability'],
+    bio: 'I love exercise, and I\'ve had the most brilliant experience training through menopause, it\'s one of the reasons I wanted to become a PT myself.\n\nStrength and cardio training have been part of my life for over 30 years, but it\'s only in the last six years that I\'ve pushed myself further than I ever thought possible: six Hyrox events, a marathon (ticked off, never to be repeated!), a couple of half marathons, and several 10k/5k races (highly recommend).\n\nExercise and a great gym community have been such a positive force in my life, and I want to help others stay healthy, accountable, and reach their own fitness goals.\n\nIf you give me the chance to train you, I hope you\'ll put your trust in my coaching, and that I can make a small difference to your day or week, especially when things feel tough.',
     image: '/team/jo.webp'
   },
   {
-    name: 'Ben Webster',
-    role: 'Personal Trainer',
+    name: 'Ben',
+    role: 'Junior Coach',
     specialties: ['Personal Training'],
     bio: 'I\'m passionate about fitness and sport, with a background in rugby, tennis, and cricket. I\'ve always enjoyed training to improve my performance and push myself, and my own fitness journey has shown me the positive impact exercise can have both physically and mentally. This inspired me to pursue a career in coaching, and I recently achieved my Level 3 Personal Training qualification. I enjoy helping others make progress, achieve their goals, and build confidence through training. Outside of the gym, I enjoy spending time with family and friends and staying active through sport and training.',
     image: '/team/ben-webster.webp'
   },
   {
-    name: 'Kayleigh',
-    role: 'Personal Trainer',
+    name: 'Ed',
+    role: 'Junior Coach',
     specialties: ['Personal Training'],
+    bio: 'I am a Footballer for Harpenden Town first team and have a strong passion for health and fitness. I was a student at Roundwood Park school and have my FA level 1 football coaching badge and introduction to first aid. I have competed in many sports across the years, my main two being football and athletics where I competed at a national level at distances of 800m up to 5k. This experience in demanding sporting environments has given me an understanding of the discipline and consistency needed to stay fit. I enjoy helping people progress with their fitness and helping them see improvement. In my spare time I like to travel and run.',
+    image: '/team/ed.webp'
+  },
+];
+
+const studioTeam = [
+  {
+    name: 'Kayleigh',
+    role: 'Studio Manager',
+    specialties: ['Studio Operations', 'Client Welcome', 'Community'],
     bio: 'Bio coming soon.',
     image: '/team/kayleigh.webp'
-  }
+  },
 ];
 
 export default function TeamPage() {
@@ -126,8 +129,36 @@ export default function TeamPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 team-grid">
-              {teamMembers.map((member) => (
+              {coaches.map((member) => (
                 <TeamMemberCard 
+                  key={member.name}
+                  name={member.name}
+                  role={member.role}
+                  specialties={member.specialties}
+                  bio={member.bio}
+                  image={member.image}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Studio operations — not listed under coaching roles */}
+        <section className="pb-16 md:pb-24 bg-white text-gray-800">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <span className="text-gray-800">Studio </span>
+                <span className="text-[#56b5bd]">Team</span>
+              </h2>
+              <p className="text-gray-600">
+                The people who keep the studio running smoothly behind the scenes.
+              </p>
+            </div>
+
+            <div className="mx-auto grid max-w-md grid-cols-1 gap-8 team-grid">
+              {studioTeam.map((member) => (
+                <TeamMemberCard
                   key={member.name}
                   name={member.name}
                   role={member.role}

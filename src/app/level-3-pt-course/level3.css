@@ -1,0 +1,82 @@
+/* Scoped styles for the Level 3 PT Course landing page (migrated from pt.tphealthfitness.com).
+   Keep these under .level3-pt so they do not leak into the rest of the main site. */
+
+.level3-pt {
+  --l3-navy: #1a4a4e;
+  --l3-navy-deep: #12373a;
+  --l3-orange: #f97316;
+  --l3-orange-dark: #e2660f;
+  --l3-teal: #56b5bd;
+  --l3-mist: #f0f9fa;
+  --l3-ink: #171717;
+  --l3-slate: #6b7280;
+  background: #ffffff;
+  color: var(--l3-ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.level3-pt :focus-visible {
+  outline: 3px solid var(--l3-orange);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.level3-pt .container-page {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .level3-pt .container-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.level3-pt .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--l3-orange);
+  padding: 0.875rem 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.level3-pt .btn-primary:hover {
+  background-color: var(--l3-orange-dark);
+}
+
+.level3-pt .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(26 74 78 / 0.25);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  color: var(--l3-navy);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.level3-pt .btn-ghost:hover {
+  border-color: var(--l3-navy);
+  background-color: rgb(26 74 78 / 0.05);
+}
+
+.level3-pt .font-display {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+.level3-pt .font-body {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}

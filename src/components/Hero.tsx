@@ -4,8 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
-import Image from 'next/image';
+
+const GOOGLE_REVIEWS_URL = 'https://g.page/r/Ccotkqk7ORnPEAE';
 
 const Hero = () => {
   const { trackInteraction } = useAnalytics();
@@ -109,6 +111,26 @@ const Hero = () => {
       <div className="container-custom relative z-40">
         <div className="flex justify-center items-center">
           <div className="max-w-4xl text-center">
+            {/* Lightweight Google trust signal — above the fold, not competing with the headline */}
+            <motion.a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-6 inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/10 px-4 py-2 text-sm text-white/95 backdrop-blur-sm transition-colors hover:bg-white/15 hover:border-white/40"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              onClick={() => handleCTAClick('Google Reviews Badge')}
+              aria-label="5 stars on Google — read our Google reviews"
+            >
+              <span className="flex items-center gap-0.5 text-[#fbbc04]" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <FaStar key={i} className="h-3.5 w-3.5" />
+                ))}
+              </span>
+              <span className="font-medium tracking-wide">5 stars on Google</span>
+            </motion.a>
+
             {/* Animated Headline */}
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-center"

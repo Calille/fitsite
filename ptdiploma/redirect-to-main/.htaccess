@@ -1,0 +1,16 @@
+# Deploy the contents of this folder to the pt.tphealthfitness.com
+# document root (replacing the old standalone PT Diploma site) so that
+# existing links, bookmarks, and SEO equity resolve to the migrated page
+# on the main site.
+#
+# Target: https://www.tphealthfitness.com/level-3-pt-course/
+
+RewriteEngine On
+
+# Force HTTPS on the subdomain before redirecting
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Permanent redirect of every path on pt.tphealthfitness.com
+# to the Level 3 PT Course page on the main site.
+RewriteRule ^(.*)$ https://www.tphealthfitness.com/level-3-pt-course/ [R=301,L]

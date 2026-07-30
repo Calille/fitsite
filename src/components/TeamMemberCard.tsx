@@ -115,9 +115,9 @@ export default function TeamMemberCard({ name, role, specialties, bio, image }: 
         
         <div className="text-gray-600 min-h-[80px]">
           {showFullBio ? (
-            <p className="leading-relaxed">{bio}</p>
+            <p className="leading-relaxed whitespace-pre-line">{bio}</p>
           ) : (
-            <p className="leading-relaxed">
+            <p className="leading-relaxed whitespace-pre-line">
               {bio.length > 150 ? `${bio.substring(0, 150)}...` : bio}
             </p>
           )}

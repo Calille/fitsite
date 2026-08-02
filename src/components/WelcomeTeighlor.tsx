@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-const PT_DIPLOMA_URL = 'https://pt.tphealthfitness.com';
+const PT_DIPLOMA_URL = '/level-3-pt-course/';
 
 const WelcomeTeighlor = () => {
   return (
@@ -67,14 +67,12 @@ const WelcomeTeighlor = () => {
               <p>
                 Teighlor is also passionate about developing the next generation of trainers,
                 teaching students to{' '}
-                <a
+                <Link
                   href={PT_DIPLOMA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="font-semibold text-[#56b5bd] underline decoration-[#56b5bd]/40 underline-offset-2 transition-colors hover:text-[#45a4ac]"
                 >
                   become qualified PTs
-                </a>
+                </Link>
                 , three of whom are now proud members of her own team.
               </p>
             </div>

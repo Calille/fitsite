@@ -19,7 +19,7 @@ const WelcomeTeighlor = () => {
         >
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[400px] overflow-hidden bg-[#F0F9FA] md:sticky md:top-28">
             <Image
-              src="/team/teighlor.webp"
+              src="/level3-pt/img/teighlor.webp"
               alt="Teighlor Pengelley, Health and Fitness Coach at TP Health and Fitness"
               fill
               className="object-cover object-top"

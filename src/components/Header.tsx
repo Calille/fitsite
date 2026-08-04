@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation';
 interface NavLink {
   href: string;
   label: string;
+  external?: boolean;
 }
 
 const Header = () => {
@@ -41,8 +42,44 @@ const Header = () => {
 
   const rightNavLinks: NavLink[] = [
     { href: '/team', label: 'Our Team' },
+    { href: 'https://shop.tphealthfitness.com', label: 'Shop', external: true },
     { href: '/contact', label: 'Contact' },
   ];
+
+  const isActive = (link: NavLink) =>
+    !link.external && (pathname === link.href || pathname === `${link.href}/`);
+
+  const renderNavLink = (
+    link: NavLink,
+    className: string,
+    onClick?: () => void
+  ) => {
+    if (link.external) {
+      return (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          onClick={onClick}
+        >
+          {link.label}
+        </a>
+      );
+    }
+
+    return (
+      <Link
+        key={link.href}
+        href={link.href}
+        className={className}
+        onClick={onClick}
+      >
+        {link.label}
+      </Link>
+    );
+  };
 
   return (
     <header className={`sticky top-0 z-50 w-full bg-white ${scrolled ? 'shadow-md' : ''}`}>
@@ -52,16 +89,14 @@ const Header = () => {
           <nav className="hidden md:flex items-center justify-start gap-1">
             {leftNavLinks.map((link) => (
               <div key={link.href} className="relative px-2">
-                <Link 
-                  href={link.href}
-                  className={`font-medium transition-colors px-2 flex items-center gap-1 whitespace-nowrap ${
-                    pathname === link.href || pathname === `${link.href}/`
-                      ? 'text-[#56b5bd] font-semibold border-b-2 border-[#56b5bd]' 
+                {renderNavLink(
+                  link,
+                  `font-medium transition-colors px-2 flex items-center gap-1 whitespace-nowrap ${
+                    isActive(link)
+                      ? 'text-[#56b5bd] font-semibold border-b-2 border-[#56b5bd]'
                       : 'text-gray-800 hover:text-[#56b5bd]'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                  }`
+                )}
               </div>
             ))}
           </nav>
@@ -81,19 +116,16 @@ const Header = () => {
 
           {/* Right Side Navigation */}
           <nav className="hidden md:flex items-center justify-end gap-1">
-            {rightNavLinks.map((link) => (
-              <Link 
-                key={link.href}
-                href={link.href}
-                className={`font-medium transition-colors px-2 flex items-center whitespace-nowrap ${
-                  pathname === link.href || pathname === `${link.href}/`
-                    ? 'text-[#56b5bd] font-semibold' 
+            {rightNavLinks.map((link) =>
+              renderNavLink(
+                link,
+                `font-medium transition-colors px-2 flex items-center whitespace-nowrap ${
+                  isActive(link)
+                    ? 'text-[#56b5bd] font-semibold'
                     : 'text-gray-800 hover:text-[#56b5bd]'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+                }`
+              )
+            )}
             {/* Book Now Button */}
             <Link
               href="/book"
@@ -128,30 +160,24 @@ const Header = () => {
           className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 z-50"
         >
           <div className="container-custom flex flex-col space-y-4">
-            {leftNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`font-medium py-2 flex items-center gap-2 ${
-                  pathname === link.href || pathname === `${link.href}/` ? 'text-[#56b5bd]' : 'text-gray-800'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            {rightNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`font-medium py-2 ${
-                  pathname === link.href || pathname === `${link.href}/` ? 'text-[#56b5bd]' : 'text-gray-800'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {leftNavLinks.map((link) =>
+              renderNavLink(
+                link,
+                `font-medium py-2 flex items-center gap-2 ${
+                  isActive(link) ? 'text-[#56b5bd]' : 'text-gray-800'
+                }`,
+                () => setIsOpen(false)
+              )
+            )}
+            {rightNavLinks.map((link) =>
+              renderNavLink(
+                link,
+                `font-medium py-2 ${
+                  isActive(link) ? 'text-[#56b5bd]' : 'text-gray-800'
+                }`,
+                () => setIsOpen(false)
+              )
+            )}
             <Link
               href="/book"
               className="mt-2 px-4 py-2 bg-[#56b5bd] text-white font-semibold rounded-lg hover:bg-[#4a9ba8] transition-colors text-center"

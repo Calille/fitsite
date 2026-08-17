@@ -9,7 +9,7 @@ import { FaDumbbell, FaRunning, FaAppleAlt, FaUserGraduate, FaHandHoldingHeart }
 import TeamMemberCard from '@/components/TeamMemberCard';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
 
-// Coaching team (PTs / therapists). Kayleigh is Studio Manager — listed separately below.
+// Coaching team (PTs / therapists). Kayleigh is Operations Manager — listed separately below.
 const coaches = [
   {
     name: 'Teighlor',
@@ -58,9 +58,9 @@ const coaches = [
 const studioTeam = [
   {
     name: 'Kayleigh',
-    role: 'Studio Manager',
+    role: 'Operations Manager',
     specialties: ['Studio Operations', 'Client Welcome', 'Community'],
-    bio: 'Bio coming soon.',
+    bio: 'Kayleigh has over 15 years of experience in office management and administration. As Operations Manager at TP, she oversees the day-to-day administration and helps ensure the studio runs smoothly for both the team and clients. Outside of work, running is a big part of Kayleigh\'s life, whether she\'s training for races, taking on new challenges or simply enjoying time outdoors, she\'s passionate about fitness and leading an active lifestyle. As a mum of two, she knows the value of making health and exercise fit around everyday life.',
     image: '/team/kayleigh.webp'
   },
 ];

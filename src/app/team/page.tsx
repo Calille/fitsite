@@ -63,6 +63,13 @@ const studioTeam = [
     bio: 'Kayleigh has over 15 years of experience in office management and administration. As Operations Manager at TP, she oversees the day-to-day administration and helps ensure the studio runs smoothly for both the team and clients. Outside of work, running is a big part of Kayleigh\'s life, whether she\'s training for races, taking on new challenges or simply enjoying time outdoors, she\'s passionate about fitness and leading an active lifestyle. As a mum of two, she knows the value of making health and exercise fit around everyday life.',
     image: '/team/kayleigh.webp'
   },
+  {
+    name: 'Nico',
+    role: 'Head of Studio Morale',
+    specialties: ['Welcome Committee', 'Belly Rubs', 'Rest Days'],
+    bio: 'Nico is the unofficial (but very important) member of the TP team. He spends a lot of time at the gym: supervising sessions, greeting clients, and making sure nobody takes themselves too seriously. When he\'s not on studio duty, you\'ll find him out on a walk, wrapped up in his coat, or claiming the best spot in the room. Qualifications include excellent listening, selective recall, and an unmatched ability to boost morale mid-set.',
+    image: '/team/nico.png'
+  },
 ];
 
 export default function TeamPage() {
@@ -152,11 +159,11 @@ export default function TeamPage() {
                 <span className="text-[#56b5bd]">Team</span>
               </h2>
               <p className="text-gray-600">
-                The people who keep the studio running smoothly behind the scenes.
+                The people who keep the studio running smoothly behind the scenes — plus one very good boy.
               </p>
             </div>
 
-            <div className="mx-auto grid max-w-md grid-cols-1 gap-8 team-grid">
+            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2 team-grid">
               {studioTeam.map((member) => (
                 <TeamMemberCard
                   key={member.name}

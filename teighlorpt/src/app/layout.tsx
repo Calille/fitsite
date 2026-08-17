@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { ConsentProvider } from '@/components/ConsentProvider';
 import { CookieConsentBanner } from '@/components/CookieConsentBanner';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import MetaPixel from '@/components/MetaPixel';
 import { WebVitals } from '@/components/WebVitals';
 import { PRICE } from '@/content/site';
 import './globals.css';
@@ -71,6 +72,7 @@ export default function RootLayout({
             });
           `}
         </Script>
+        <MetaPixel />
       </head>
       <body className={`${outfit.variable} ${poppins.variable}`}>
         <ConsentProvider>

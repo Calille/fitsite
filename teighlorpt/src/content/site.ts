@@ -9,7 +9,7 @@
  * Drop the guide PDF at: public/guides/strongher-fat-loss-guide.pdf
  */
 export const CHECKOUT_URL =
-  'https://buy.stripe.com/7sY00i3b0at152o2nk5Vu03';
+  'https://buy.stripe.com/bJe6oGdPE6cLdyU6DA5Vu05';
 
 export const SUCCESS_URL = 'https://strongher.tphealthfitness.com/thank-you/';
 
@@ -18,5 +18,7 @@ export const GUIDE_PDF_FILENAME = 'StrongHER-Fat-Loss-Guide.pdf';
 
 export const PRICE = '£19';
 
-export const INSTAGRAM_HANDLE = '@teighlor_pengelley';
-export const INSTAGRAM_URL = 'https://www.instagram.com/teighlor_pengelley/';
+export const INSTAGRAM_HANDLE = '@tphealthandfitness_';
+export const INSTAGRAM_URL = 'https://www.instagram.com/tphealthandfitness_';
+
+export const META_PIXEL_ID = '1570949691427033';

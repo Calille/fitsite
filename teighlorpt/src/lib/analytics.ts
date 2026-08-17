@@ -68,5 +68,6 @@ export function trackCheckoutClick(location: 'hero' | 'pricing' | 'final_cta'): 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }

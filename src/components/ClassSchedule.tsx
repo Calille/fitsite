@@ -1,5 +1,17 @@
 'use client';
 
+/**
+ * RETAINED UNREFERENCED — class schedule taken down (client request, Aug 2026).
+ *
+ * This component embeds the Momence class timetable (iframe to
+ * https://momence.com/u/tp-health-&-fitness-coaching-AZnJNB). It is no longer
+ * imported anywhere so the schedule does not appear on the site. Restore by
+ * importing it again (e.g. on the homepage or a /schedule route).
+ *
+ * Do not delete: the booking flow on /book uses a separate Momence appointments
+ * iframe and must stay in place.
+ */
+
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAnalytics } from '@/contexts/AnalyticsContext';

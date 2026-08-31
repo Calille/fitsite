@@ -7,6 +7,9 @@
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # Class schedule taken down — send old links to contact (restore src/app/schedule and ClassSchedule.tsx to reverse)
+  RewriteRule ^schedule(/.*)?$ /contact/ [R=301,L]
+
   # Remove trailing slashes (except for directories)
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} (.+)/$

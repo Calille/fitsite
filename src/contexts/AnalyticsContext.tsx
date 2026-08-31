@@ -72,7 +72,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
   // Generate sample historical data
   const generateSampleData = () => {
-    const pages = ['/', '/services', '/about', '/contact', '/blog', '/schedule'];
+    const pages = ['/', '/services', '/about', '/contact', '/blog'];
     const interactions = ['button_click', 'form_submit', 'navigation', 'scroll', 'download'];
     const pageViews: PageView[] = [];
     const userInteractions: UserInteraction[] = [];

@@ -24,7 +24,6 @@ Upload ALL files from the `out/` directory to your cPanel's `public_html/` folde
 - `menopause-way/` (entire folder)
 - `more/` (entire folder)
 - `privacy/` (entire folder)
-- `schedule/` (entire folder)
 - `services/` (entire folder)
 - `team/` (entire folder with images)
 - `terms/` (entire folder)
@@ -77,7 +76,6 @@ public_html/
 ├── blog/
 ├── contact/
 ├── menopause-way/
-├── schedule/
 ├── services/
 ├── team/
 └── [other directories...]

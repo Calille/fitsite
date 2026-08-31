@@ -45,6 +45,10 @@ AddType image/avif .avif
 
 # Handle client-side routing
 RewriteEngine On
+
+# Class schedule taken down — send old links to contact
+RewriteRule ^schedule(/.*)?$ /contact/ [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.html [L]

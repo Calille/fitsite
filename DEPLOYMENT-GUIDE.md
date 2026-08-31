@@ -174,7 +174,7 @@ This gives you static speed with dynamic functionality.
 
 ### ✅ Essential Tests
 - [ ] **Homepage loads** - `https://yourdomain.com`
-- [ ] **All pages work** - Test `/about`, `/services`, `/team`, `/blog`, `/contact`, `/schedule`, `/book`
+- [ ] **All pages work** - Test `/about`, `/services`, `/team`, `/blog`, `/contact`, `/book`
 - [ ] **Images display** - Check logo, team photos, service images
 - [ ] **Video plays** - Test hero video on homepage
 - [ ] **Mobile responsive** - Test on phone/tablet

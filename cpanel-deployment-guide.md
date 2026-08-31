@@ -23,7 +23,6 @@ public_html/
 ├── contact/
 ├── more/
 ├── privacy/
-├── schedule/
 ├── services/
 ├── team/
 ├── terms/

@@ -14,7 +14,6 @@ A high-performance, SEO-friendly website for a fitness studio built with Next.js
 
 - **Home**: Dynamic hero section with call-to-action and service highlights
 - **Services**: Detailed information about personal training, group classes, and specialized programs
-- **Schedule**: Class timetable with filtering options
 - **Blog**: Fitness articles and tips
 - **About**: Studio information and team details
 - **Contact**: Contact form and location information
